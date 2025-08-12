@@ -156,10 +156,12 @@ const images = [
       <div className="w-full py-6">
       <Swiper
         modules={[Navigation, Pagination]}
-        spaceBetween={10}
+       
+        spaceBetween={5}
         slidesPerView={1.5}
         centeredSlides={true}
         navigation
+      
         pagination={{ clickable: true }}
         className="custom-swiper"
       >
