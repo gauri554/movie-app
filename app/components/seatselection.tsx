@@ -2,7 +2,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import ChooseSeats from "./ChooseSeats";
+
 export default function SeatSelection() {
   const [type, setType] = useState("VIP");
   const [seats, setSeats] = useState(2);
