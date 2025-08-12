@@ -44,7 +44,7 @@ export default function Popup({ isOpen, onClose }: PopupProps) {
             onClose();
             router.push("/"); // navigate to home
           }}
-          className="bg-[#E91E63] text-white font-medium px-6 py-3 rounded-lg w-full"
+          className="bg-[#E91E63] text-white font-medium px-6 py-3 rounded-lg w-full cursor-pointer"
         >
           Back To Home
         </button>

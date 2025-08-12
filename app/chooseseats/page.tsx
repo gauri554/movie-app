@@ -127,7 +127,7 @@ export default function ChooseSeats() {
       {/* Price and Button */}
       <div className="mt-10 flex flex-col items-center">
         <p className="text-lg mb-3">Price: <span className="font-bold">Rs.2340</span></p>
-        <button onClick={() => router.push("/checkout")} className="bg-red-500 hover:bg-red-600 px-8 py-3 rounded-lg font-semibold text-white text-lg">
+        <button onClick={() => router.push("/checkout")} className="bg-red-500 hover:bg-red-600 px-8 py-3 rounded-lg font-semibold text-white text-lg cursor-pointer">
           Buy Ticket
         </button>
       </div>

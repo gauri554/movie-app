@@ -94,7 +94,7 @@ export default function CheckoutPage() {
             <p className="text-lg font-semibold">RS. 99.8</p>
             <button
               type="button"  onClick={handlePayNow}
-              className="bg-red-500 hover:bg-red-600 px-6 py-2 rounded-lg font-semibold text-white"
+              className="bg-red-500 hover:bg-red-600 px-6 py-2 rounded-lg font-semibold text-white cursor-pointer"
             >
               Pay Now
             </button>

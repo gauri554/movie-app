@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from 'next/link';
 type Chip = { label: string; active?: boolean };
@@ -36,6 +37,7 @@ const bestThisWeek = [
 
 export default function AllEventsPage() {
    const router = useRouter();
+     const [showSearch, setShowSearch] = useState(false);
   return (
     <div className="min-h-screen font-poppins bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white">
       <div className="max-w-7xl mx-auto px-6 py-10">
@@ -54,18 +56,25 @@ export default function AllEventsPage() {
           </div>
 
           <div className="flex items-center gap-4">
-            <button className="p-2 rounded-full bg-white/6 hover:bg-white/10">
+            <button  onClick={() => setShowSearch(!showSearch)} className="p-2 rounded-full bg-white/6 hover:bg-white/10 cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white/90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
               </svg>
             </button>
+             {showSearch && (
+          <input
+            type="text"
+            placeholder="Search movies..."
+            className="px-3 py-1 rounded-md text-white bg-white/10 shadow-md focus:outline-none w-48"
+          />
+        )}
           </div>
         </header>
 
         {/* Language chips */}
         <div className="flex flex-wrap gap-3 mb-6">
           {languageChips.map((c) => (
-            <button key={c.label} className={`px-4 py-2 rounded-full text-sm font-medium shadow-sm ${c.active ? "bg-[#ff4655] text-white" : "bg-white/6 text-white/80 hover:bg-white/10"}`}>
+            <button key={c.label} className={`px-4 py-2 rounded-full text-sm font-medium shadow-sm cursor-pointer ${c.active ? "bg-[#ff4655] text-white" : "bg-white/6 text-white/80 hover:bg-white/10"}`}>
               {c.label}
               {c.active && <span className="ml-2 inline-block bg-white/10 px-2 py-0.5 rounded-md text-xs">x</span>}
             </button>
@@ -90,8 +99,8 @@ export default function AllEventsPage() {
         {/* Comedy and Music shows side-by-side on desktop */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
           <section>
-            <h2 className="text-2xl text-[#ff596b] font-semibold mb-4">Comedy Shows</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h2 className="text-2xl text-[#ff596b] font-semibold mb-4 ">Comedy Shows</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
               {comedyShows.map((c) => (
                 <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="rounded-xl overflow-hidden relative">
                   <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url('${c.img}')` }} />
@@ -106,7 +115,7 @@ export default function AllEventsPage() {
 
           <section>
             <h2 className="text-2xl text-[#ff596b] font-semibold mb-4">Music Shows</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
               {musicShows.map((c) => (
                 <div key={c.title} onClick={() => router.push(`/eventlist`)} className="rounded-xl overflow-hidden relative">
                   <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url('${c.img}')` }} />
@@ -123,7 +132,7 @@ export default function AllEventsPage() {
         {/* Events Hero */}
         <section className="mb-10">
           <h2 className="text-2xl text-[#ff596b] font-semibold mb-4">Events</h2>
-          <div  onClick={() => router.push(`/eventdetails`)} className=" overflow-hidden relative h-72  object-contain" style={{ backgroundImage: `url('/coldplay.png')` , backgroundSize: "contain",
+          <div  onClick={() => router.push(`/eventdetails`)} className=" overflow-hidden relative h-72  object-contain cursor-pointer" style={{ backgroundImage: `url('/coldplay.png')` , backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
      }} >
             <div className="absolute inset-0 " />
@@ -140,9 +149,9 @@ export default function AllEventsPage() {
             <h2 className="text-2xl text-[#ff596b] font-semibold">Best Event this Week</h2>
             <a className="text-sm text-white/80 hover:underline">View All →</a>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-6 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-6 gap-10 cursor-pointer">
             {bestThisWeek.map((b) => (
-              <div key={b.title} className="rounded-lg overflow-hidden bg-[#0b223f] shadow-md text-center">
+              <div key={b.title} onClick={() => router.push(`/eventlist`)} className="rounded-lg overflow-hidden bg-[#0b223f] shadow-md text-center">
                 <div className="h-40 bg-cover bg-center mt-5" style={{ backgroundImage: `url('${b.img}')`,  backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center" }} />

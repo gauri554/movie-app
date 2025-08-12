@@ -76,7 +76,7 @@ export default function ETicketPage() {
       </div>
 
       {/* Download Button */}
-      <button  onClick={() => setShowPopup(true)} className="mt-8 bg-[#E63946] text-white font-semibold py-3 px-6 rounded-lg hover:bg-red-600 transition">
+      <button  onClick={() => setShowPopup(true)} className="mt-8 bg-[#E63946] text-white font-semibold py-3 px-6 rounded-lg hover:bg-red-600 transition cursor-pointer">
         Download E-Ticket
       </button>
         <Popup isOpen={showPopup} onClose={() => setShowPopup(false)} />

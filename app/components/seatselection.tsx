@@ -65,7 +65,7 @@ export default function SeatSelection() {
                 <button
                   key={num}
                   onClick={() => setSeats(num)}
-                  className={`w-12 h-12 rounded-full text-sm font-medium flex items-center justify-center border transition ${
+                  className={`w-12 h-12 rounded-full text-sm font-medium flex items-center justify-center border transition cursor-pointer ${
                     seats === num
                       ? "bg-red-500 text-white border-red-500"
                       : "bg-white text-gray-700 hover:bg-gray-100"
@@ -121,7 +121,7 @@ export default function SeatSelection() {
 
       {/* Select Seats Button */}
       <div className="mt-10">
-        <button  onClick={() => router.push("/chooseseats")} className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-4 rounded-lg text-lg shadow-md transition">
+        <button  onClick={() => router.push("/chooseseats")} className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-4 rounded-lg text-lg shadow-md transition cursor-pointer">
           Select Seats
         </button>
       </div>

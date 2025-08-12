@@ -40,12 +40,12 @@ export default function CinemaShowsPage() {
         </div>
 
         {/* Date Selector */}
-        <div className="flex gap-3 overflow-x-auto pb-2 mb-4">
+        <div className="flex gap-3 overflow-x-auto pb-2 mb-4 ">
           {dates.map((date) => (
             <button
               key={date}
               onClick={() => setSelectedDate(date)}
-              className={`px-4 py-2 rounded-full text-sm bg-white/5  text-white font-medium ${
+              className={`px-4 py-2 rounded-full text-sm bg-white/5  text-white font-medium cursor-pointer ${
                 selectedDate === date
                   ? "bg-yellow-400 text-white"
                   : "bg-white text-gray-700 border"
@@ -62,7 +62,7 @@ export default function CinemaShowsPage() {
             <button
               key={lang}
               onClick={() => setSelectedLang(lang)}
-              className={`px-4 py-2 rounded-full text-sm bg-white/5 text-white font-medium ${
+              className={`px-4 py-2 rounded-full text-sm bg-white/5 text-white font-medium cursor-pointer ${
                 selectedLang === lang
                   ? "bg-gray-900 text-white"
                   : "bg-white text-gray-700 border"

@@ -21,7 +21,7 @@ import "./globals.css";
 
 export default function HomePage() {
    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+ const [showSearch, setShowSearch] = useState(false);
 
 const images = [
    "/carsoul1.webp",
@@ -82,9 +82,18 @@ const images = [
           <span>▼</span>
         </div>
         <div className="flex items-center gap-6">
-          <span className="text-xl">
+          <span   className="text-xl text-white cursor-pointer hover:text-yellow-400"
+          onClick={() => setShowSearch(!showSearch)}>
   <FaSearch />
 </span>
+
+ {showSearch && (
+          <input
+            type="text"
+            placeholder="Search movies..."
+            className="px-3 py-1 rounded-md text-white bg-text-white/10 focus:outline-none w-48 shadow-md"
+          />
+        )}
          <span className="text-xl">
   <FaBell />
 </span>
@@ -161,7 +170,7 @@ const images = [
         slidesPerView={1.5}
         centeredSlides={true}
         navigation
-      
+       initialSlide={4}
         pagination={{ clickable: true }}
         className="custom-swiper"
       >
@@ -186,6 +195,7 @@ const images = [
         <MovieCard img="/movie2.jpeg" title="Inception" rating={7.9} votes="10.5k" />
         <MovieCard img="/movie3.jpeg" title="Dune" rating={7.9} votes="10.5k" />
           <MovieCard img="/movie3.jpeg" title="Dune" rating={7.9} votes="10.5k" />
+       
       </Section>
 
       {/* Kids Special */}

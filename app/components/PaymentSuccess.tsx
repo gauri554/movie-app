@@ -50,7 +50,7 @@ const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ onClose }) => {
         </p>
 
         {/* Button */}
-        <button  onClick={() => router.push("/eticket")} className="bg-[#E63946] text-white font-semibold py-3 px-6 rounded-lg hover:bg-red-600 transition">
+        <button  onClick={() => router.push("/eticket")} className="bg-[#E63946] text-white font-semibold py-3 px-6 rounded-lg hover:bg-red-600 transition cursor-pointer">
           See E-Ticket
         </button>
       </div>

@@ -26,6 +26,7 @@ const sampleMovies: Movie[] = [
 
 export default function NewReleasesPage() {
   // carousel state
+   const [showSearch, setShowSearch] = useState(false);
   const [slide, setSlide] = useState(0);
    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
  const router = useRouter();
@@ -66,18 +67,25 @@ export default function NewReleasesPage() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <button onClick={() => router.push("/new-release")} className="px-4 py-2 rounded-full bg-[#ff4655] hover:bg-white/10 text-sm">Film Mart</button>
-            <button onClick={() => router.push("/events")} className="px-4 py-2 rounded-full bg-[#ff4655] bg-white/6 hover:bg-bg-[#ff4655] text-white text-sm">Events</button>
-            <button onClick={() => router.push("/cinemashows")} className="px-4 py-2 rounded-full bg-white/6 hover:bg-[#ff4655] text-sm">Book Ticket</button>
+            <button onClick={() => router.push("/new-release")} className="px-4 py-2 rounded-full bg-[#ff4655] hover:bg-white/10 text-sm cursor-pointer">Film Mart</button>
+            <button onClick={() => router.push("/events")} className="px-4 py-2 rounded-full bg-[#ff4655] bg-white/6 hover:bg-bg-[#ff4655] text-white text-sm cursor-pointer">Events</button>
+            <button onClick={() => router.push("/cinemashows")} className="px-4 py-2 rounded-full bg-white/6 hover:bg-[#ff4655] text-sm cursor-pointer">Book Ticket</button>
           </div>
 
           {/* right icons (search, bell) */}
           <div className="flex items-center gap-3">
-            <button className="p-2 rounded-full bg-white/6 hover:bg-white/10">
+            <button  onClick={() => setShowSearch(!showSearch) }className="p-2 rounded-full bg-white/6 hover:bg-white/10">
               <svg className="w-5 h-5 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
               </svg>
             </button>
+              {showSearch && (
+          <input
+            type="text"
+            placeholder="Search movies..."
+            className="px-3 py-1 rounded-md text-white bg-white/10 shadow-md focus:outline-none w-48"
+          />
+        )}
             <button className="p-2 rounded-full bg-white/6 hover:bg-white/10">
               <svg className="w-5 h-5 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5" />
@@ -178,7 +186,7 @@ export default function NewReleasesPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {sampleMovies.map((m, i) => (
 
-              <div key={i} onClick={() => router.push(`/details`)} className="rounded-xl overflow-hidden bg-[#0b233f] p-3">
+              <div key={i} onClick={() => router.push(`/details`)} className="rounded-xl overflow-hidden bg-[#0b233f] p-3 cursor-pointer hover:text-white/70">
                 <div className="relative rounded-md overflow-hidden">
                   {/* Poster: object-cover to fill the card nicely */}
                   <Image
@@ -209,7 +217,7 @@ export default function NewReleasesPage() {
 
         {/* desktop footer-like actions */}
         <div className="mt-10 flex items-center justify-between">
-          <button className="bg-[#ff4655] text-white px-6 py-3 rounded-xl">Browse by Cinemas</button>
+          <button onClick={() => router.push(`/details`)} className="bg-[#ff4655] text-white px-6 py-3 rounded-xl cursor-pointer">Browse by Cinemas</button>
           <div className="text-sm text-white/70">Showing {sampleMovies.length} of 34 movies</div>
         </div>
       </div>

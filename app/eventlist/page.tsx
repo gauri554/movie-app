@@ -78,7 +78,7 @@ const EventListPage: React.FC = () => {
               <p>
                 <span className="font-bold ">Venue</span> {event.venue}
               </p>
-              <button onClick={() => router.push(`/checkout`)} className="mt-2 bg-red-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-red-600 transition">
+              <button onClick={() => router.push(`/checkout`)} className="mt-2 bg-red-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-red-600 transition cursor-pointer">
                 Buy tickets
               </button>
             </div>

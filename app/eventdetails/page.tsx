@@ -159,7 +159,7 @@ Friday, 24 Aug 2019 | 6:30PM - 9:30PM</li>
       {/* Bottom Bar */}
       <footer className="bg-[#FDE9D9] flex justify-between items-center px-6 py-4 mt-10 rounded-t-xl">
         <p className="text-gray-800 font-semibold">$30 - $80</p>
-        <button  onClick={() => router.push("/checkout")}className="bg-pink-500 text-white px-6 py-2 rounded-lg font-semibold">
+        <button  onClick={() => router.push("/checkout")}className="bg-pink-500 text-white px-6 py-2 rounded-lg font-semibold cursor-pointer">
           Buy tickets
        </button>
       </footer>
