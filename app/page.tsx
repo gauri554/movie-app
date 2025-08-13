@@ -84,9 +84,9 @@ const images = [
 
       {/* Navbar */}
       <header className="flex justify-between items-center px-8 py-4 border-b border-white/10">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 cursor-pointer">
             <button
-        className="p-3 m-4 bg-white/5 text-white rounded-md"
+        className="p-3 m-4 bg-white/5 text-white rounded-md cursor-pointer"
         onClick={() => setIsSidebarOpen(true)}
       >
         <Menu size={24} />
@@ -140,7 +140,7 @@ const images = [
 
         </div>
         <div className="flex items-center gap-6">
-          <span   className="text-xl text-white cursor-pointer hover:text-yellow-400"
+          <span   className="text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
           onClick={() => setShowSearch(!showSearch)}>
   <FaSearch />
 </span>
