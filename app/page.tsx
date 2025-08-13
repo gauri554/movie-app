@@ -18,10 +18,18 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import "./globals.css";
+import { motion, AnimatePresence } from "framer-motion";
+
+
+
+
 
 export default function HomePage() {
    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
  const [showSearch, setShowSearch] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  
+
 
 const images = [
    "/carsoul1.webp",
@@ -33,7 +41,12 @@ const images = [
    "/carsoul7.webp",
 ];
 
-  
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+ const [selectedCity, setSelectedCity] = useState<string>("Ahmedabad");
+  const handleCitySelect = (city: string) => {
+     setSelectedCity(city);
+    setIsOpen(false);
+  };
 
 {/*const images = [
     "/Group 2529.png",
@@ -78,8 +91,53 @@ const images = [
       >
         <Menu size={24} />
       </button>
-          <span className="font-semibold text-lg">Ahmedabad</span>
-          <span>▼</span>
+      <div  onClick={() => setIsOpen(true)}
+        className="flex items-center gap-1 cursor-pointer select-none">
+          <span className="font-semibold text-lg">{selectedCity}</span>
+          <span>▼</span></div>
+   <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setIsOpen(false)}
+          >
+            <motion.div
+              className="bg-[#0C1B4D] text-white rounded-2xl p-6 w-[90%] max-w-md shadow-2xl"
+              initial={{ scale: 0.5, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.5, opacity: 0, y: 50 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Search Bar */}
+              <input
+                type="text"
+                placeholder="Search for your city"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-white/10"
+              />
+
+              {/* Example City List */}
+              <div className="mt-4 flex flex-col gap-2">
+                {["Mumbai", "Delhi", "Bengaluru", "Chennai"].map((city) => (
+                  <motion.div
+                    key={city}
+                    onClick={() => handleCitySelect(city)}
+                    className="p-2 hover:bg-white/10 rounded cursor-pointer"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {city}
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
         </div>
         <div className="flex items-center gap-6">
           <span   className="text-xl text-white cursor-pointer hover:text-yellow-400"
@@ -171,12 +229,33 @@ const images = [
         centeredSlides={true}
         navigation
        initialSlide={4}
+
+
+
+         speed={1000}
+      
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 120,
+          modifier: 2.2,
+          slideShadows: false,
+        }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        keyboard={{ enabled: true }}
+        mousewheel={{ forceToAxis: true, releaseOnEdges: true }}
         pagination={{ clickable: true }}
+          onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+    
         className="custom-swiper"
       >
         {images.map((src, idx) => (
           <SwiperSlide key={idx}>
-            <div className="slide-wrapper">
+            <div className={`slide-wrapper transition-all duration-500 ease-out ${
+                activeIndex === idx
+                  ? "scale-110 opacity-100"
+                  : "scale-90 opacity-70"
+              }`}>
               <img
                 src={src}
                 alt={`slide-${idx}`}
@@ -198,6 +277,9 @@ const images = [
        
       </Section>
 
+
+
+     
       {/* Kids Special */}
       <Section title="Kids’ Special">
         <EventCard img="/movie1.jpeg" title="Pemberton Music Festival" date="Thurs 19 Oct Onwards" />

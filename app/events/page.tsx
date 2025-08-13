@@ -12,7 +12,7 @@ const languageChips: Chip[] = [
   { label: "Hindi" },
   { label: "Telegu" },
   { label: "Malayalam" },
-  { label: "Punjabi" },
+  { label: "Panjabi" },
 ];
 
 const comedyShows = [

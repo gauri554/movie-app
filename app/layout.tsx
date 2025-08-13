@@ -5,7 +5,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'FISADDI',
+  title: 'Movie App',
   description: 'Movie and entertainment platform',
 };
 
