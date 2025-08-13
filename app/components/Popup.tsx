@@ -23,7 +23,7 @@ export default function Popup({ isOpen, onClose }: PopupProps) {
           <div className="bg-white rounded-full p-4 shadow-lg">
             <div className="bg-[#FFC107] rounded-full p-3">
               
-              <FaCheckCircle className="text-white-500" size={30} />
+              <FaCheckCircle className="text-white-800" size={30} />
             </div>
           </div>
         </div>
