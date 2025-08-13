@@ -12,16 +12,17 @@ type Movie = {
   votes: string;
   poster: string;
   tag?: string;
+  language:string;
 };
 
 const banners = ["/Image 34.png", "/coldplay.png", "/Image 29.png"]; // top carousel banners
 const sampleMovies: Movie[] = [
-  { title: "Tanvi", rating: "7.9", votes: "10.5k Votes", poster: "/tanvi.png", tag: "New" },
-  { title: "Joker", rating: "7.9", votes: "10.5k Votes", poster: "/joker.png" },
-  { title: "Inception", rating: "7.9", votes: "10.5k Votes", poster: "/inspection.png" },
-  { title: "Joker", rating: "7.9", votes: "10.5k Votes", poster: "/joker.png" },
-  { title: "Inception", rating: "7.9", votes: "10.5k Votes", poster: "/inspection.png" },
-  { title: "Tanvi", rating: "7.9", votes: "10.5k Votes", poster: "/tanvi.png" },
+  { title: "Tanvi", rating: "7.9", votes: "10.5k Votes", poster: "/tanvi.png", tag: "New", language: "English" },
+  { title: "Joker", rating: "7.9", votes: "10.5k Votes", poster: "/joker.png" ,language: "Hindi"},
+  { title: "Inception", rating: "7.9", votes: "10.5k Votes", poster: "/inspection.png", language: "Telugu" },
+  { title: "Joker", rating: "7.9", votes: "10.5k Votes", poster: "/joker.png",language: "Malayalam" },
+  { title: "Inception", rating: "7.9", votes: "10.5k Votes", poster: "/inspection.png",language:"English" },
+  { title: "Tanvi", rating: "7.9", votes: "10.5k Votes", poster: "/tanvi.png",language:"English" },
 ];
 
 export default function NewReleasesPage() {
@@ -36,6 +37,13 @@ export default function NewReleasesPage() {
     return () => clearInterval(t);
   }, []);
 
+
+   const [selectedLang, setSelectedLang] = useState<string>("New Releases");
+
+    const filteredMovies =
+    selectedLang === "New Releases"
+      ? sampleMovies
+      : sampleMovies.filter((movie) => movie.language === selectedLang);
   return (
     <div className="min-h-screen font-poppins bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white">
       {/* Sidebar */}
@@ -155,14 +163,30 @@ export default function NewReleasesPage() {
           </div>
         </div>
 
-        {/* chips row (keeps same content) */}
+        {/* chips row (keeps same content) 
         <div className="flex gap-3 flex-wrap items-center mb-6">
-          <button className="px-4 py-2 rounded-full bg-[#ff4655] text-white">New Releases</button>
-          <button className="px-4 py-2 rounded-full bg-white/6">English</button>
-          <button className="px-4 py-2 rounded-full bg-white/6">Hindi</button>
-          <button className="px-4 py-2 rounded-full bg-white/6">Telegu</button>
-          <button className="px-4 py-2 rounded-full bg-white/6">Malayalam</button>
-        </div>
+          <button onClick={() => router.push("/new-release")} className="px-4 py-2 rounded-full bg-[#ff4655] text-white cursor pointer">New Releases</button>
+          <button onClick={() => router.push("/new-release")} className="px-4 py-2 rounded-full bg-white/6 cursor-pointer hover:bg-[#ff4655]">English</button>
+          <button onClick={() => router.push("/new-release")} className="px-4 py-2 rounded-full bg-white/6 cursor-pointer hover:bg-[#ff4655]">Hindi</button>
+          <button onClick={() => router.push("/new-release")} className="px-4 py-2 rounded-full bg-white/6 cursor-pointer hover:bg-[#ff4655]">Telegu</button>
+          <button onClick={() => router.push("/new-release")} className="px-4 py-2 rounded-full bg-white/6 cursor-pointer hover:bg-[#ff4655]">Malayalam</button>
+        </div>*/}
+
+
+  <div className="flex gap-3 flex-wrap items-center mb-6">
+        {["New Releases", "English", "Hindi", "Telugu", "Malayalam"].map((lang) => (
+          <button
+            key={lang}
+            onClick={() => setSelectedLang(lang)}
+            className={`px-4 py-2 rounded-full cursor-pointer ${
+              selectedLang === lang ? "bg-[#ff4655] text-white" : "bg-white/6 hover:bg-[#ff4655]"
+            }`}
+          >
+            {lang}
+          </button>
+        ))}
+      </div>
+
 
         {/* CTA banner */}
         <div className="mb-8">
@@ -171,7 +195,7 @@ export default function NewReleasesPage() {
               <div className="text-lg font-semibold">Coming Soon</div>
               <div className="text-sm opacity-90">Explore Upcoming Movies</div>
             </div>
-            <button className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center">
+            <button onClick={() => router.push("/details")} className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center cursor-pointer">
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
@@ -184,7 +208,7 @@ export default function NewReleasesPage() {
           <h2 className="text-2xl text-[#ff596b] font-semibold mb-4">Recommended Movies</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {sampleMovies.map((m, i) => (
+            {filteredMovies.map((m, i) => (
 
               <div key={i} onClick={() => router.push(`/details`)} className="rounded-xl overflow-hidden bg-[#0b233f] p-3 cursor-pointer hover:text-white/70">
                 <div className="relative rounded-md overflow-hidden">

@@ -166,7 +166,7 @@ const images = [
       <Swiper
         modules={[Navigation, Pagination]}
        
-        spaceBetween={5}
+        spaceBetween={10}
         slidesPerView={1.5}
         centeredSlides={true}
         navigation
@@ -227,10 +227,10 @@ const images = [
 
       {/* Cinema Near You */}
       <Section title="Cinema Near You">
-        <CinemaCard name="Viva Cinema" distance="5.2" rating={4.9} time="Closed 10:00 PM" />
-        <CinemaCard name="EbonyLife Cinema" distance="6.5" rating={5.0} time="Closed 09:00 PM" />
-          <CinemaCard name="EbonyLife Cinema" distance="6.5" rating={5.0} time="Closed 09:00 PM" />
-            <CinemaCard name="EbonyLife Cinema" distance="6.5" rating={5.0} time="Closed 09:00 PM" />
+        <CinemaCard name="Viva Cinema" distance="5.2" rating={4.9} time="Closed 10:00 PM" imageUrl="/img-cinema.png" />
+        <CinemaCard name="EbonyLife Cinema" distance="6.5" rating={5.0} time="Closed 09:00 PM" imageUrl="/img-cinema (1).png" />
+          <CinemaCard name="EbonyLife Cinema" distance="6.5" rating={5.0} time="Closed 09:00 PM" imageUrl="/img-cinema.png" />
+             <CinemaCard name="EbonyLife Cinema" distance="6.5" rating={5.0} time="Closed 09:00 PM" imageUrl="/img-cinema (1).png" />
       </Section>
 
       {/* Footer */}

@@ -1,15 +1,16 @@
 "use client";
 import React from "react";
 import Popup from "../components/Popup";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 export default function ETicketPage() {
     const [showPopup, setShowPopup] = useState(false);
-
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-[#0B1A51] font-poppins flex flex-col items-center py-12 px-4">
       {/* Header */}
       <header className="w-full max-w-3xl flex items-center justify-between mb-8">
-        <button className="text-white text-lg">←</button>
+        <button onClick={() => router.push(`/checkout`)} className="text-white text-lg cursor-pointer">←</button>
         <h1 className="text-white font-bold text-xl">E-Ticket</h1>
         <div className="w-6" /> {/* spacer */}
       </header>
@@ -67,7 +68,7 @@ export default function ETicketPage() {
           <div className="flex flex-col items-center justify-center p-6 bg-[#F9FAFB] border-t md:border-t-0 md:border-l border-gray-200">
             <div className="border-t border-dashed border-gray-400 w-full my-4 md:hidden" />
             <img
-              src="/barcode.png"
+              src="/barcode2.png"
               alt="Barcode"
               className="h-20 object-contain mb-4"
             />

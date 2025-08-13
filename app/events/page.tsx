@@ -7,7 +7,8 @@ import Link from 'next/link';
 type Chip = { label: string; active?: boolean };
 
 const languageChips: Chip[] = [
-  { label: "English", active: true },
+  { label: "All", active: true },
+  { label:"English"},
   { label: "Hindi" },
   { label: "Telegu" },
   { label: "Malayalam" },
@@ -15,15 +16,15 @@ const languageChips: Chip[] = [
 ];
 
 const comedyShows = [
-  { title: "Stand Up", subtitle: "25+ Events", img: "/standup.png" , slug: "stand-up"},
-  { title: "Roast", subtitle: "2 Events", img: "/roast.png" },
-  { title: "Open Mic", subtitle: "2 Events", img: "/openmic.png" },
+  { title: "Stand Up", subtitle: "25+ Events", img: "/standup.png" , slug: "stand-up", language:"English"},
+  { title: "Roast", subtitle: "2 Events", img: "/roast.png",language:"Hindi" },
+  { title: "Open Mic", subtitle: "2 Events", img: "/openmic.png", language:"Telugu" },
 ];
 
 const musicShows = [
-  { title: "Concerts", subtitle: "8 Events", img: "/concerts.png" },
-  { title: "Music Festival", subtitle: "5 Events", img: "/musicfestival.png" },
-  { title: "Club Gigs", subtitle: "1 Events", img: "/clubgigs.png" },
+  { title: "Concerts", subtitle: "8 Events", img: "/concerts.png", language:"English" },
+  { title: "Music Festival", subtitle: "5 Events", img: "/musicfestival.png", language:"Panjabi" },
+  { title: "Club Gigs", subtitle: "1 Events", img: "/clubgigs.png", language:"Malayalam" },
 ];
 
 const bestThisWeek = [
@@ -38,6 +39,17 @@ const bestThisWeek = [
 export default function AllEventsPage() {
    const router = useRouter();
      const [showSearch, setShowSearch] = useState(false);
+
+
+      // NEW: selected language state
+  const [selectedLang, setSelectedLang] = useState("All");
+
+  // Filter logic
+  const filteredComedy =
+    selectedLang === "All" ? comedyShows : comedyShows.filter((c) => c.language === selectedLang);
+
+  const filteredMusic =
+    selectedLang === "All" ? musicShows : musicShows.filter((m) => m.language === selectedLang);
   return (
     <div className="min-h-screen font-poppins bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white">
       <div className="max-w-7xl mx-auto px-6 py-10">
@@ -74,9 +86,14 @@ export default function AllEventsPage() {
         {/* Language chips */}
         <div className="flex flex-wrap gap-3 mb-6">
           {languageChips.map((c) => (
-            <button key={c.label} className={`px-4 py-2 rounded-full text-sm font-medium shadow-sm cursor-pointer ${c.active ? "bg-[#ff4655] text-white" : "bg-white/6 text-white/80 hover:bg-white/10"}`}>
+            <button key={c.label}  onClick={() => setSelectedLang(c.label)}
+              className={`px-4 py-2 rounded-full text-sm font-medium shadow-sm cursor-pointer ${
+                selectedLang === c.label
+                  ? "bg-[#ff4655] text-white"
+                  : "bg-white/6 text-white/80 hover:bg-white/10"
+              }`}
+            >
               {c.label}
-              {c.active && <span className="ml-2 inline-block bg-white/10 px-2 py-0.5 rounded-md text-xs">x</span>}
             </button>
           ))}
         </div>
@@ -88,7 +105,7 @@ export default function AllEventsPage() {
               <div className="text-2xl font-semibold">Upcoming Events</div>
               <div className="text-sm opacity-90">In Cinemas near you</div>
             </div>
-            <button className="mt-4 md:mt-0 h-12 w-12 rounded-full bg-white/20 flex items-center justify-center">
+            <button onClick={() => router.push(`/eventlist`)} className="mt-4 md:mt-0 h-12 w-12 rounded-full bg-white/20 flex items-center justify-center cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -101,7 +118,7 @@ export default function AllEventsPage() {
           <section>
             <h2 className="text-2xl text-[#ff596b] font-semibold mb-4 ">Comedy Shows</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
-              {comedyShows.map((c) => (
+              {filteredComedy.map((c) => (
                 <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="rounded-xl overflow-hidden relative">
                   <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url('${c.img}')` }} />
                   <div className="p-4 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0">
@@ -110,13 +127,16 @@ export default function AllEventsPage() {
                   </div>
                 </div>
               ))}
+               {filteredComedy.length === 0 && (
+                <p className="text-white/60">No comedy shows available for {selectedLang}</p>
+              )}
             </div>
           </section>
 
           <section>
             <h2 className="text-2xl text-[#ff596b] font-semibold mb-4">Music Shows</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
-              {musicShows.map((c) => (
+              {filteredMusic.map((c) => (
                 <div key={c.title} onClick={() => router.push(`/eventlist`)} className="rounded-xl overflow-hidden relative">
                   <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url('${c.img}')` }} />
                   <div className="p-4 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0">
@@ -125,6 +145,9 @@ export default function AllEventsPage() {
                   </div>
                 </div>
               ))}
+               {filteredMusic.length === 0 && (
+                <p className="text-white/60">No music shows available for {selectedLang}</p>
+              )}
             </div>
           </section>
         </div>
