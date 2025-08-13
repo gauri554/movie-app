@@ -31,6 +31,11 @@ export default function NewReleasesPage() {
   const [slide, setSlide] = useState(0);
    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
  const router = useRouter();
+
+
+ 
+
+
   // auto play
   useEffect(() => {
     const t = setInterval(() => setSlide((s) => (s + 1) % banners.length), 3500);

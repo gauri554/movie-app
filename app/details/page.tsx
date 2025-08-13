@@ -6,6 +6,7 @@ import { FaHome } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 // MovieDetailsDesktop.tsx
 // A single-file Next.js (App Router compatible) React + TypeScript component
 // styled with Tailwind CSS to convert the provided mobile Figma details screen into
@@ -46,13 +47,15 @@ export default function MovieDetailsDesktop() {
   "/tanvi.png",
   "/joker.png"
 ];
+
+   const router = useRouter();
   return (
     <div className="min-h-screen  font-poppins bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] text-white p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <header className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-            <button className="p-2 rounded-full bg-white/10 hover:bg-white/20">
+            <button onClick={() => router.push(`/new-release`)} className="p-2 rounded-full bg-white/10 hover:bg-white/20">
               ‹
             </button>
             <div>
