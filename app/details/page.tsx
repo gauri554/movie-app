@@ -146,12 +146,17 @@ const [isModalOpen, setIsModalOpen] = useState(false);
               <div className="p-4 rounded-xl bg-white/5">
                 <h3 className="font-semibold">Top offers for you</h3>
                 <div className="mt-3 text-sm text-white/70">Buy 1 ticket and Get 1 Free!+ for Tanvi The Great</div>
-             
+              <div className="mt-3 p-3 rounded-lg bg-white/10 text-sm text-white/80">
+          This offer is valid for a limited period. Applicable only on selected
+          shows of “Tanvi The Great”. Maximum 1 free ticket per transaction.
+          Terms and conditions apply.
+        </div>
+      
                   <button
         className="mt-2 text-pink-400 text-sm underline cursor-pointer"
         onClick={() => setShowDetails(!showDetails)}
       >
-        {showDetails ? "Hide details" : "Tap to view details"}
+      
       </button>
 
       {showDetails && (
