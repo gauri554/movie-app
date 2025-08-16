@@ -4,8 +4,11 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Menu } from "lucide-react";
+import { FiFilter } from "react-icons/fi";
 import SidebarFilters from "../components/SidebarFilters";
 import { useRouter } from "next/navigation";
+import "./new-release.css";
+import "../globals.css";
 type Movie = {
   title: string;
   rating: string;
@@ -23,6 +26,7 @@ const sampleMovies: Movie[] = [
   { title: "Joker", rating: "7.9", votes: "10.5k Votes", poster: "/joker.png",language: "Malayalam" },
   { title: "Inception", rating: "7.9", votes: "10.5k Votes", poster: "/inspection.png",language:"English" },
   { title: "Tanvi", rating: "7.9", votes: "10.5k Votes", poster: "/tanvi.png",language:"English" },
+  
 ];
 
 export default function NewReleasesPage() {
@@ -33,7 +37,7 @@ export default function NewReleasesPage() {
  const router = useRouter();
 
 
- 
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
 
   // auto play
@@ -67,12 +71,9 @@ export default function NewReleasesPage() {
         {/* Header (desktop-friendly) */}
         <header className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
-          <button
-        className="p-3 m-4 bg-white/5 text-white rounded-md"
-        onClick={() => setIsSidebarOpen(true)}
-      >
-        <Menu size={24} />
-      </button>
+         <button onClick={() => router.push(`/`)} className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
+              ‹
+            </button>
             <div>
               <h1 className="text-2xl md:text-3xl font-semibold">Film Trade</h1>
               <div className="text-sm text-white/70">Ahmedabad | 34 Movies</div>
@@ -189,7 +190,15 @@ export default function NewReleasesPage() {
           >
             {lang}
           </button>
+
         ))}
+         <button
+        onClick={() => setIsSidebarOpen(true)}
+        className="px-4 py-2 rounded-full bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1"
+      >
+        <FiFilter size={18} />
+        Filter
+      </button>
       </div>
 
 
@@ -212,21 +221,21 @@ export default function NewReleasesPage() {
         <section>
           <h2 className="text-2xl text-[#ff596b] font-semibold mb-4">Recommended Movies</h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {filteredMovies.map((m, i) => (
 
-              <div key={i} onClick={() => router.push(`/details`)} className="rounded-xl overflow-hidden bg-[#0b233f] p-3 cursor-pointer hover:text-white/70">
+              <div key={i} onClick={() => router.push(`/details`)} className="rounded-xl overflow-hidden bg-[#0b233f] p-3 cursor-pointer hover:text-white/70 ">
                 <div className="relative rounded-md overflow-hidden">
-                  {/* Poster: object-cover to fill the card nicely */}
+                
                   <Image
                     src={m.poster}
                     alt={m.title}
                     width={400}
                     height={560}
-                    className="w-full h-[260px] md:h-[300px] object-cover rounded-md"
+                    className="w-full h-[260px] md:h-[300px] object-cover rounded-md new-release-image " 
                   />
 
-                  {/* optional small play icon / tag in top-right */}
+                 
                   {m.tag && (
                     <div className="absolute top-3 left-3 bg-[#ff4655] px-2 py-1 rounded text-xs font-medium">{m.tag}</div>
                   )}
@@ -242,11 +251,18 @@ export default function NewReleasesPage() {
               </div>
             ))}
           </div>
+
+
+
+    
+
+      
+
         </section>
 
         {/* desktop footer-like actions */}
         <div className="mt-10 flex items-center justify-between">
-          <button onClick={() => router.push(`/details`)} className="bg-[#ff4655] text-white px-6 py-3 rounded-xl cursor-pointer">Browse by Cinemas</button>
+          <button onClick={() => router.push(`/details`)} className="bg-[#ff4655] text-white rounded-xl cursor-pointer sweep-button"><span>Browse By Cinemas</span></button>
           <div className="text-sm text-white/70">Showing {sampleMovies.length} of 34 movies</div>
         </div>
       </div>

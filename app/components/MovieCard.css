@@ -1,0 +1,77 @@
+.movie-card {
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.movie-card img {
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.movie-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.movie-card .view-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.3);
+  transition: opacity 0.3s ease-out 0.15s, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s;
+}
+
+.eye-top,
+.eye-bottom {
+  transition: transform 0.45s ease-out;
+}
+
+.eye-top {
+  transform: translateY(0);
+}
+
+.eye-bottom {
+  transform: translateY(0);
+}
+
+.movie-card:hover img {
+  transform: scale(1.12);
+}
+
+.movie-card:hover .overlay {
+  opacity: 1;
+}
+
+.movie-card:hover .view-icon {
+  opacity: 1;
+  transform: scale(0.7);
+}
+
+/* Eye open effect */
+.movie-card:hover .eye-top {
+  transform: translateY(-2px);
+}
+
+.movie-card:hover .eye-bottom {
+  transform: translateY(2px);
+}
+
+
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-hidden {
+  opacity: 0;
+}
+
+.section-visible {
+  animation: fadeInUp 0.8s ease forwards;
+}

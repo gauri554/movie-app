@@ -4,6 +4,11 @@ import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from 'next/link';
+import SidebarFilters from "../components/SidebarFilters";
+import { FiFilter } from "react-icons/fi";
+import "../globals.css";
+import Card from "../components/Card";
+import "../components/EventCard.css";
 type Chip = { label: string; active?: boolean };
 
 const languageChips: Chip[] = [
@@ -39,7 +44,7 @@ const bestThisWeek = [
 export default function AllEventsPage() {
    const router = useRouter();
      const [showSearch, setShowSearch] = useState(false);
-
+   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
       // NEW: selected language state
   const [selectedLang, setSelectedLang] = useState("All");
@@ -52,6 +57,17 @@ export default function AllEventsPage() {
     selectedLang === "All" ? musicShows : musicShows.filter((m) => m.language === selectedLang);
   return (
     <div className="min-h-screen font-poppins bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white">
+
+
+       <SidebarFilters isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+          
+                {/* Overlay */}
+                {isSidebarOpen && (
+                  <div
+                    className="fixed inset-0 bg-black/50 z-40"
+                    onClick={() => setIsSidebarOpen(false)}
+                  />
+                )}
       <div className="max-w-7xl mx-auto px-6 py-10">
         {/* Header */}
         <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
@@ -61,6 +77,9 @@ export default function AllEventsPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>*/}
+            <button onClick={() => router.push(`/new-release`)} className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
+              ‹
+            </button>
             <div>
               <h1 className="text-3xl font-semibold">All Events</h1>
               <div className="text-sm text-white/70">Ahmedabad</div>
@@ -96,6 +115,13 @@ export default function AllEventsPage() {
               {c.label}
             </button>
           ))}
+            <button
+        onClick={() => setIsSidebarOpen(true)}
+        className="px-4 py-2 rounded-full bg-white/6 text-sm font-medium shadow-sm hover:bg-[#ff4655] text-white flex items-center gap-1"
+      >
+        <FiFilter size={18} />
+        Filter
+      </button>
         </div>
 
         {/* Upcoming Events Banner */}
@@ -119,9 +145,10 @@ export default function AllEventsPage() {
             <h2 className="text-2xl text-[#ff596b] font-semibold mb-4 ">Comedy Shows</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
               {filteredComedy.map((c) => (
-                <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="rounded-xl overflow-hidden relative">
-                  <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url('${c.img}')` }} />
-                  <div className="p-4 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0">
+                <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]"   // default shadow
+  >
+                  <div className="h-44 bg-cover top bg-center" style={{ backgroundImage: `url('${c.img}')` }}     />
+                  <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60 ">
                     <div className="text-lg font-semibold">{c.title}</div>
                     <div className="text-sm opacity-80">{c.subtitle}</div>
                   </div>
@@ -137,9 +164,9 @@ export default function AllEventsPage() {
             <h2 className="text-2xl text-[#ff596b] font-semibold mb-4">Music Shows</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
               {filteredMusic.map((c) => (
-                <div key={c.title} onClick={() => router.push(`/eventlist`)} className="rounded-xl overflow-hidden relative">
+                <div key={c.title} onClick={() => router.push(`/eventlist`)} className="rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]">
                   <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url('${c.img}')` }} />
-                  <div className="p-4 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0">
+                  <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60">
                     <div className="text-lg font-semibold">{c.title}</div>
                     <div className="text-sm opacity-80">{c.subtitle}</div>
                   </div>
@@ -152,10 +179,21 @@ export default function AllEventsPage() {
           </section>
         </div>
 
+
+    
+
+      
+
+
+
+
+
+
+
         {/* Events Hero */}
         <section className="mb-10">
           <h2 className="text-2xl text-[#ff596b] font-semibold mb-4">Events</h2>
-          <div  onClick={() => router.push(`/eventdetails`)} className=" overflow-hidden relative h-72  object-contain cursor-pointer" style={{ backgroundImage: `url('/coldplay.png')` , backgroundSize: "contain",
+          {/*<div  onClick={() => router.push(`/eventdetails`)} className=" overflow-hidden relative h-72  object-contain cursor-pointer" style={{ backgroundImage: `url('/coldplay.png')` , backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
      }} >
             <div className="absolute inset-0 " />
@@ -163,19 +201,58 @@ export default function AllEventsPage() {
               <div className="text-xl font-bold">Cricket</div>
               <div className="text-sm opacity-80">20+ Events</div>
             </div>
-          </div>
+          </div>*/}
+
+          <div className="flex gap-10">
+  {/* Event 1 */}
+  <div
+    onClick={() => router.push(`/eventdetails`)}
+    className="overflow-hidden relative h-72 w-1/2 object-contain cursor-pointer"
+    style={{
+      backgroundImage: `url('/coldplay.png')`,
+      backgroundSize: "contain",
+      backgroundRepeat: "no-repeat",
+    }}
+  >
+    <div className="absolute inset-0" />
+    <div className="absolute left-6 bottom-6 text-white bg-black/60 p-2 pr-5 rounded-lg">
+      <div className="text-xl font-bold">Cricket</div>
+      <div className="text-sm opacity-80">20+ Events</div>
+    </div>
+  </div>
+
+  {/* Event 2 */}
+  <div
+    onClick={() => router.push(`/details`)}
+    className="overflow-hidden relative h-72 w-1/2 object-contain cursor-pointer "
+    style={{
+      backgroundImage: `url('/Image 29.png')`,
+      backgroundSize: "contain",
+      backgroundRepeat: "no-repeat",
+
+    }}
+  >
+    <div className="absolute inset-0  " />
+    <div className="absolute left-6 bottom-6 text-white/500 bg-black/60 p-2 pr-5 rounded-lg">
+      <div className="text-xl font-bold z-10">Football</div>
+      <div className="text-sm opacity-80">15+ Events</div>
+    </div>
+  </div>
+</div>
+
+
         </section>
 
         {/* Best Event this week */}
         <section className="mb-16">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl text-[#ff596b] font-semibold">Best Event this Week</h2>
-            <a className="text-sm text-white/80 hover:underline">View All →</a>
+            <a onClick={() => router.push(`/eventlist`)} className="text-sm text-white/80 hover:underline cursor-pointer">View All →</a>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-6 gap-10 cursor-pointer">
+          <div className="grid grid-cols-1 sm:grid-cols-6 gap-10  ">
             {bestThisWeek.map((b) => (
-              <div key={b.title} onClick={() => router.push(`/eventlist`)} className="rounded-lg overflow-hidden bg-[#0b223f] shadow-md text-center">
-                <div className="h-40 bg-cover bg-center mt-5" style={{ backgroundImage: `url('${b.img}')`,  backgroundSize: "contain",
+              <div key={b.title} onClick={() => router.push(`/eventlist`)} className="shine-card rounded-lg overflow-hidden bg-[#0b223f] shadow-md text-center cursor-pointer ">
+                <div className="h-40 bg-cover bg-center mt-5 " style={{ backgroundImage: `url('${b.img}')`,  backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center" }} />
                 <div className="p-3 text-sm text-center">{b.title}</div>
@@ -185,7 +262,7 @@ export default function AllEventsPage() {
         </section>
       </div>
 
-      {/* Desktop footer */}
+      {/* Desktop footer 
       <footer className="bg-[#f7e7d6] text-[#2b2b2b] py-6 mt-10">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-5 gap-4 text-center text-sm">
            <Link href="/">
@@ -205,8 +282,12 @@ export default function AllEventsPage() {
           <div>Profile</div>
           </Link>
         </div>
-      </footer>
+      </footer>*/}
 
+
+ <footer className="bg-[#0b223f] py-6 text-center text-sm text-white/90 mt-10">
+        © 2025 Movie App. All Rights Reserved.
+      </footer>
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
         .font-poppins { font-family: 'Poppins', sans-serif; }

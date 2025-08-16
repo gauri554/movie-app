@@ -55,8 +55,13 @@ const EventListPage: React.FC = () => {
   return (
     <div className="min-h-screen font-poppins bg-[#0D1B4C] text-white p-8">
       <header className="mb-8">
-        <h1 className="text-4xl font-bold">Stand Up Comedy</h1>
-        <p className="text-lg">Ahmedabad</p>
+          <div className="flex items-center gap-4">
+        <button onClick={() => router.push(`/events`)} className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
+              ‹
+            </button>
+            <div>
+        <h1 className="text-4xl font-semibold">Stand Up Comedy</h1>
+        <p className="text-lg">Ahmedabad</p></div></div>
         <h2 className="text-xl text-red-500 mt-4">Stand Up 25+ Events</h2>
       </header>
 

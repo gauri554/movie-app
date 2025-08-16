@@ -148,3 +148,139 @@ margin-top: 38px;
           background: #ffffff;
           transform: scale(1.2);
         }
+
+       .image-container {
+  overflow: hidden;
+  border-radius: 0.5rem; /* rounded-lg match */
+}
+
+.event-image {
+  width: 220px;
+  height: 200px;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-container:hover .event-image {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.sweep-button {
+  position: relative;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  background: #ff4655;
+  overflow: hidden;
+
+}
+
+.sweep-button span {
+  position: relative;
+  z-index: 2;
+  display: block;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.sweep-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 43, 43, 0.7); /* Dark overlay */
+  z-index: 1;
+  transition: transform 0.7s ease;
+  color: white;
+  
+  transform: translateX(-100%);
+}
+
+.sweep-button:hover::after {
+  transform: translateX(100%);
+}
+
+
+.sign-in-btn {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  font-size: 1rem; /* text-base */
+  font-weight: 500; /* font-medium */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.sign-in-btn:hover {
+  color: #facc15; /* yellow-400 */
+  transform: scale(1.05);
+}
+
+.sign-in-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.5); /* focus:ring-yellow-400/50 */
+}
+
+/* underline effect */
+.sign-in-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 0;
+  background-color: #facc15; /* yellow-400 */
+  transition: width 0.3s ease;
+}
+
+.sign-in-btn:hover::after {
+  width: 100%;
+}
+
+.sign-btn:hover{
+  color: #fff;
+  z-index: 1;
+}
+
+
+.shine-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.shine-card:hover {
+  transform: scale(1.05); /* small zoom */
+}
+
+/* initially hidden */
+.shine-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  transform: skewX(-25deg);
+  opacity: 0; /* HIDDEN */
+}
+
+/* only visible when hovering */
+.shine-card:hover::after {
+  left: 125%;
+  opacity: 1; /* VISIBLE */
+  transition: left 0.75s, opacity 0.2s;
+}
+

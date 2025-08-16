@@ -1,0 +1,52 @@
+.event-card {
+  position: relative;
+  width: 220px;
+  height: 260px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.event-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* Dark overlay */
+.event-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.4s ease;
+  z-index: 1;
+}
+
+/* Icon in center */
+.event-card .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 2;
+  color: white;
+  font-size: 40px;
+}
+
+/* Hover effects */
+.event-card:hover img {
+  transform: scale(1.1);
+}
+
+.event-card:hover::before {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.event-card:hover .icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
