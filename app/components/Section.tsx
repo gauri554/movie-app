@@ -13,8 +13,8 @@ export default function Section({ title, children, viewAllUrl }: SectionProps) {
   
   return (
 
-    <div className=" px-8 mt-8 ">
-      <div className="flex justify-between items-center mb-4  ">
+    <div className="px-8 mt-8">
+      <div className=" flex justify-between items-centre mb-4  ">
 
         <h2 className="text-xl font-semibold ">{title}</h2>
         <button  onClick={() => router.push(viewAllUrl)} className="text-sm text-yellow-400 cursor-pointer">View All →</button>

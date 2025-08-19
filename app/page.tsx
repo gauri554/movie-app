@@ -93,17 +93,17 @@ const images = [
 
 
       {/* Navbar */}
-      <header className="flex justify-between items-center px-8 py-4 border-b border-white/10">
-        <div className="flex items-center gap-2 cursor-pointer">
+      <header className="flex justify-between items-center px-4 sm:px-8 py-4 border-b border-white/10 sm:flex-wrap ">
+        <div className="flex items-center gap-0 sm:gap-2 cursor-pointer">
             <button
-        className="p-3 m-4 bg-white/5 text-white rounded-md cursor-pointer transform transition-transform duration-300 "
+        className="p-1 sm:p-3 m-2 sm:m-4 bg-white/5 text-white rounded-md cursor-pointer "
         onClick={() => setIsSidebarOpen(true)}
       >
-        <Menu size={24} />
+        <Menu  className="w-3 h-3 sm:w-6 h-6" />
       </button>
       <div  onClick={() => setIsOpen(true)}
-        className="flex items-center gap-1 cursor-pointer select-none">
-          <span className="font-semibold text-lg">{selectedCity}</span>
+        className="flex items-center gap-1 cursor-pointer select-none text-sm sm:text-lg">
+          <span className="font-semibold">{selectedCity}</span>
           <span>▼</span></div>
    <AnimatePresence>
         {isOpen && (
@@ -149,8 +149,8 @@ const images = [
       </AnimatePresence>
 
         </div>
-        <div className="flex items-center gap-6">
-          <span   className="text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+        <div className="flex items-center gap-3 sm:gap-6 mt-2 sm:mt-0 w-full sm:w-auto justify-end">
+          <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
           onClick={() => setShowSearch(!showSearch)}>
   <FaSearch />
 </span>
@@ -159,16 +159,16 @@ const images = [
           <input
             type="text"
             placeholder="Search movies..."
-            className="px-3 py-1 rounded-md text-white bg-text-white/10 focus:outline-none w-48 shadow-md"
+            className=" px-2 py-1 rounded-md text-white bg-text-white/10 focus:outline-none w-36 sm:w-48 shadow-md text-sm"
           />
         )}
-         <span className="text-xl cursor-pointer hover:text-yellow-400"  onClick={() => setIsOpenBell(true)}>
+         <span className="text-sm sm:text-xl cursor-pointer hover:text-yellow-400"  onClick={() => setIsOpenBell(true)}>
   <FaBell />
 </span>
     <span
   onClick={() => setShowLogin(true)}
    
-  className="relative inline-block text-white text-base font-medium transition-transform duration-300 hover:text-yellow-400 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 hover:after:w-full after:bg-yellow-400 after:transition-all after:duration-300 cursor-pointer sign-in-btn"
+  className="relative inline-block text-sm sm:text-base font-medium transition-transform duration-300 hover:text-yellow-400 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 hover:after:w-full after:bg-yellow-400 after:transition-all after:duration-300 cursor-pointer sign-in-btn"
 >
   Sign In
 </span>    
@@ -186,13 +186,13 @@ const images = [
   ></div>
 )}
  <div
-        className={`fixed top-0 right-0 h-full w-80 bg-[#0C1B4D] shadow-lg transform transition-transform duration-300 z-50 ${
+        className={`fixed top-0 right-0 h-full w-full sm:w-80 bg-[#0C1B4D] shadow-lg transform transition-transform duration-300 z-50 ${
           isOpenBell ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-700">
-          <h2 className="text-lg font-semibold">Notifications</h2>
+          <h2 className="text-base sm:text-lg font-semibold">Notifications</h2>
           <button
             className="text-gray-400 hover:text-white cursor-pointer"
             onClick={() => setIsOpenBell(false)}
@@ -202,7 +202,7 @@ const images = [
         </div>
 
         {/* Notifications List */}
-        <div className="p-4 space-y-4 overflow-y-auto h-[calc(100%-60px)]">
+        <div className="p-3 sm:p-4 space-y-3 sm:space-y-4 overflow-y-auto h-[calc(100%-60px)]">
           {notifications.length > 0 ? (
             notifications.map((n) => (
               <div
@@ -219,7 +219,7 @@ const images = [
         </div>
       </div>
       {/* Category Buttons */}
-      <div className="flex justify-center gap-12 py-6 border-b border-white/10">
+      <div className="flex flex-col sm:flex-row justify-center items-start sm:items-center ml-2 sm:ml-0 gap-6 sm:gap-12 py-6 border-b border-white/10">
         <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
         <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
         <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
@@ -310,13 +310,13 @@ const images = [
           <SwiperSlide key={idx}>
             <div className={`slide-wrapper transition-all duration-500 ease-out ${
                 activeIndex === idx
-                  ? "scale-110 opacity-100"
-                  : "scale-90 opacity-70"
+                  ? "sm:scale-110 opacity-100 "
+                  : "sm:scale-90 opacity-70"
               }`}>
               <img
                 src={src}
                 alt={`slide-${idx}`}
-                className="slide-img"
+                className="slide-img w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover rounded-lg"
               />
             </div>
           </SwiperSlide>
@@ -373,7 +373,7 @@ const images = [
       </Section>
 
       {/* Footer */}
-      <footer className="bg-[#091339] py-6 text-center text-sm text-white/70 mt-10">
+      <footer className="bg-[#091339] py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
         © 2025 Movie App. All Rights Reserved.
       </footer>
        <style jsx global>{`

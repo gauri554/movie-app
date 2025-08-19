@@ -68,8 +68,8 @@ export default function NewReleasesPage() {
     
     
       <div className="max-w-7xl mx-auto px-8 py-10">
-        {/* Header (desktop-friendly) */}
-        <header className="flex items-center justify-between mb-8">
+     
+       <header className=" px-4 sm:px-6 md:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between mb-8">
           <div className="flex items-center gap-4">
          <button onClick={() => router.push(`/`)} className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
               ‹
@@ -80,13 +80,14 @@ export default function NewReleasesPage() {
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-4">
-            <button onClick={() => router.push("/new-release")} className="px-4 py-2 rounded-full bg-[#ff4655] hover:bg-white/10 text-sm cursor-pointer">Film Mart</button>
-            <button onClick={() => router.push("/events")} className="px-4 py-2 rounded-full bg-[#ff4655] bg-white/6 hover:bg-bg-[#ff4655] text-white text-sm cursor-pointer">Events</button>
-            <button onClick={() => router.push("/cinemashows")} className="px-4 py-2 rounded-full bg-white/6 hover:bg-[#ff4655] text-sm cursor-pointer">Book Ticket</button>
+ <div className="flex flex-col md:flex-row md:items-center gap-4 mt-4 md:mt-0">
+          <div className=" flex flex-col md:flex-row items-center gap-3 sm:gap-6">
+            <button onClick={() => router.push("/new-release")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-[#ff4655] hover:bg-white/10 text-sm cursor-pointer">Film Mart</button>
+            <button onClick={() => router.push("/events")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-[#ff4655] bg-white/6 hover:bg-bg-[#ff4655] text-white text-sm cursor-pointer">Events</button>
+            <button onClick={() => router.push("/cinemashows")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-white/6 hover:bg-[#ff4655] text-sm cursor-pointer">Book Ticket</button>
           </div>
 
-          {/* right icons (search, bell) */}
+       
           <div className="flex items-center gap-3">
             <button  onClick={() => setShowSearch(!showSearch) }className="p-2 rounded-full bg-white/6 hover:bg-white/10 cursor-pointer">
               <svg className="w-5 h-5 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,30 +101,30 @@ export default function NewReleasesPage() {
             className="px-3 py-1 rounded-md text-white bg-white/10 shadow-md focus:outline-none w-48"
           />
         )}
-            <button className="p-2 rounded-full bg-white/6 hover:bg-white/10">
+            {/*<button className="p-2 rounded-full bg-white/6 hover:bg-white/10">
               <svg className="w-5 h-5 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5" />
               </svg>
-            </button>
-          </div>
+            </button>*/}
+          </div></div>
         </header>
 
-        {/* top carousel */}
+     
         <div className="mb-8 relative">
           <div className="w-full mx-auto rounded-2xl overflow-hidden bg-[#0b223f]">
-            <div className="relative w-full h-[320px] md:h-[420px]">
+            <div className="relative w-full h-[45vw] md:h-[420px]">
               {banners.map((b, i) => (
                 <div
                   key={b}
                   className={`absolute inset-0 transition-opacity duration-700 ${i === slide ? "opacity-100 z-10" : "opacity-0 z-0"}`}
                 >
-                  {/* Use object-contain to keep full banner visible (may letterbox) */}
+                  
                   <Image
                     src={b}
                     alt={`Banner ${i + 1}`}
                     width={1600}
                     height={400}
-                    className="w-full h-full object-contain "
+                    className="relative w-full h-[300px] md:h-[420px] object-contain "
                      style={{
     width: "100%",
     height: "auto",
@@ -135,10 +136,10 @@ export default function NewReleasesPage() {
               ))}
             </div>
 
-            {/* arrows */}
+          
             <button
               onClick={() => setSlide((s) => (s - 1 + banners.length) % banners.length)}
-              className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/10 p-2 rounded-full hover:bg-white/20"
+              className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/10 p-2 rounded-full hover:bg-white/20 md:left-5"
               aria-label="Previous"
             >
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -147,7 +148,7 @@ export default function NewReleasesPage() {
             </button>
             <button
               onClick={() => setSlide((s) => (s + 1) % banners.length)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/10 p-2 rounded-full hover:bg-white/10"
+              className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/10 p-2 rounded-full hover:bg-white/10 md:right-5"
               aria-label="Next"
             >
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,8 +156,8 @@ export default function NewReleasesPage() {
               </svg>
             </button>
 
-            {/* dots */}
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-3">
+          
+            <div className="absolute bottom-2 md:bottom-3 left-1/2 -translate-x-1/2 flex md:gap-3">
               {banners.map((_, idx) => (
                 <button
                   key={idx}
@@ -169,22 +170,15 @@ export default function NewReleasesPage() {
           </div>
         </div>
 
-        {/* chips row (keeps same content) 
-        <div className="flex gap-3 flex-wrap items-center mb-6">
-          <button onClick={() => router.push("/new-release")} className="px-4 py-2 rounded-full bg-[#ff4655] text-white cursor pointer">New Releases</button>
-          <button onClick={() => router.push("/new-release")} className="px-4 py-2 rounded-full bg-white/6 cursor-pointer hover:bg-[#ff4655]">English</button>
-          <button onClick={() => router.push("/new-release")} className="px-4 py-2 rounded-full bg-white/6 cursor-pointer hover:bg-[#ff4655]">Hindi</button>
-          <button onClick={() => router.push("/new-release")} className="px-4 py-2 rounded-full bg-white/6 cursor-pointer hover:bg-[#ff4655]">Telegu</button>
-          <button onClick={() => router.push("/new-release")} className="px-4 py-2 rounded-full bg-white/6 cursor-pointer hover:bg-[#ff4655]">Malayalam</button>
-        </div>*/}
+        
 
 
-  <div className="flex gap-3 flex-wrap items-center mb-6">
-        {["New Releases", "English", "Hindi", "Telugu", "Malayalam"].map((lang) => (
+  <div className="flex gap-3 flex-wrap md-flex:no-wrap items-center mb-6">
+        {["New Releases", "English", "Hindi", "Malayalam", "Telugu"].map((lang) => (
           <button
             key={lang}
             onClick={() => setSelectedLang(lang)}
-            className={`px-4 py-2 rounded-full cursor-pointer ${
+            className={`px-2 md:px-4 py-1 md:py-2 text-sm md:text-lg rounded-full cursor-pointer ${
               selectedLang === lang ? "bg-[#ff4655] text-white" : "bg-white/6 hover:bg-[#ff4655]"
             }`}
           >
@@ -194,7 +188,7 @@ export default function NewReleasesPage() {
         ))}
          <button
         onClick={() => setIsSidebarOpen(true)}
-        className="px-4 py-2 rounded-full bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1"
+        className="px-2 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-lg bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1"
       >
         <FiFilter size={18} />
         Filter
@@ -202,9 +196,9 @@ export default function NewReleasesPage() {
       </div>
 
 
-        {/* CTA banner */}
+        
         <div className="mb-8">
-          <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-6 flex items-center justify-between">
+          <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-3 md:p-6 flex items-center justify-between">
             <div>
               <div className="text-lg font-semibold">Coming Soon</div>
               <div className="text-sm opacity-90">Explore Upcoming Movies</div>
@@ -217,7 +211,7 @@ export default function NewReleasesPage() {
           </div>
         </div>
 
-        {/* movies grid - desktop view uses multi-column */}
+      
         <section>
           <h2 className="text-2xl text-[#ff596b] font-semibold mb-4">Recommended Movies</h2>
 
@@ -260,12 +254,20 @@ export default function NewReleasesPage() {
 
         </section>
 
-        {/* desktop footer-like actions */}
-        <div className="mt-10 flex items-center justify-between">
-          <button onClick={() => router.push(`/details`)} className="bg-[#ff4655] text-white rounded-xl cursor-pointer sweep-button"><span>Browse By Cinemas</span></button>
+        
+        <div className="mt-10 flex flex-col items-center gap-4 md:flex-row md:items-center md:justify-between">
+          <button onClick={() => router.push(`/details`)} className="w-full md:w-[auto] bg-[#ff4655] text-white rounded-xl cursor-pointer sweep-button"><span>Browse By Cinemas</span></button>
           <div className="text-sm text-white/70">Showing {sampleMovies.length} of 34 movies</div>
         </div>
       </div>
+
+
+
+
+
+
+
+
 
       {/* global styles: font import */}
       <style jsx global>{`

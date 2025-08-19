@@ -84,9 +84,9 @@ const [isModalOpen, setIsModalOpen] = useState(false);
         </header>
 
         {/* Main grid */}
-        <div className="grid grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
           {/* Left column: Poster & details */}
-          <aside className="col-span-4">
+          <aside className="col-span-1 md:col-span-4">
             <div className="rounded-xl overflow-hidden shadow-lg bg-gradient-to-b from-[#233e6a] to-[#1b2b4a]">
               {/* Use the uploaded mobile screenshot as a hero banner fallback */}
               <img
@@ -97,7 +97,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
 
               <div className="p-5">
                 <h2 className="text-2xl font-bold">{title}</h2>
-                <div className="flex items-center gap-3 mt-3">
+                <div className="flex flex-col items-center gap-3 mt-3 md:flex-row md:items-center md:justify-between">
                   <span className="inline-flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full">
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M12 .587l3.668 7.431L24 9.748l-6 5.853 1.417 8.279L12 19.771 4.583 23.88 6 15.6 0 9.747l8.332-1.73z" />
@@ -106,7 +106,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                     <span className="text-sm text-white/70">| {reviews} Reviews</span>
                   </span>
 
-                  <button   onClick={() => setIsModalOpen(true)} className="ml-auto bg-yellow-400 text-black  hover:bg-yellow-300 px-3 py-1 rounded-full font-semibold cursor-pointer">Rate Now</button>
+                  <button   onClick={() => setIsModalOpen(true)} className=" w-full md:w-[auto] bg-yellow-400 text-black  hover:bg-yellow-300 px-3 py-1 rounded-full font-semibold cursor-pointer">Rate Now</button>
                    <RatingModal
         isOpen={isModalOpen}
         setIsOpen={setIsModalOpen}
@@ -171,7 +171,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           </aside>
 
           {/* Right column: Content */}
-          <main className="col-span-8">
+          <main className="col-span-1 md:col-span-8">
             {/* Description card 
             <section className="mb-6 p-6 rounded-xl bg-white/5">
               <p className="text-white/80">
@@ -181,10 +181,10 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             </section>*/}
 
              <section className="mb-6 p-6 rounded-xl bg-white/5">
-      <p className="text-white/80">
+      <p className="text-white/80 text-sm md:text-base">
         {showFullText ? fullText : shortText}
         <button
-          className="ml-2 text-sm text-pink-300 cursor-pointer"
+          className="ml-2 text-sm text-pink-300 cursor-pointer md:text-base" 
           onClick={() => setShowFullText(!showFullText)}
         >
           {showFullText ? "less" : "more"}
@@ -193,23 +193,23 @@ const [isModalOpen, setIsModalOpen] = useState(false);
     </section>
 
             {/* Reviews summary */}
-            <section className="mb-6 flex items-center gap-6">
+            <section className="mb-6 flex flex-col items-center gap-6 md:flex-row">
               <div className="flex-1 p-4 rounded-xl bg-[#11243b] shadow-md">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between ">
                   <div>
-                    <div className="text-3xl font-bold">4.6/5</div>
+                    <div className="text-2xl font-semibold md:font-bold">4.6/5</div>
                     <div className="text-sm text-white/70">135 Reviews</div>
                   </div>
-                  <button onClick={() => setIsModalOpen(true)} className="bg-yellow-400 text-black hover:bg-yellow-300 px-4 py-2 rounded-full font-semibold cursor-pointer">Rate Now</button>
+                  <button onClick={() => setIsModalOpen(true)} className="bg-yellow-400 text-black hover:bg-yellow-300 px-3 md:px-4 py-1 md:py-2 rounded-full font-semibold cursor-pointer">Rate Now</button>
                 </div>
               </div>
 
-              <div className="w-64 p-4 rounded-xl bg-[#11243b]">
+              <div className="w-full md:w-64 p-4 rounded-xl bg-[#11243b]">
                 <div className="text-sm text-white/70">Badges</div>
-                <div className="mt-2 flex gap-2">
-                  <span className="px-3 py-1 bg-white/6 rounded-full text-sm">#Hit</span>
-                  <span className="px-3 py-1 bg-white/6 rounded-full text-sm">#Epic</span>
-                  <span className="px-3 py-1 bg-white/6 rounded-full text-sm">#Legend</span>
+                <div className="mt-2 flex md:gap-2">
+                  <span className="px-2 md:px-3 py-1 bg-white/6 rounded-full text-sm">#Hit</span>
+                  <span className="px-2 md:px-3 py-1 bg-white/6 rounded-full text-sm">#Epic</span>
+                  <span className="px-2 md:px-3 py-1 bg-white/6 rounded-full text-sm">#Legend</span>
                 </div>
               </div>
             </section>
@@ -217,7 +217,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             {/* Cast */}
             <section className="mb-6">
               <h3 className="text-xl font-semibold mb-4">Cast</h3>
-              <div className="grid grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {cast.map((c) => (
                   <div key={c.name} className="flex flex-col items-center gap-2">
                      <div className="relative group w-40 h-40 cursor-pointer">
@@ -234,7 +234,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             {/* Crew */}
             <section className="mb-6">
               <h3 className="text-xl font-semibold mb-4">Crew</h3>
-              <div className="grid grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {crew.map((c) => (
                   <div key={c.name} className="flex flex-col items-center gap-2">
                     <div className="relative group w-40 h-40 cursor-pointer">
@@ -255,10 +255,10 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                 <button className="text-sm text-white/70 underline">View All</button>
               </div>
 
-              <div className="flex gap-4 overflow-x-auto pb-2">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
                 {/* sample cards */}
                 {Array.from({ length: 4 }).map((_, i) => (
-                  <div key={i} className="min-w-[160px] rounded-xl overflow-hidden bg-white/5 ">
+                  <div key={i} className="min-w-[160px]  rounded-xl overflow-hidden bg-white/5 ">
                      <Image
                              src={images[i]}
                              alt="Inception"
@@ -281,7 +281,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             {/* Company Detail */}
             <section className="mb-6 p-6 rounded-xl bg-white/5">
               <h3 className="text-xl font-semibold mb-4">Company Detail</h3>
-              <div className="grid grid-cols-2 gap-4 text-sm text-white/80">
+              <div className="grid grid-cols-1  md:grid-cols-2 gap-4 text-sm text-white/80">
                 <div>
                   <div className="flex items-center gap-2"> <FaHome className="text-xl" /><strong>Production House</strong></div>
                   <div className="mt-1 text-white/70">{producer}</div>

@@ -126,12 +126,12 @@ export default function AllEventsPage() {
 
         {/* Upcoming Events Banner */}
         <div className="mb-10">
-          <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-8 shadow-lg flex flex-col md:flex-row items-center justify-between">
+          <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-4 md:p-8 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
-              <div className="text-2xl font-semibold">Upcoming Events</div>
+              <div className="md:text-2xl font-semibold">Upcoming Events</div>
               <div className="text-sm opacity-90">In Cinemas near you</div>
             </div>
-            <button onClick={() => router.push(`/eventlist`)} className="mt-4 md:mt-0 h-12 w-12 rounded-full bg-white/20 flex items-center justify-center cursor-pointer">
+            <button onClick={() => router.push(`/eventlist`)} className="md:h-12 md:w-12 w-10 h-10 mt-2 rounded-full bg-white/20 flex items-center justify-center cursor-pointer self-start md:self-auto">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -203,11 +203,11 @@ export default function AllEventsPage() {
             </div>
           </div>*/}
 
-          <div className="flex gap-10">
+          <div className="flex flex-col md:flex-row gap-4">
   {/* Event 1 */}
   <div
     onClick={() => router.push(`/eventdetails`)}
-    className="overflow-hidden relative h-72 w-1/2 object-contain cursor-pointer"
+    className="overflow-hidden relative h-32 md:w-full  md:w-1/2 object-contain cursor-pointer"
     style={{
       backgroundImage: `url('/coldplay.png')`,
       backgroundSize: "contain",
@@ -216,7 +216,7 @@ export default function AllEventsPage() {
   >
     <div className="absolute inset-0" />
     <div className="absolute left-6 bottom-6 text-white bg-black/60 p-2 pr-5 rounded-lg">
-      <div className="text-xl font-bold">Cricket</div>
+      <div className="md:text-xl font-bold">Cricket</div>
       <div className="text-sm opacity-80">20+ Events</div>
     </div>
   </div>
@@ -224,7 +224,7 @@ export default function AllEventsPage() {
   {/* Event 2 */}
   <div
     onClick={() => router.push(`/details`)}
-    className="overflow-hidden relative h-72 w-1/2 object-contain cursor-pointer "
+    className="overflow-hidden relative h-32 md:w-1/2 object-contain cursor-pointer "
     style={{
       backgroundImage: `url('/Image 29.png')`,
       backgroundSize: "contain",
@@ -233,8 +233,8 @@ export default function AllEventsPage() {
     }}
   >
     <div className="absolute inset-0  " />
-    <div className="absolute left-6 bottom-6 text-white/500 bg-black/60 p-2 pr-5 rounded-lg">
-      <div className="text-xl font-bold z-10">Football</div>
+    <div className="absolute left-6 bottom-6 text-white md:text-white/500 bg-black/60 p-2 pr-5 rounded-lg">
+      <div className="md:text-xl font-bold z-10">Football</div>
       <div className="text-sm opacity-80">15+ Events</div>
     </div>
   </div>
@@ -246,7 +246,7 @@ export default function AllEventsPage() {
         {/* Best Event this week */}
         <section className="mb-16">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-2xl text-[#ff596b] font-semibold">Best Event this Week</h2>
+            <h2 className="md:text-2xl text-[#ff596b] font-bold">Best Event this Week</h2>
             <a onClick={() => router.push(`/eventlist`)} className="text-sm text-white/80 hover:underline cursor-pointer">View All →</a>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-6 gap-10  ">

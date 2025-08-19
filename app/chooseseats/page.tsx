@@ -55,18 +55,18 @@ export default function ChooseSeats() {
 
   return (
     <div className="min-h-screen bg-[#0D1B4C] font-poppins text-white py-10 px-4 flex flex-col items-center">
-      <h1 className="text-3xl font-bold mb-6">Choose Your Seat&apos;s</h1>
+      <h1 className="text-xl sm:text-3xl font-bold mb-6">Choose Your Seat&apos;s</h1>
 
       {/* Screen
       <div className="w-3/4 h-6 bg-gradient-to-r from-yellow-300 to-yellow-500 rounded-t-full mb-8"></div> */}
 
       {/* Seat Grid */}
-      <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(6, 60px)" }}>
+      <div className="grid gap-2 sm:gap-4 justify-center  grid-cols-4 sm:grid-cols-5 md:grid-cols-6">
         {seats.map((seat) => (
           <div
             key={seat.id}
             onClick={() => toggleSeat(seat.id)}
-            className={`w-14 h-14 flex items-center justify-center rounded-md text-sm font-bold cursor-pointer transition
+            className={`w-8 h-8 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center rounded-md text-xs sm:text-sm font-bold cursor-pointer transition
               ${
                 seat.status === "available"
                   ? "bg-white/5 text-yellow-300 hover:bg-yellow-400 hover:text-white"
@@ -81,26 +81,26 @@ export default function ChooseSeats() {
       </div>
 
       {/* Legend */}
-      <div className="flex gap-6 mt-8 text-sm">
+      <div className="flex flex-wrap gap-4 sm:gap-6 mt-8 text-xs sm:text-sm justify-center sm:justify-start">
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 bg-white/5 text-yellow-300 rounded-sm"></div> Available
+          <div className="w-4 h-4 sm:w-5 sm:h-5 bg-white/5 text-yellow-300 rounded-sm"></div> Available
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 bg-white rounded-sm"></div> Reserved
+          <div className="w-4 h-4 sm:w-5 sm:h-5 bg-white rounded-sm"></div> Reserved
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 bg-yellow-300 rounded-sm"></div> Selected
+          <div className="w-4 h-4 sm:w-5 sm:h-5 bg-yellow-300 rounded-sm"></div> Selected
         </div>
       </div>
 
       {/* Date Selection */}
-      <h2 className="text-xl font-semibold mt-10 mb-4">Select Date &amp; Time</h2>
-      <div className="flex gap-3 flex-wrap justify-center">
+      <h2 className="text-lg sm:text-xl font-semibold mt-10 mb-4">Select Date &amp; Time</h2>
+      <div className="flex gap-2 sm:gap-3 flex-wrap justify-center">
         {dates.map((date) => (
           <button
             key={date}
             onClick={() => setSelectedDate(date)}
-            className={`px-4 py-2 rounded-md ${
+            className={`px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm ${
               selectedDate === date ? "bg-yellow-500 text-black" : "bg-gray-700"
             }`}
           >
@@ -110,12 +110,12 @@ export default function ChooseSeats() {
       </div>
 
       {/* Time Selection */}
-      <div className="flex gap-3 mt-4 flex-wrap justify-center">
+      <div className="flex gap-2 sm:gap-3 mt-4 flex-wrap justify-center">
         {times.map((time) => (
           <button
             key={time}
             onClick={() => setSelectedTime(time)}
-            className={`px-4 py-2 rounded-md ${
+            className={`px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm ${
               selectedTime === time ? "bg-yellow-500 text-black" : "bg-gray-700"
             }`}
           >
@@ -126,8 +126,8 @@ export default function ChooseSeats() {
 
       {/* Price and Button */}
       <div className="mt-10 flex flex-col items-center">
-        <p className="text-lg mb-3">Price: <span className="font-bold">Rs.2340</span></p>
-        <button onClick={() => router.push("/checkout")} className="bg-red-500 hover:bg-red-600 px-8 py-3 rounded-lg font-semibold text-white text-lg cursor-pointer">
+        <p className="text-base sm:text-lg mb-3">Price: <span className="font-bold">Rs.2340</span></p>
+        <button onClick={() => router.push("/checkout")} className="w-full sm:w-auto bg-red-500 hover:bg-red-600 px-6 sm:px-8 py-3 rounded-lg font-semibold text-white text-base sm:text-lg cursor-pointer">
           Buy Ticket
         </button>
       </div>

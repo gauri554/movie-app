@@ -60,9 +60,9 @@ const EventListPage: React.FC = () => {
               ‹
             </button>
             <div>
-        <h1 className="text-4xl font-semibold">Stand Up Comedy</h1>
-        <p className="text-lg">Ahmedabad</p></div></div>
-        <h2 className="text-xl text-red-500 mt-4">Stand Up 25+ Events</h2>
+        <h1 className="text-3xl md:text-4xl font-semibold">Stand Up Comedy</h1>
+        <p className="text-sm md:text-lg">Ahmedabad</p></div></div>
+        <h2 className="text-lg text-center md:text-left text-red-500 mt-4">Stand Up 25+ Events</h2>
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -77,11 +77,11 @@ const EventListPage: React.FC = () => {
               className="h-56 w-full object-cover"
             />
             <div className="p-4 flex flex-col flex-grow">
-              <h3 className="text-2xl font-semibold">{event.title}</h3>
-              <p className="text-gray-300">{event.comedian}</p>
-              <p className="mt-2">Time: {event.time}</p>
-              <p>
-                <span className="font-bold ">Venue</span> {event.venue}
+              <h3 className="text-2xl font-semibold text-center md:text-left">{event.title}</h3>
+              <p className="text-gray-300 text-center md:text-left">{event.comedian}</p>
+              <p className="mt-2 text-center md:text-left">Time: {event.time}</p>
+              <p className="text-center md:text-left">
+                <span className="font-bold">Venue</span> {event.venue}
               </p>
               <button onClick={() => router.push(`/checkout`)} className="mt-2 bg-red-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-red-600 transition cursor-pointer">
                 Buy tickets

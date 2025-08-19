@@ -19,10 +19,10 @@ export default function SidebarFilters({ isOpen, onClose }: SidebarFiltersProps)
   return (
     <>
       {isOpen && (
-        <div className="fixed top-0 left-0 h-full w-64 bg-[#0C1B4D] text-white z-50 p-4 border-r border-white/10 transition-transform duration-300">
+        <div className="fixed top-0 left-0 h-full w-full sm:w-64 bg-[#0C1B4D] text-white z-50 p-4 overflow-y-auto border-r border-white/10 transition-transform duration-300 scrollbar sm:scrollbar-hide">
           {/* Close Button */}
           <button
-            className="absolute top-4 right-4 text-white text-2xl"
+            className="absolute top-4 right-4 text-white text-2xl cursor-pointer"
             onClick={onClose}
             aria-label="Close sidebar"
           >
@@ -42,7 +42,7 @@ export default function SidebarFilters({ isOpen, onClose }: SidebarFiltersProps)
           <div className="mb-6">
             <h4 className="text-sm font-semibold mb-2">Languages</h4>
             {languages.map((lang) => (
-              <label key={lang} className="flex items-center gap-2 cursor-pointer mb-2">
+              <label key={lang} className="flex items-center gap-2 cursor-pointer mb-2 text-sm sm:text-base">
                 <input
                   type="checkbox"
                   className="accent-[#FFB800] w-4 h-4"
@@ -58,7 +58,7 @@ export default function SidebarFilters({ isOpen, onClose }: SidebarFiltersProps)
           <div className="mb-6">
             <h4 className="text-sm font-semibold mb-2">Format</h4>
             {formats.map((fmt) => (
-              <label key={fmt} className="flex items-center gap-2 cursor-pointer mb-2">
+              <label key={fmt} className="flex items-center gap-2 cursor-pointer mb-2 text-sm sm:text-base">
                 <input
                   type="checkbox"
                   className="accent-[#FFB800] w-4 h-4"
