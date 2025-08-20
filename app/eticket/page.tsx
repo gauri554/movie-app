@@ -7,7 +7,7 @@ export default function ETicketPage() {
     const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
   return (
-    <div className="min-h-screen bg-[#0B1A51] font-poppins flex flex-col items-center py-12 px-4">
+    <div className="min-h-screen bg-[#0B1A51] font-poppins flex flex-col items-center p-4 md:py-12 px-2 md:px-4">
       {/* Header */}
       <header className="w-full max-w-3xl flex items-center justify-between mb-8 px-4 md:mx-0">
         <button onClick={() => router.push(`/checkout`)} className="text-white text-lg cursor-pointer">←</button>

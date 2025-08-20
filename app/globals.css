@@ -326,6 +326,13 @@ margin-top: 38px;
   color: white;
 }
 
+@media (max-width: 768px) {
+  .sweep-button span {
+    padding: 10px;   /* smaller padding */
+    font-size: 12px;      /* smaller font size */
+    font-weight: 400;     /* lighter font weight */
+  }
+}
 .sweep-button::after {
   content: "";
   position: absolute;
@@ -423,3 +430,7 @@ margin-top: 38px;
   transition: left 0.75s, opacity 0.2s;
 }
 
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}

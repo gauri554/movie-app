@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+//import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import Section from "./components/Section";
 import MovieCard from "./components/MovieCard";
@@ -19,7 +19,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Link from "next/link";
+//import Link from "next/link";
 
 import { Navigation, Pagination } from "swiper/modules";
 import "./globals.css";
@@ -93,7 +93,7 @@ const images = [
 
 
       {/* Navbar */}
-      <header className="flex justify-between items-center px-4 sm:px-8 py-4 border-b border-white/10 sm:flex-wrap ">
+      <header className="flex justify-between items-center px-2 sm:px-8 sm:py-4 border-b border-white/10 sm:flex-wrap ">
         <div className="flex items-center gap-0 sm:gap-2 cursor-pointer">
             <button
         className="p-1 sm:p-3 m-2 sm:m-4 bg-white/5 text-white rounded-md cursor-pointer "
@@ -103,7 +103,7 @@ const images = [
       </button>
       <div  onClick={() => setIsOpen(true)}
         className="flex items-center gap-1 cursor-pointer select-none text-sm sm:text-lg">
-          <span className="font-semibold">{selectedCity}</span>
+          <span className="sm:font-semibold">{selectedCity}</span>
           <span>▼</span></div>
    <AnimatePresence>
         {isOpen && (
@@ -149,7 +149,7 @@ const images = [
       </AnimatePresence>
 
         </div>
-        <div className="flex items-center gap-3 sm:gap-6 mt-2 sm:mt-0 w-full sm:w-auto justify-end">
+        <div className="flex items-center gap-2 sm:gap-6  sm:mt-0 w-full sm:w-auto justify-end">
           <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
           onClick={() => setShowSearch(!showSearch)}>
   <FaSearch />
@@ -159,7 +159,7 @@ const images = [
           <input
             type="text"
             placeholder="Search movies..."
-            className=" px-2 py-1 rounded-md text-white bg-text-white/10 focus:outline-none w-36 sm:w-48 shadow-md text-sm"
+            className=" px-2 py-1 rounded-md text-white bg-text-white/10 focus:outline-none w-full sm:w-48 shadow-md text-sm"
           />
         )}
          <span className="text-sm sm:text-xl cursor-pointer hover:text-yellow-400"  onClick={() => setIsOpenBell(true)}>
@@ -219,7 +219,7 @@ const images = [
         </div>
       </div>
       {/* Category Buttons */}
-      <div className="flex flex-col sm:flex-row justify-center items-start sm:items-center ml-2 sm:ml-0 gap-6 sm:gap-12 py-6 border-b border-white/10">
+      <div className="flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-6 border-b border-white/10">
         <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
         <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
         <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />

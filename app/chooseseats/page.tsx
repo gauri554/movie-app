@@ -54,22 +54,22 @@ export default function ChooseSeats() {
   const times = ["11:15", "3:15", "6:15", "10:15"];
 
   return (
-    <div className="min-h-screen bg-[#0D1B4C] font-poppins text-white py-10 px-4 flex flex-col items-center">
+    <div className="min-h-screen bg-[#0D1B4C] font-poppins text-white p-4 sm:py-10 px-2 sm:px-4 flex flex-col items-center">
       <h1 className="text-xl sm:text-3xl font-bold mb-6">Choose Your Seat&apos;s</h1>
 
       {/* Screen
       <div className="w-3/4 h-6 bg-gradient-to-r from-yellow-300 to-yellow-500 rounded-t-full mb-8"></div> */}
 
       {/* Seat Grid */}
-      <div className="grid gap-2 sm:gap-4 justify-center  grid-cols-4 sm:grid-cols-5 md:grid-cols-6">
+      <div className="grid gap-4 sm:gap-4 justify-center  grid-cols-6 sm:grid-cols-5 md:grid-cols-6">
         {seats.map((seat) => (
           <div
             key={seat.id}
             onClick={() => toggleSeat(seat.id)}
-            className={`w-8 h-8 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center rounded-md text-xs sm:text-sm font-bold cursor-pointer transition
+            className={`w-6 h-6 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center rounded-md text-xs sm:text-sm font-bold cursor-pointer transition
               ${
                 seat.status === "available"
-                  ? "bg-white/5 text-yellow-300 hover:bg-yellow-400 hover:text-white"
+                  ? "bg-white/15 text-yellow-300 hover:bg-yellow-400 hover:text-white"
                   : seat.status === "reserved"
                   ? "bg-white text-gray-600 cursor-not-allowed  hover:bg-yellow-400 hover:text-white "
                   : "bg-yellow-600 text-white"
@@ -125,7 +125,7 @@ export default function ChooseSeats() {
       </div>
 
       {/* Price and Button */}
-      <div className="mt-10 flex flex-col items-center">
+      <div className="mt-10 flex flex-row sm:flex-col items-center gap-5 sm:gap-[auto]">
         <p className="text-base sm:text-lg mb-3">Price: <span className="font-bold">Rs.2340</span></p>
         <button onClick={() => router.push("/checkout")} className="w-full sm:w-auto bg-red-500 hover:bg-red-600 px-6 sm:px-8 py-3 rounded-lg font-semibold text-white text-base sm:text-lg cursor-pointer">
           Buy Ticket

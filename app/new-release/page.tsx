@@ -54,7 +54,7 @@ export default function NewReleasesPage() {
       ? sampleMovies
       : sampleMovies.filter((movie) => movie.language === selectedLang);
   return (
-    <div className="min-h-screen font-poppins bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white">
+    <div className="min-h-screen font-poppins bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white ">
       {/* Sidebar */}
           <SidebarFilters isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
     
@@ -67,21 +67,21 @@ export default function NewReleasesPage() {
           )}
     
     
-      <div className="max-w-7xl mx-auto px-8 py-10">
+      <div className="max-w-7xl mx-auto px-2 md:px-8 md:py-10 ">
      
-       <header className=" px-4 sm:px-6 md:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+       <header className=" px-0 gap-14 md:gap-5 sm:px-6 md:px-8 py-4 flex flex-row md:items-center md:justify-between mb-8">
           <div className="flex items-center gap-4">
-         <button onClick={() => router.push(`/`)} className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
+         <button onClick={() => router.push(`/`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
               ‹
             </button>
             <div>
-              <h1 className="text-2xl md:text-3xl font-semibold">Film Trade</h1>
-              <div className="text-sm text-white/70">Ahmedabad | 34 Movies</div>
+              <h1 className=" md:text-3xl sm:font-semibold">Film Trade</h1>
+              <div className="text-xs md:text-sm text-white/70">Ahmedabad | 34 Movies</div>
             </div>
           </div>
 
- <div className="flex flex-col md:flex-row md:items-center gap-4 mt-4 md:mt-0">
-          <div className=" flex flex-col md:flex-row items-center gap-3 sm:gap-6">
+ <div className="flex flex-row md:items-center gap-4  md:mt-0">
+          <div className=" hidden md:block flex flex-col md:flex-row items-center gap-3 sm:gap-6">
             <button onClick={() => router.push("/new-release")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-[#ff4655] hover:bg-white/10 text-sm cursor-pointer">Film Mart</button>
             <button onClick={() => router.push("/events")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-[#ff4655] bg-white/6 hover:bg-bg-[#ff4655] text-white text-sm cursor-pointer">Events</button>
             <button onClick={() => router.push("/cinemashows")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-white/6 hover:bg-[#ff4655] text-sm cursor-pointer">Book Ticket</button>
@@ -112,7 +112,7 @@ export default function NewReleasesPage() {
      
         <div className="mb-8 relative">
           <div className="w-full mx-auto rounded-2xl overflow-hidden bg-[#0b223f]">
-            <div className="relative w-full h-[45vw] md:h-[420px]">
+            <div className="relative w-full h-[50vw] md:h-[420px]">
               {banners.map((b, i) => (
                 <div
                   key={b}
@@ -173,7 +173,7 @@ export default function NewReleasesPage() {
         
 
 
-  <div className="flex gap-3 flex-wrap md-flex:no-wrap items-center mb-6">
+  {/*<div className="flex gap-3 flex-wrap md-flex:no-wrap items-center mb-6">
         {["New Releases", "English", "Hindi", "Malayalam", "Telugu"].map((lang) => (
           <button
             key={lang}
@@ -193,18 +193,44 @@ export default function NewReleasesPage() {
         <FiFilter size={18} />
         Filter
       </button>
-      </div>
+      </div>*/}
+
+      <div className="flex gap-3 md:flex-wrap flex-nowrap overflow-x-auto no-scrollbar items-center mb-6">
+  {["New Releases", "English", "Hindi", "Malayalam", "Telugu", "Tamil"].map((lang) => (
+    <button
+      key={lang}
+      onClick={() => setSelectedLang(lang)}
+      className={`shrink-0 px-2 md:px-4 py-1 md:py-2 text-sm md:text-lg rounded-full cursor-pointer ${
+        selectedLang === lang
+          ? "bg-[#ff4655] text-white"
+          : "bg-white/6 hover:bg-[#ff4655]"
+      }`}
+    >
+      {lang}
+    </button>
+  ))}
+
+  <button
+    onClick={() => setIsSidebarOpen(true)}
+    className="shrink-0 px-2 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-lg bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1"
+  >
+    <FiFilter size={18} />
+    Filter
+  </button>
+</div>
+
 
 
         
         <div className="mb-8">
-          <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-3 md:p-6 flex items-center justify-between">
+          <div className="rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-3 md:p-6 flex items-center justify-between">
             <div>
-              <div className="text-lg font-semibold">Coming Soon</div>
+              <div className="sm:text-lg font-semibold">Coming Soon </div>
+            
               <div className="text-sm opacity-90">Explore Upcoming Movies</div>
-            </div>
+ </div>
             <button onClick={() => router.push("/details")} className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center cursor-pointer">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -213,9 +239,9 @@ export default function NewReleasesPage() {
 
       
         <section>
-          <h2 className="text-2xl text-[#ff596b] font-semibold mb-4">Recommended Movies</h2>
+          <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4">Recommended Movies</h2>
 
-         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6">
             {filteredMovies.map((m, i) => (
 
               <div key={i} onClick={() => router.push(`/details`)} className="rounded-xl overflow-hidden bg-[#0b233f] p-3 cursor-pointer hover:text-white/70 ">
@@ -226,7 +252,7 @@ export default function NewReleasesPage() {
                     alt={m.title}
                     width={400}
                     height={560}
-                    className="w-full h-[260px] md:h-[300px] object-cover rounded-md new-release-image " 
+                    className="w-full h-[160px] md:h-[300px] object-cover rounded-md new-release-image " 
                   />
 
                  
@@ -235,12 +261,12 @@ export default function NewReleasesPage() {
                   )}
                 </div>
 
-                <div className="mt-3 flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold">{m.title}</div>
-                    <div className="text-sm text-white/70">{m.rating} <span className="ml-3 text-white/60">•</span> <span className="ml-3 text-sm text-white/60">{m.votes}</span></div>
-                  </div>
-                  <button className="bg-white/6 px-3 py-1 rounded-md">Details</button>
+                <div className="mt-1 md:mt-3 flex items-center justify-between">
+                 
+                    <div className="text-[10px] md:text-xm md:font-semibold">{m.title}</div>
+                    <div className="text-sm text-white/70 hidden md:block">{m.rating} <span className="ml-3 text-white/60">•</span> <span className="ml-3 text-sm text-white/60">{m.votes}</span></div>
+                  
+                  <button className="bg-white/6 md:px-3 md:py-1 rounded-md text-xs md:text-sm">Details</button>
                 </div>
               </div>
             ))}
@@ -255,9 +281,9 @@ export default function NewReleasesPage() {
         </section>
 
         
-        <div className="mt-10 flex flex-col items-center gap-4 md:flex-row md:items-center md:justify-between">
-          <button onClick={() => router.push(`/details`)} className="w-full md:w-[auto] bg-[#ff4655] text-white rounded-xl cursor-pointer sweep-button"><span>Browse By Cinemas</span></button>
-          <div className="text-sm text-white/70">Showing {sampleMovies.length} of 34 movies</div>
+        <div className="mt-10 flex flex-row items-center gap-10 md:gap-4 md:flex-row md:items-center md:justify-between  ">
+          <button onClick={() => router.push(`/details`)} className="w-[300px] md:w-[auto] bg-[#ff4655] text-white rounded-xl cursor-pointer mb-10 sweep-button"><span>Browse By Cinemas</span></button>
+          <div className="text-xs md:text-sm text-white/70 mb-10">Showing {sampleMovies.length} of 34 movies</div>
         </div>
       </div>
 

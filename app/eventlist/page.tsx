@@ -53,31 +53,32 @@ const events: EventItem[] = [
 const EventListPage: React.FC = () => {
    const router = useRouter();
   return (
-    <div className="min-h-screen font-poppins bg-[#0D1B4C] text-white p-8">
+    <div className="min-h-screen font-poppins bg-[#0D1B4C] text-white p-4 px-2 md:px-[auto] md:p-8">
       <header className="mb-8">
           <div className="flex items-center gap-4">
-        <button onClick={() => router.push(`/events`)} className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
+        <button onClick={() => router.push(`/events`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
               ‹
             </button>
             <div>
-        <h1 className="text-3xl md:text-4xl font-semibold">Stand Up Comedy</h1>
-        <p className="text-sm md:text-lg">Ahmedabad</p></div></div>
-        <h2 className="text-lg text-center md:text-left text-red-500 mt-4">Stand Up 25+ Events</h2>
+        <h1 className="md:text-4xl md:font-semibold">Stand Up Comedy</h1>
+        <p className="text-xs md:text-lg">Ahmedabad</p></div></div>
+        <h2 className="text-sm md:text-lg md:text-left text-red-500 mt-4">Stand Up 25+ Events</h2>
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {events.map((event) => (
           <div
             key={event.id}
-            className="bg-white/5 rounded-2xl overflow-hidden shadow-lg flex flex-col"
+            className="bg-white/5 rounded-2xl overflow-hidden shadow-lg flex md:flex-col"
           >
+            <div className="p-4 md:p-[auto]">
             <img
               src={event.image}
               alt={event.title}
-              className="h-56 w-full object-cover"
-            />
+              className="h-40 md:h-56 w-full rounded-lg object-cover"
+            /></div>
             <div className="p-4 flex flex-col flex-grow">
-              <h3 className="text-2xl font-semibold text-center md:text-left">{event.title}</h3>
+              <h3 className=" md:text-2xl font-semibold text-center md:text-left">{event.title}</h3>
               <p className="text-gray-300 text-center md:text-left">{event.comedian}</p>
               <p className="mt-2 text-center md:text-left">Time: {event.time}</p>
               <p className="text-center md:text-left">

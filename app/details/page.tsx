@@ -40,7 +40,7 @@ export default function MovieDetailsDesktop() {
   ];
 
   const crew: Person[] = [
-    { name: "Anupam Kher", role: "Director, Writer", img: "/anupm.png" },
+    { name: "Anupam Kher", role: "Director", img: "/anupm.png" },
     { name: "M.M Keeravani", role: "Musician", img: "/keeravani.png" },
     { name: "Kausar Munir", role: "Lyricist", img: "/kausar.png" },
   ];
@@ -65,17 +65,17 @@ const [isModalOpen, setIsModalOpen] = useState(false);
 
    const router = useRouter();
   return (
-    <div className="min-h-screen  font-poppins bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] text-white p-8">
+    <div className="min-h-screen  font-poppins bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] text-white p-4 px-2 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <header className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-            <button onClick={() => router.push(`/new-release`)} className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
+            <button onClick={() => router.push(`/new-release`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
               ‹
             </button>
             <div>
-              <h1 className="text-2xl font-semibold">{title}</h1>
-              <p className="text-sm text-white/70">{subtitle}</p>
+              <h1 className="md:text-2xl md:font-semibold">{title}</h1>
+              <p className="text-xs md:text-sm text-white/70">{subtitle}</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -95,9 +95,9 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                 className="w-full h-auto object-contain"
               />
 
-              <div className="p-5">
-                <h2 className="text-2xl font-bold">{title}</h2>
-                <div className="flex flex-col items-center gap-3 mt-3 md:flex-row md:items-center md:justify-between">
+              <div className="pt-2 md:p-5">
+                <h2 className="md:text-2xl font-bold">{title}</h2>
+                <div className="flex flex-row items-center gap-2 md:gap-3 mt-2 md:mt-3 md:flex-row md:items-center md:justify-between">
                   <span className="inline-flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full">
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M12 .587l3.668 7.431L24 9.748l-6 5.853 1.417 8.279L12 19.771 4.583 23.88 6 15.6 0 9.747l8.332-1.73z" />
@@ -106,7 +106,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                     <span className="text-sm text-white/70">| {reviews} Reviews</span>
                   </span>
 
-                  <button   onClick={() => setIsModalOpen(true)} className=" w-full md:w-[auto] bg-yellow-400 text-black  hover:bg-yellow-300 px-3 py-1 rounded-full font-semibold cursor-pointer">Rate Now</button>
+                  <button   onClick={() => setIsModalOpen(true)} className=" w-[90px] md:w-[auto] bg-yellow-400 text-black  hover:bg-yellow-300 md:px-3 py-1 rounded-full font-semibold cursor-pointer">Rate Now</button>
                    <RatingModal
         isOpen={isModalOpen}
         setIsOpen={setIsModalOpen}
@@ -194,11 +194,11 @@ const [isModalOpen, setIsModalOpen] = useState(false);
 
             {/* Reviews summary */}
             <section className="mb-6 flex flex-col items-center gap-6 md:flex-row">
-              <div className="flex-1 p-4 rounded-xl bg-[#11243b] shadow-md">
+              <div className="flex-1 p-4 w-full md:w-[auto] rounded-xl bg-[#11243b] shadow-md">
                 <div className="flex items-center justify-between ">
                   <div>
-                    <div className="text-2xl font-semibold md:font-bold">4.6/5</div>
-                    <div className="text-sm text-white/70">135 Reviews</div>
+                    <div className="text-xl md:text-2xl font-semibold md:font-bold">4.6/5</div>
+                    <div className="text-xs md:text-sm text-white/70">135 Reviews</div>
                   </div>
                   <button onClick={() => setIsModalOpen(true)} className="bg-yellow-400 text-black hover:bg-yellow-300 px-3 md:px-4 py-1 md:py-2 rounded-full font-semibold cursor-pointer">Rate Now</button>
                 </div>
@@ -217,15 +217,15 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             {/* Cast */}
             <section className="mb-6">
               <h3 className="text-xl font-semibold mb-4">Cast</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-3  sm:gap-6 md:gap-6">
                 {cast.map((c) => (
-                  <div key={c.name} className="flex flex-col items-center gap-2">
-                     <div className="relative group w-40 h-40 cursor-pointer">
-                    <img src={c.img} alt={c.name} className="w-40 h-40 rounded-full object-cover border-2 border-white/10" />
+                  <div key={c.name} className="flex flex-col items-center sm:gap-2">
+                     <div className="relative group w-20 h-20 sm:w-40 sm:h-40 cursor-pointer">
+                    <img src={c.img} alt={c.name} className="sm:w-40 sm:h-40 rounded-full object-cover border-2 border-white/10" />
                     <div className="absolute inset-0 rounded-full bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    <div className="text-sm font-medium">{c.name}</div>
-                    <div className="text-xs text-white/70">{c.role}</div>
+                    <div className="text-[11px] md:text-sm md:font-medium">{c.name}</div>
+                    <div className="text-xs sm:text-sm text-white/70">{c.role}</div>
                   </div>
                 ))}
               </div>
@@ -234,15 +234,15 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             {/* Crew */}
             <section className="mb-6">
               <h3 className="text-xl font-semibold mb-4">Crew</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
                 {crew.map((c) => (
-                  <div key={c.name} className="flex flex-col items-center gap-2">
-                    <div className="relative group w-40 h-40 cursor-pointer">
-                    <img src={c.img} alt={c.name} className="w-40 h-40 rounded-full object-cover border-2 border-white/10" />
+                  <div key={c.name} className="flex flex-col items-center sm:gap-2">
+                    <div className="relative group w-20 h-20 sm:w-40 sm:h-40 cursor-pointer">
+                    <img src={c.img} alt={c.name} className=" sm:w-40 sm:h-40 rounded-full object-cover border-2 border-white/10" />
                       <div className="absolute inset-0 rounded-full bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    <div className="text-sm font-medium">{c.name}</div>
-                    <div className="text-xs text-white/70">{c.role}</div>
+                    <div className="text-[11px] md:text-sm font-medium">{c.name}</div>
+                    <div className="text-xs sm:text-sm text-white/70">{c.role}</div>
                   </div>
                 ))}
               </div>

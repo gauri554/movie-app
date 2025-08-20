@@ -8,12 +8,12 @@ interface PaymentSuccessProps {
 const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ onClose }) => {
   const router = useRouter();
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 font-poppins">
+    <div className="fixed inset-0 flex items-center justify-center backdrop-blur bg-opacity-40 z-50 font-poppins">
       <div className="bg-[#1A1B4B] rounded-2xl px-6 sm:p-8 max-w-[90%] sm:max-w-md w-full shadow-lg text-center relative mx-4 sm:mx-auto">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 sm:top-3 sm:right-3 text-white text-lg"
+          className="absolute top-2 right-2 sm:top-3 sm:right-3 text-white text-lg cursor-pointer"
         >
           ✕
         </button>

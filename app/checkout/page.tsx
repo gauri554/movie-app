@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { FaCcMastercard } from "react-icons/fa";
 import PaymentSuccess from "../components/PaymentSuccess";
 export default function CheckoutPage() {
@@ -8,7 +9,7 @@ export default function CheckoutPage() {
   const [cardNumber, setCardNumber] = useState("**** **** **** 51446");
   const [date, setDate] = useState("2021-11-02");
   const [cvv, setCvv] = useState("123");
-
+const router = useRouter();
 
    const [showPopup, setShowPopup] = useState(false);
 
@@ -16,10 +17,14 @@ export default function CheckoutPage() {
     setShowPopup(true);
   };
   return (
-    <div className="min-h-screen bg-[#0D1B4C] font-poppins text-white py-12 px-4 flex justify-center">
+    <div className="min-h-screen bg-[#0D1B4C] font-poppins text-white  sm:py-12 px-2 sm:px-4 flex justify-center">
       <div className=" p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-3xl mx-auto">
-        <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center md:text-left">Checkout</h1>
-
+        <div className="flex items-center gap-16 mb-6">
+       <div>  <button onClick={() => router.push(`/chooseseats`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
+              ‹
+            </button></div>
+       <div> <h1 className="md:text-2xl sm:text-3xl font-bold ">Checkout</h1></div>
+</div>
         {/* Payment Method */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
           <h2 className="text-lg sm:text-xl font-semibold">Payment Method</h2>

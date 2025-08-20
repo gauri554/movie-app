@@ -16,7 +16,7 @@ export default function Popup({ isOpen, onClose }: PopupProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 font-poppins">
+    <div className="fixed inset-0 flex items-center justify-center backdrop-blur  bg-opacity-50 z-50 font-poppins">
       {/* Popup Container */}
       <div className="bg-[#101B42] rounded-2xl shadow-lg p-6 w-[350px] w-[400px] sm:w-[300px] relative text-center ml-5 md:ml-0 mr-5 md:mr-0">
         {/* Icon */}

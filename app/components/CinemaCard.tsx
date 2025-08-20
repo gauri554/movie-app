@@ -11,7 +11,7 @@ type CinemaCardProps = {
 export default function CinemaCard({ name, distance, rating, time, imageUrl }: CinemaCardProps) {
    const router = useRouter();
   return (
-    <div className="bg-[#13214B] rounded-lg p-2 flex items-center gap-2 cursor-pointer">
+    <div className="bg-[#13214B] rounded-lg p-2 flex items-center shrink-0  gap-2 cursor-pointer">
   {/* Left Image */}
   <Image
     src={imageUrl} // change to your image path
@@ -20,7 +20,7 @@ export default function CinemaCard({ name, distance, rating, time, imageUrl }: C
     height={60}
     className="rounded-md object-cover"
   />
-    <div onClick={() => router.push(`/cinemashows`)} className="bg-[#13214B] rounded-lg p-1 flex justify-between items-center gap-2">
+    <div onClick={() => router.push(`/cinemashows`)} className="bg-[#13214B] rounded-lg p-1 flex justify-between items-center md:gap-2">
       <div>
         <h3 className="font-semibold">{name}</h3>
         <p className="text-sm mt-0">{distance} Kilometers</p>

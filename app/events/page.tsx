@@ -68,27 +68,27 @@ export default function AllEventsPage() {
                     onClick={() => setIsSidebarOpen(false)}
                   />
                 )}
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="max-w-7xl mx-auto px-2 md:px-6 p-4 md:py-10">
         {/* Header */}
-        <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
-          <div className="flex items-center gap-4">
+        <header className="flex flex-row md:flex-row items-center md:items-center md:justify-between gap-18 md:gap-4 mb-8">
+          <div className="flex items-center gap-18 md:gap-4">
            {/* <button className="p-2 rounded-full bg-white/6 hover:bg-white/10">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white/90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>*/}
-            <button onClick={() => router.push(`/new-release`)} className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
+            <button onClick={() => router.push(`/new-release`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
               ‹
             </button>
             <div>
-              <h1 className="text-3xl font-semibold">All Events</h1>
-              <div className="text-sm text-white/70">Ahmedabad</div>
+              <h1 className="md:text-3xl md:font-semibold">All Events</h1>
+              <div className="text-xs md:text-sm text-white/70">Ahmedabad</div>
             </div>
           </div>
 
           <div className="flex items-center gap-4">
             <button  onClick={() => setShowSearch(!showSearch)} className="p-2 rounded-full bg-white/6 hover:bg-white/10 cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white/90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6 text-white/90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
               </svg>
             </button>
@@ -102,7 +102,7 @@ export default function AllEventsPage() {
           </div>
         </header>
 
-        {/* Language chips */}
+        {/* Language chips 
         <div className="flex flex-wrap gap-3 mb-6">
           {languageChips.map((c) => (
             <button key={c.label}  onClick={() => setSelectedLang(c.label)}
@@ -122,11 +122,35 @@ export default function AllEventsPage() {
         <FiFilter size={18} />
         Filter
       </button>
+        </div>*/}
+
+          <div className="flex gap-3 md:flex-wrap flex-nowrap overflow-x-auto no-scrollbar items-center mb-6">
+          {["New Releases", "English", "Hindi", "Malayalam", "Telugu", "Tamil"].map((lang) => (
+            <button
+              key={lang}
+              onClick={() => setSelectedLang(lang)}
+              className={`shrink-0 px-2 md:px-4 py-1 md:py-2 text-sm md:text-lg rounded-full cursor-pointer ${
+                selectedLang === lang
+                  ? "bg-[#ff4655] text-white"
+                  : "bg-white/6 hover:bg-[#ff4655]"
+              }`}
+            >
+              {lang}
+            </button>
+          ))}
+        
+          <button
+            onClick={() => setIsSidebarOpen(true)}
+            className="shrink-0 px-2 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-lg bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1"
+          >
+            <FiFilter size={18} />
+            Filter
+          </button>
         </div>
 
         {/* Upcoming Events Banner */}
         <div className="mb-10">
-          <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-4 md:p-8 shadow-lg flex flex-col md:flex-row md:items-center md:justify-between">
+          <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-4 md:p-8 shadow-lg flex flex-row gap-30 md:gap-[auto] md:flex-row md:items-center md:justify-between">
             <div>
               <div className="md:text-2xl font-semibold">Upcoming Events</div>
               <div className="text-sm opacity-90">In Cinemas near you</div>
@@ -142,10 +166,10 @@ export default function AllEventsPage() {
         {/* Comedy and Music shows side-by-side on desktop */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
           <section>
-            <h2 className="text-2xl text-[#ff596b] font-semibold mb-4 ">Comedy Shows</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
+            <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4 ">Comedy Shows</h2>
+            <div className= "flex md:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto no-scrollbar cursor-pointer">
               {filteredComedy.map((c) => (
-                <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]"   // default shadow
+                <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="shrink-0 w-[180px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]"   // default shadow
   >
                   <div className="h-44 bg-cover top bg-center" style={{ backgroundImage: `url('${c.img}')` }}     />
                   <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60 ">
@@ -158,11 +182,15 @@ export default function AllEventsPage() {
                 <p className="text-white/60">No comedy shows available for {selectedLang}</p>
               )}
             </div>
+
+           
+
+
           </section>
 
           <section>
-            <h2 className="text-2xl text-[#ff596b] font-semibold mb-4">Music Shows</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
+            <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4">Music Shows</h2>
+          {/*  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
               {filteredMusic.map((c) => (
                 <div key={c.title} onClick={() => router.push(`/eventlist`)} className="rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]">
                   <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url('${c.img}')` }} />
@@ -174,6 +202,22 @@ export default function AllEventsPage() {
               ))}
                {filteredMusic.length === 0 && (
                 <p className="text-white/60">No music shows available for {selectedLang}</p>
+              )}
+            </div>*/}
+
+              <div className= "flex md:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto no-scrollbar cursor-pointer">
+              {filteredMusic.map((c) => (
+                <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="shrink-0 w-[180px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]"   // default shadow
+  >
+                  <div className="h-44 bg-cover top bg-center" style={{ backgroundImage: `url('${c.img}')` }}     />
+                  <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60 ">
+                    <div className="text-lg font-semibold">{c.title}</div>
+                    <div className="text-sm opacity-80">{c.subtitle}</div>
+                  </div>
+                </div>
+              ))}
+               {filteredMusic.length === 0 && (
+                <p className="text-white/60">No comedy shows available for {selectedLang}</p>
               )}
             </div>
           </section>
@@ -192,7 +236,7 @@ export default function AllEventsPage() {
 
         {/* Events Hero */}
         <section className="mb-10">
-          <h2 className="text-2xl text-[#ff596b] font-semibold mb-4">Events</h2>
+          <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4">Events</h2>
           {/*<div  onClick={() => router.push(`/eventdetails`)} className=" overflow-hidden relative h-72  object-contain cursor-pointer" style={{ backgroundImage: `url('/coldplay.png')` , backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
      }} >
@@ -203,8 +247,8 @@ export default function AllEventsPage() {
             </div>
           </div>*/}
 
-          <div className="flex flex-col md:flex-row gap-4">
-  {/* Event 1 */}
+          {/*<div className="flex flex-col md:flex-row gap-4">
+ 
   <div
     onClick={() => router.push(`/eventdetails`)}
     className="overflow-hidden relative h-32 md:w-full  md:w-1/2 object-contain cursor-pointer"
@@ -221,7 +265,7 @@ export default function AllEventsPage() {
     </div>
   </div>
 
-  {/* Event 2 */}
+  
   <div
     onClick={() => router.push(`/details`)}
     className="overflow-hidden relative h-32 md:w-1/2 object-contain cursor-pointer "
@@ -238,7 +282,47 @@ export default function AllEventsPage() {
       <div className="text-sm opacity-80">15+ Events</div>
     </div>
   </div>
+</div>*/}
+
+{/* Wrapper */}
+<div className="flex md:grid md:grid-cols-2 gap-4 overflow-x-auto md:overflow-visible no-scrollbar">
+  {/* Event 1 */}
+  <div
+    onClick={() => router.push(`/eventdetails`)}
+    className="shrink-0 w-1/2 md:w-auto overflow-hidden relative h-32 md:h-[300px] object-contain cursor-pointer"
+    style={{
+      backgroundImage: `url('/coldplay.png')`,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+    }}
+  >
+    <div className="absolute inset-0" />
+    <div className="absolute left-4 bottom-4 text-white bg-black/60 p-2 pr-4 rounded-lg">
+      <div className="text-sm md:text-xl font-bold">Cricket</div>
+      <div className="text-xs md:text-sm opacity-80">20+ Events</div>
+    </div>
+  </div>
+
+  {/* Event 2 */}
+  <div
+    onClick={() => router.push(`/details`)}
+    className="shrink-0 w-1/2 md:w-auto overflow-hidden relative h-32 md:h-[300px] object-contain cursor-pointer"
+    style={{
+      backgroundImage: `url('/Image 29.png')`,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+    }}
+  >
+    <div className="absolute inset-0" />
+    <div className="absolute left-4 bottom-4 text-white bg-black/60 p-2 pr-4 rounded-lg">
+      <div className="text-sm md:text-xl font-bold">Football</div>
+      <div className="text-xs md:text-sm opacity-80">15+ Events</div>
+    </div>
+  </div>
+
+  {/* Repeat for more cards */}
 </div>
+
 
 
         </section>
@@ -246,10 +330,10 @@ export default function AllEventsPage() {
         {/* Best Event this week */}
         <section className="mb-16">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="md:text-2xl text-[#ff596b] font-bold">Best Event this Week</h2>
+            <h2 className="text-sm md:text-2xl text-[#ff596b] font-bold">Best Event this Week</h2>
             <a onClick={() => router.push(`/eventlist`)} className="text-sm text-white/80 hover:underline cursor-pointer">View All →</a>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-6 gap-10  ">
+         {/* <div className="grid grid-cols-1 sm:grid-cols-6 gap-10  ">
             {bestThisWeek.map((b) => (
               <div key={b.title} onClick={() => router.push(`/eventlist`)} className="shine-card rounded-lg overflow-hidden bg-[#0b223f] shadow-md text-center cursor-pointer ">
                 <div className="h-40 bg-cover bg-center mt-5 " style={{ backgroundImage: `url('${b.img}')`,  backgroundSize: "contain",
@@ -258,7 +342,30 @@ export default function AllEventsPage() {
                 <div className="p-3 text-sm text-center">{b.title}</div>
               </div>
             ))}
-          </div>
+          </div>*/}
+
+          {/* Wrapper */}
+<div className="flex overflow-x-auto sm:grid sm:grid-cols-6 gap-6 no-scrollbar">
+  {bestThisWeek.map((b) => (
+    <div
+      key={b.title}
+      onClick={() => router.push(`/eventlist`)}
+      className="shine-card shrink-0 w-40 sm:w-auto rounded-lg overflow-hidden bg-[#0b223f] shadow-md text-center cursor-pointer"
+    >
+      <div
+        className="h-40 bg-cover bg-center mt-5"
+        style={{
+          backgroundImage: `url('${b.img}')`,
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+      />
+      <div className="p-3 text-sm text-center">{b.title}</div>
+    </div>
+  ))}
+</div>
+
         </section>
       </div>
 

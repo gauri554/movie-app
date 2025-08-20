@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import SeatSelection from "../components/seatselection";
 interface Cinema {
   name: string;
@@ -11,7 +12,7 @@ interface Cinema {
 export default function CinemaShowsPage() {
   const [selectedDate, setSelectedDate] = useState("21 TUE");
   const [selectedLang, setSelectedLang] = useState("English 2D");
-
+const router = useRouter();
   const dates = ["19 MON", "20 SUN", "21 TUE", "22 WED", "23 THU", "24 FRI"];
   const languages = ["हिन्दी 2D", "English 2D", "ગુજરાતી 2D"];
 
@@ -31,14 +32,19 @@ export default function CinemaShowsPage() {
   ];
 
   return (
-    <div className="min-h-screen font-poppins bg-[#0D1B4C] px-6 py-8">
+    <div className="min-h-screen font-poppins bg-[#0D1B4C] px-2 sm:px-6 py-4 sm:py-8">
       {/* Header */}
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-2">
-          <h1 className="text-2xl sm:text-3xl font-bold text-white">Alladin</h1>
-          <p className="text-yellow-500 font-medium text-sm sm:text-base">⭐ 7.2/10 (20k Votes)</p>
+        <div className="flex flex-row gap-3"> 
+          <div>
+            <button onClick={() => router.push(`/`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl text-white">
+              ‹
+            </button></div>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:gap-2">
+          <h1 className=" text-lg sm:text-3xl sm:font-bold text-white">Alladin</h1>
+          <p className="text-yellow-500 font-medium text-xs sm:text-base">⭐ 7.2/10 (20k Votes)</p>
         </div>
-
+</div>
         {/* Date Selector */}
         <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2 mb-4 scrollbar-hide">
           {dates.map((date) => (

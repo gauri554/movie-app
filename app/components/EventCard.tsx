@@ -35,9 +35,9 @@ export default function EventCard({ img, title, date }: EventCardProps) {
      }, []);
 
   return (
-    <div ref={containerRef} onClick={() => router.push(`/events`)} className="bg-[#13214B] rounded-lg overflow-hidden py-4 text-center cursor-pointer  align-items-center">
-    <div className={`event-card w-[220px] h-[260px] mx-auto relative movie-card ${isVisible ? "section-visible" : "section-hidden"}`}>
-      <Image src={img} alt={title} width={100} height={200} className="w-[220px] h-[260px] mx-auto rounded-lg " />
+    <div ref={containerRef} onClick={() => router.push(`/events`)} className="bg-[#13214B] rounded-lg overflow-hidden py-4 shrink-0 text-center cursor-pointer flex-col justify-center items-center">
+    <div className={`mx-auto relative movie-card ${isVisible ? "section-visible" : "section-hidden"} w-[120px] h-[150px] md:w-[220px] md:h-[260px]`}>
+      <Image src={img} alt={title} fill className=" rounded-lg object-cover" />
         <div className="icon">
           <FaEye />
         </div>
