@@ -70,7 +70,7 @@ export default function AllEventsPage() {
                 )}
       <div className="max-w-7xl mx-auto px-2 md:px-6 p-4 md:py-10">
         {/* Header */}
-        <header className="flex flex-row md:flex-row items-center md:items-center md:justify-between gap-18 md:gap-4 mb-8">
+        <header className="flex flex-row md:flex-row items-center justify-between md:items-center md:justify-between  md:gap-4 mb-8">
           <div className="flex items-center gap-18 md:gap-4">
            {/* <button className="p-2 rounded-full bg-white/6 hover:bg-white/10">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white/90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -86,7 +86,7 @@ export default function AllEventsPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:items-end">
             <button  onClick={() => setShowSearch(!showSearch)} className="p-2 rounded-full bg-white/6 hover:bg-white/10 cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6 text-white/90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
@@ -148,12 +148,12 @@ export default function AllEventsPage() {
           </button>
         </div>
 
-        {/* Upcoming Events Banner */}
+        {/* Upcoming Events Banner 
         <div className="mb-10">
-          <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-4 md:p-8 shadow-lg flex flex-row gap-30 md:gap-[auto] md:flex-row md:items-center md:justify-between">
+          <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-4 md:p-8 shadow-lg flex flex-row gap-35 md:gap-[auto] md:flex-row md:items-center md:justify-between">
             <div>
-              <div className="md:text-2xl font-semibold">Upcoming Events</div>
-              <div className="text-sm opacity-90">In Cinemas near you</div>
+              <div className="text-sm md:text-2xl font-semibold">Upcoming Events</div>
+              <div className="text-xs sm:text-sm opacity-90">In Cinemas near you</div>
             </div>
             <button onClick={() => router.push(`/eventlist`)} className="md:h-12 md:w-12 w-10 h-10 mt-2 rounded-full bg-white/20 flex items-center justify-center cursor-pointer self-start md:self-auto">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -161,20 +161,54 @@ export default function AllEventsPage() {
               </svg>
             </button>
           </div>
-        </div>
+        </div>*/}
+
+
+        <div className="mb-10">
+  <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-4 md:p-8 shadow-lg flex flex-row items-center justify-between md:flex-row md:items-center md:justify-between gap-4">
+    
+    {/* Text Section */}
+    <div>
+      <div className="text-base md:text-2xl font-semibold">Upcoming Events</div>
+      <div className="text-xs sm:text-sm opacity-90">In Cinemas near you</div>
+    </div>
+
+    {/* Button */}
+    <button
+      onClick={() => router.push(`/eventlist`)}
+      className="w-10 h-10 md:w-12 md:h-12  md:mt-0 rounded-full bg-white/20 flex items-center justify-center cursor-pointer self-start md:self-auto"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5 md:h-6 md:w-6 text-white"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 5l7 7-7 7"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+
 
         {/* Comedy and Music shows side-by-side on desktop */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
           <section>
             <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4 ">Comedy Shows</h2>
-            <div className= "flex md:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto no-scrollbar cursor-pointer">
+            <div className= "flex md:grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 overflow-x-auto no-scrollbar cursor-pointer">
               {filteredComedy.map((c) => (
-                <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="shrink-0 w-[180px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]"   // default shadow
+                <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="shrink-0 w-[120px] h-[150px] md:h-[auto] sm:w-[180px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]"   // default shadow
   >
                   <div className="h-44 bg-cover top bg-center" style={{ backgroundImage: `url('${c.img}')` }}     />
                   <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60 ">
-                    <div className="text-lg font-semibold">{c.title}</div>
-                    <div className="text-sm opacity-80">{c.subtitle}</div>
+                    <div className="text-sm md:text-lg font-semibold">{c.title}</div>
+                    <div className="text-xs md:text-sm opacity-80">{c.subtitle}</div>
                   </div>
                 </div>
               ))}
@@ -205,19 +239,19 @@ export default function AllEventsPage() {
               )}
             </div>*/}
 
-              <div className= "flex md:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto no-scrollbar cursor-pointer">
+              <div className= "flex md:grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 overflow-x-auto no-scrollbar cursor-pointer">
               {filteredMusic.map((c) => (
-                <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="shrink-0 w-[180px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]"   // default shadow
+                <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="shrink-0 w-[120px] h-[150px] md:h-[auto] md:w-[180px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]"   // default shadow
   >
                   <div className="h-44 bg-cover top bg-center" style={{ backgroundImage: `url('${c.img}')` }}     />
                   <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60 ">
-                    <div className="text-lg font-semibold">{c.title}</div>
-                    <div className="text-sm opacity-80">{c.subtitle}</div>
+                    <div className="text-sm md:text-lg font-semibold">{c.title}</div>
+                    <div className="text-xs md:text-sm opacity-80">{c.subtitle}</div>
                   </div>
                 </div>
               ))}
                {filteredMusic.length === 0 && (
-                <p className="text-white/60">No comedy shows available for {selectedLang}</p>
+                <p className="text-white/60">No music shows available for {selectedLang}</p>
               )}
             </div>
           </section>
@@ -289,7 +323,7 @@ export default function AllEventsPage() {
   {/* Event 1 */}
   <div
     onClick={() => router.push(`/eventdetails`)}
-    className="shrink-0 w-1/2 md:w-auto overflow-hidden relative h-32 md:h-[300px] object-contain cursor-pointer"
+    className="shrink-0 w-full md:w-auto overflow-hidden relative h-32 md:h-[300px] object-contain cursor-pointer"
     style={{
       backgroundImage: `url('/coldplay.png')`,
       backgroundSize: "cover",
@@ -306,7 +340,7 @@ export default function AllEventsPage() {
   {/* Event 2 */}
   <div
     onClick={() => router.push(`/details`)}
-    className="shrink-0 w-1/2 md:w-auto overflow-hidden relative h-32 md:h-[300px] object-contain cursor-pointer"
+    className="shrink-0 w-full md:w-auto overflow-hidden relative h-32 md:h-[300px] object-contain cursor-pointer"
     style={{
       backgroundImage: `url('/Image 29.png')`,
       backgroundSize: "cover",
@@ -345,12 +379,12 @@ export default function AllEventsPage() {
           </div>*/}
 
           {/* Wrapper */}
-<div className="flex overflow-x-auto sm:grid sm:grid-cols-6 gap-6 no-scrollbar">
+<div className="flex overflow-x-auto sm:grid sm:grid-cols-6 gap-2 md:gap-6 no-scrollbar">
   {bestThisWeek.map((b) => (
     <div
       key={b.title}
       onClick={() => router.push(`/eventlist`)}
-      className="shine-card shrink-0 w-40 sm:w-auto rounded-lg overflow-hidden bg-[#0b223f] shadow-md text-center cursor-pointer"
+      className="shine-card shrink-0 w-30 h-60 sm:h-[auto] sm:w-auto rounded-lg overflow-hidden bg-[#0b223f] shadow-md text-center cursor-pointer"
     >
       <div
         className="h-40 bg-cover bg-center mt-5"
@@ -392,7 +426,7 @@ export default function AllEventsPage() {
       </footer>*/}
 
 
- <footer className="bg-[#0b223f] py-6 text-center text-sm text-white/90 mt-10">
+ <footer className="bg-[#0b223f] py-6 text-center text-xs md:text-sm text-white/90 mt-10">
         © 2025 Movie App. All Rights Reserved.
       </footer>
       <style jsx global>{`

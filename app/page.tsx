@@ -93,14 +93,14 @@ const images = [
 
 
       {/* Navbar */}
-      <header className="flex justify-between items-center px-2 sm:px-8 sm:py-4 border-b border-white/10 sm:flex-wrap ">
+      <header className="flex justify-between items-center px-2 py-4 sm:px-8 sm:py-8 border-b border-white/10 sm:flex-wrap ">
         <div className="flex items-center gap-0 sm:gap-2 cursor-pointer">
-            <button
+           {/* <button
         className="p-1 sm:p-3 m-2 sm:m-4 bg-white/5 text-white rounded-md cursor-pointer "
         onClick={() => setIsSidebarOpen(true)}
       >
         <Menu  className="w-3 h-3 sm:w-6 h-6" />
-      </button>
+      </button>*/}
       <div  onClick={() => setIsOpen(true)}
         className="flex items-center gap-1 cursor-pointer select-none text-sm sm:text-lg">
           <span className="sm:font-semibold">{selectedCity}</span>
