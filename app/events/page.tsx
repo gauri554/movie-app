@@ -295,7 +295,7 @@ const [openFilters, setOpenFilters] = useState(false);
             <FiFilter size={18} />
             Filter
           </button>
-          <Filters isOpen={openFilters} onClose={() => setOpenFilters(false)} />
+          
         </div>
 
         {/* Upcoming Events Banner 
