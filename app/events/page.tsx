@@ -5,10 +5,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from 'next/link';
 import SidebarFilters from "../components/SidebarFilters";
+import Filters from "../components/Filters";
 import { FiFilter } from "react-icons/fi";
 import "../globals.css";
 import Card from "../components/Card";
 import "../components/EventCard.css";
+import { FaSearch } from "react-icons/fa";
+import { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 type Chip = { label: string; active?: boolean };
 
 const languageChips: Chip[] = [
@@ -41,10 +45,22 @@ const bestThisWeek = [
   { title: "Theatre Play", img: "/standup.png" },
 ];
 
+const placeholders = [
+  "Search movies...",
+  "Search events...",
+  "Search sports...",
+  "Search concerts...",
+  "Search comedy shows...",
+  "Search workshops...",
+];
+
 export default function AllEventsPage() {
    const router = useRouter();
      const [showSearch, setShowSearch] = useState(false);
    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+const [openFilters, setOpenFilters] = useState(false);
+   // Add showModal state
+   const [showModal, setShowModal] = useState(false);
 
       // NEW: selected language state
   const [selectedLang, setSelectedLang] = useState("All");
@@ -55,7 +71,21 @@ export default function AllEventsPage() {
 
   const filteredMusic =
     selectedLang === "All" ? musicShows : musicShows.filter((m) => m.language === selectedLang);
-  return (
+  
+   const [placeholderIndex, setPlaceholderIndex] = useState(0);
+       const [value, setValue] = useState("");
+  
+    // Cycle through placeholders every 2s
+    useEffect(() => {
+      if (value) return; // Stop animation when user types
+      const interval = setInterval(() => {
+        setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
+      }, 2000);
+  
+      return () => clearInterval(interval);
+    }, [value]);
+  
+    return (
     <div className="min-h-screen font-poppins bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white">
 
 
@@ -86,19 +116,138 @@ export default function AllEventsPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 sm:items-end">
-            <button  onClick={() => setShowSearch(!showSearch)} className="p-2 rounded-full bg-white/6 hover:bg-white/10 cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6 text-white/90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
-              </svg>
-            </button>
-             {showSearch && (
+         <div className="flex items-center gap-2 relative">
+             <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+         onClick={() => setShowModal(true)}  >
+  <FaSearch />
+</span>
+
+ 
+        <div className="relative w-full sm:w-64">
           <input
             type="text"
-            placeholder="Search movies..."
-            className="px-3 py-1 rounded-md text-white bg-white/10 shadow-md focus:outline-none w-48"
+            onClick={() => setShowModal(true)}
+            value={value}
+             onChange={(e) => setValue(e.target.value)}
+            className="px-3 py-1 rounded-md text-white bg-white/10 focus:outline-none w-full sm:w-64 shadow-md text-sm placeholder-transparent"
+            placeholder="."
           />
+
+          {/* Fake placeholder (animated) */}
+          {!value &&(
+          <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={placeholderIndex}
+                initial={{ y: "-100%", opacity: 0 }}
+                animate={{ y: "0%", opacity: 1 }}
+                exit={{ y: "100%", opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                 className="text-gray-400 text-sm"
+              >
+                {placeholders[placeholderIndex]}
+              </motion.span>
+            </AnimatePresence>
+          </div>)}
+        </div>
+ 
+
+
+
+
+     <AnimatePresence>
+        {showModal && (
+          <motion.div
+            className="fixed inset-0 flex items-start justify-center  pt-25  bg-black/60 backdrop-blur-sm z-50   "
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -50, opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className=" w-[90%] sm:w-[700px] rounded-2xl shadow-lg mt-20 p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50  "
+             
+            >
+              {/* Search Input */}
+              <div className="relative w-full">
+                <input
+                  type="text"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  className="px-4 py-3  w-[630px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
+                  placeholder="."
+                />
+
+                {/* Animated placeholder */}
+                {!value && (
+                  <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={placeholderIndex}
+                        initial={{ y: "-100%", opacity: 0 }}
+                        animate={{ y: "0%", opacity: 1 }}
+                        exit={{ y: "100%", opacity: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="text-gray-400 text-sm"
+                      >
+                        {placeholders[placeholderIndex]}
+                      </motion.span>
+                    </AnimatePresence>
+                  </div>
+                )}
+              </div>
+
+              {/* Tabs */}
+              <div className="flex justify-around mt-6 text-white  text-sm">
+                {["All", "Concerts", "Events", "Movies", "Activity"].map((tab, i) => (
+                  <button
+                    key={i}
+                    className={`px-4 py-1 rounded-full ${
+                      tab === "Movies" ? "bg-white/60 text-white" : "hover:bg-white/60 text-white"
+                    }`}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
+
+              {/* Trending Section */}
+              <div className="mt-6">
+                <h3 className="text-white font-semibold mb-3">
+                  Trending in Gurugram
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { title: "War 2", img: "/movie1.jpeg" },
+                    { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                    { title: "Nobody 2", img: "/movie3.jpeg" },
+                    { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                  ].map((m, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <img src={m.img} className="w-10 h-10 rounded-md" alt={m.title} />
+                      <div>
+                        <p className="text-sm font-medium text-white">{m.title}</p>
+                        <p className="text-xs text-white">Movie</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Close button */}
+              <button
+                onClick={() => setShowModal(false)}
+                className="absolute top-2 right-4 text-gray-500 hover:text-white cursor-pointer"
+              >
+                ✖
+              </button>
+            </motion.div>
+          </motion.div>
         )}
+      </AnimatePresence>
           </div>
         </header>
 
@@ -129,7 +278,7 @@ export default function AllEventsPage() {
             <button
               key={lang}
               onClick={() => setSelectedLang(lang)}
-              className={`shrink-0 px-2 md:px-4 py-1 md:py-2 text-sm md:text-lg rounded-full cursor-pointer ${
+              className={`shrink-0 px-2 md:px-4 py-1 md:py-2 text-sm md:text-sm rounded-full cursor-pointer ${
                 selectedLang === lang
                   ? "bg-[#ff4655] text-white"
                   : "bg-white/6 hover:bg-[#ff4655]"
@@ -140,12 +289,13 @@ export default function AllEventsPage() {
           ))}
         
           <button
-            onClick={() => setIsSidebarOpen(true)}
-            className="shrink-0 px-2 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-lg bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1"
+            onClick={() => setOpenFilters(true)}
+            className="shrink-0 px-2 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-sm bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1 cursor-pointer"
           >
             <FiFilter size={18} />
             Filter
           </button>
+          <Filters isOpen={openFilters} onClose={() => setOpenFilters(false)} />
         </div>
 
         {/* Upcoming Events Banner 

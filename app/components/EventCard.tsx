@@ -35,17 +35,15 @@ export default function EventCard({ img, title, date }: EventCardProps) {
      }, []);
 
   return (
-    <div ref={containerRef} onClick={() => router.push(`/events`)} className="bg-[#13214B] rounded-lg overflow-hidden py-4 shrink-0 text-center cursor-pointer flex-col justify-center items-center">
-    <div className={`mx-auto relative movie-card ${isVisible ? "section-visible" : "section-hidden"} w-[120px] h-[150px] md:w-[220px] md:h-[260px]`}>
+    <div ref={containerRef} onClick={() => router.push(`/events`)} className="bg-[#13214B] rounded-lg overflow-x-auto py-2 shrink-0 text-center cursor-pointer flex flex-col justify-center items-center">
+    <div className={`mx-auto relative movie-card ${isVisible ? "section-visible" : "section-hidden"} w-[120px] h-[120px] md:w-[160px] md:h-[180px]`}>
       <Image src={img} alt={title} fill className=" rounded-lg object-cover" />
-        <div className="icon">
-          <FaEye />
-        </div>
+       
       </div>
      
       <div className="p-2">
         
-        <h3 className="text-base font-semibold">{title}</h3>
+        <h3 className="text-sm font-semibold">{title}</h3>
         {date && <p className="text-sm text-gray-300">{date}</p>}
       </div>
     </div>

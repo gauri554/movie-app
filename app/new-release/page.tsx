@@ -9,6 +9,9 @@ import SidebarFilters from "../components/SidebarFilters";
 import { useRouter } from "next/navigation";
 import "./new-release.css";
 import "../globals.css";
+import { motion, AnimatePresence } from "framer-motion";
+import Filters from "../components/Filters";
+import { FaSearch } from "react-icons/fa";
 type Movie = {
   title: string;
   rating: string;
@@ -29,14 +32,22 @@ const sampleMovies: Movie[] = [
   
 ];
 
+const placeholders = [
+  "Search movies...",
+  "Search events...",
+  "Search sports...",
+  "Search concerts...",
+  "Search comedy shows...",
+  "Search workshops...",
+];
 export default function NewReleasesPage() {
   // carousel state
    const [showSearch, setShowSearch] = useState(false);
   const [slide, setSlide] = useState(0);
    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
  const router = useRouter();
-
-
+const [openFilters, setOpenFilters] = useState(false);
+const [showModal, setShowModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
 
@@ -53,8 +64,23 @@ export default function NewReleasesPage() {
     selectedLang === "New Releases"
       ? sampleMovies
       : sampleMovies.filter((movie) => movie.language === selectedLang);
+
+
+
+       const [placeholderIndex, setPlaceholderIndex] = useState(0);
+           const [value, setValue] = useState("");
+      
+        // Cycle through placeholders every 2s
+        useEffect(() => {
+          if (value) return; // Stop animation when user types
+          const interval = setInterval(() => {
+            setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
+          }, 2000);
+      
+          return () => clearInterval(interval);
+        }, [value]);
   return (
-    <div className="min-h-screen font-poppins bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white ">
+    <div className="min-h-screen font-montserrat bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white ">
       {/* Sidebar */}
           <SidebarFilters isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
     
@@ -67,9 +93,9 @@ export default function NewReleasesPage() {
           )}
     
     
-      <div className="max-w-7xl mx-auto px-2 md:px-8 md:py-10 ">
+      <div className="max-w-7xl mx-auto px-2 md:px-8 md:py-3 ">
      
-       <header className=" px-0 gap-14 md:gap-5 sm:px-6 md:px-8 py-4 flex flex-row md:items-center md:justify-between mb-8">
+       <header className=" px-0 gap-14 md:gap-5 sm:px-6 md:px-8 py-2 flex flex-row md:items-center md:justify-between mb-4">
           <div className="flex items-center gap-4">
          <button onClick={() => router.push(`/`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
               ‹
@@ -80,32 +106,138 @@ export default function NewReleasesPage() {
             </div>
           </div>
 
- <div className="flex flex-row md:items-center gap-4  md:mt-0">
-          <div className=" hidden md:block flex flex-col md:flex-row items-center gap-3 sm:gap-6">
-            <button onClick={() => router.push("/new-release")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-[#ff4655] hover:bg-white/10 text-sm cursor-pointer">Film Mart</button>
-            <button onClick={() => router.push("/events")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-[#ff4655] bg-white/6 hover:bg-bg-[#ff4655] text-white text-sm cursor-pointer">Events</button>
+ <div className="flex flex-row md:items-center gap-4 md:gap-7 md:mt-0">
+          <div className=" hidden md:flex flex flex-col md:flex-row items-center gap-3 md:gap-3">
+            <button onClick={() => router.push("/new-release")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-[#ff4655] hover:bg-white/10 text-sm cursor-pointer">Movies</button>
+            <button onClick={() => router.push("/events")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-[#ff4655] bg-white/6 hover:bg-[#ff4655] text-white text-sm cursor-pointer">Events</button>
             <button onClick={() => router.push("/cinemashows")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-white/6 hover:bg-[#ff4655] text-sm cursor-pointer">Book Ticket</button>
           </div>
 
        
-          <div className="flex items-center gap-3">
-            <button  onClick={() => setShowSearch(!showSearch) }className="p-2 rounded-full bg-white/6 hover:bg-white/10 cursor-pointer">
-              <svg className="w-5 h-5 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
-              </svg>
-            </button>
-              {showSearch && (
-          <input
-            type="text"
-            placeholder="Search movies..."
-            className="px-3 py-1 rounded-md text-white bg-white/10 shadow-md focus:outline-none w-48"
-          />
-        )}
-            {/*<button className="p-2 rounded-full bg-white/6 hover:bg-white/10">
-              <svg className="w-5 h-5 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5" />
-              </svg>
-            </button>*/}
+          <div className="flex items-center gap-2 relative">
+                   <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+                onClick={() => setShowModal(true)}    >
+             <FaSearch />
+           </span>
+           
+           
+                  {/*} <div className="relative w-full sm:w-64">
+                     <input
+                       type="text"
+                       value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                       className="px-3 py-1 rounded-md text-white bg-white/10 focus:outline-none w-full sm:w-64 shadow-md text-sm placeholder-transparent"
+                       placeholder="."
+                     />
+           
+
+                     {!value &&(
+                     <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                       <AnimatePresence mode="wait">
+                         <motion.span
+                           key={placeholderIndex}
+                           initial={{ y: "-100%", opacity: 0 }}
+                           animate={{ y: "0%", opacity: 1 }}
+                           exit={{ y: "100%", opacity: 0 }}
+                           transition={{ duration: 0.4 }}
+                            className="text-gray-400 text-sm"
+                         >
+                           {placeholders[placeholderIndex]}
+                         </motion.span>
+                       </AnimatePresence>
+                     </div>)}
+                   </div>*/}
+                 
+
+                  <AnimatePresence>
+                                  {showModal && (
+                                    <motion.div
+                                      className="fixed inset-0 flex items-start justify-center  pt-25  bg-black/60 backdrop-blur-sm z-50   " 
+                                     onClick={() => setShowModal(false)}
+                                      initial={{ opacity: 0 }}
+                                      animate={{ opacity: 1 }}
+                                      exit={{ opacity: 0 }}
+                                    >
+                                      <motion.div
+                                        initial={{ y: -50, opacity: 0 }}
+                                        animate={{ y: 0, opacity: 1 }}
+                                        exit={{ y: -50, opacity: 0 }}
+                                        transition={{ duration: 0.4 }}
+                                        className=" w-[90%] sm:w-[650px] rounded-2xl shadow-lg mt-20 p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50  "
+                                         onClick={(e) => e.stopPropagation()}
+                                      >
+                                        {/* Search Input */}
+                                        <div className="relative w-full">
+                                          <input
+                                            type="text"
+                                            value={value}
+                                            onChange={(e) => setValue(e.target.value)}
+                                            className="px-4 py-2  w-[600px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
+                                            placeholder="."
+                                          />
+                          
+                                          {/* Animated placeholder */}
+                                          {!value && (
+                                            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                                              <AnimatePresence mode="wait">
+                                                <motion.span
+                                                  key={placeholderIndex}
+                                                  initial={{ y: "-100%", opacity: 0 }}
+                                                  animate={{ y: "0%", opacity: 1 }}
+                                                  exit={{ y: "100%", opacity: 0 }}
+                                                  transition={{ duration: 0.4 }}
+                                                  className="text-gray-800 text-sm"
+                                                >
+                                                  {placeholders[placeholderIndex]}
+                                                </motion.span>
+                                              </AnimatePresence>
+                                            </div>
+                                          )}
+                                        </div>
+                          
+                                        {/* Tabs */}
+                                        <div className="flex justify-around mt-6 text-white  text-sm">
+                                          {["All", "Concerts", "Events", "Movies", "Activity"].map((tab, i) => (
+                                            <button
+                                              key={i}
+                                              className={`px-4 py-1 rounded-full ${
+                                                tab === "Movies" ? "bg-white/10 text-white" : "hover:bg-white/10 text-white"
+                                              }`}
+                                            >
+                                              {tab}
+                                            </button>
+                                          ))}
+                                        </div>
+                          
+                                        {/* Trending Section */}
+                                        <div className="mt-6 pl-5">
+                                          <h3 className="text-white font-semibold mb-3">
+                                            Trending in Ahmedabad
+                                          </h3>
+                                          <div className="grid grid-cols-2 gap-4">
+                                            {[
+                                              { title: "War 2", img: "/movie1.jpeg" },
+                                              { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                                              { title: "Nobody 2", img: "/movie3.jpeg" },
+                                              { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                                            ].map((m, i) => (
+                                              <div key={i} className="flex items-center gap-3">
+                                                <img src={m.img} className="w-10 h-10 rounded-md" alt={m.title} />
+                                                <div>
+                                                  <p className="text-sm font-medium text-white">{m.title}</p>
+                                                  <p className="text-xs text-white">Movie</p>
+                                                </div>
+                                              </div>
+                                            ))}
+                                          </div>
+                                        </div>
+                          
+                                        {/* Close button */}
+                                       
+                                      </motion.div>
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
           </div></div>
         </header>
 
@@ -200,7 +332,7 @@ export default function NewReleasesPage() {
     <button
       key={lang}
       onClick={() => setSelectedLang(lang)}
-      className={`shrink-0 px-2 md:px-4 py-1 md:py-2 text-sm md:text-lg rounded-full cursor-pointer ${
+      className={`shrink-0 px-2 md:px-4 py-1 md:py-2 text-sm md:text-sm rounded-full cursor-pointer ${
         selectedLang === lang
           ? "bg-[#ff4655] text-white"
           : "bg-white/6 hover:bg-[#ff4655]"
@@ -211,12 +343,13 @@ export default function NewReleasesPage() {
   ))}
 
   <button
-    onClick={() => setIsSidebarOpen(true)}
-    className="shrink-0 px-2 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-lg bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1"
+      onClick={() => setOpenFilters(true)}
+    className="shrink-0 px-2 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-sm bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1 cursor-pointer"
   >
     <FiFilter size={18} />
     Filter
   </button>
+   <Filters open={openFilters} onClose={() => setOpenFilters(false)} />
 </div>
 
 
@@ -263,8 +396,8 @@ export default function NewReleasesPage() {
 
                 <div className="mt-1 md:mt-3 flex items-center justify-between">
                  
-                    <div className="text-[10px] md:text-xm md:font-semibold">{m.title}</div>
-                    <div className="text-sm text-white/70 hidden md:block">{m.rating} <span className="ml-3 text-white/60">•</span> <span className="ml-3 text-sm text-white/60">{m.votes}</span></div>
+                    <div className="text-[10px] md:text-lg md:font-semibold">{m.title}</div>
+                    <div className="text-xm md:text-[10px] ml-3 text-white/70 hidden md:block">{m.rating} <span className=" text-white/60">•</span> <span className=" text-xm md:text-xm text-white/60">{m.votes}</span></div>
                   
                   <button className="bg-white/6 md:px-3 md:py-1 rounded-md text-xs md:text-sm">Details</button>
                 </div>
@@ -283,7 +416,7 @@ export default function NewReleasesPage() {
         
         <div className="mt-10 flex flex-row items-center gap-10 md:gap-4 md:flex-row md:items-center md:justify-between  ">
           <button onClick={() => router.push(`/details`)} className="w-[300px] md:w-[auto] bg-[#ff4655] text-white rounded-xl cursor-pointer mb-10 sweep-button"><span>Browse By Cinemas</span></button>
-          <div className="text-xs md:text-sm text-white/70 mb-10">Showing {sampleMovies.length} of 34 movies</div>
+       
         </div>
       </div>
 
@@ -296,10 +429,14 @@ export default function NewReleasesPage() {
 
 
       {/* global styles: font import */}
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        .font-poppins { font-family: 'Poppins', sans-serif; }
-      `}</style>
+<style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+`}</style>
+
     </div>
   );
 }

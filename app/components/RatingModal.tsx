@@ -17,10 +17,11 @@ export default function RatingModal({ isOpen, setIsOpen, onSubmit }: RatingModal
   };
 
   return (
+    <>
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 backdrop-blur-sm"
+          className="font-montserrat fixed inset-0 bg-black/60 flex justify-center items-center z-50 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -72,6 +73,16 @@ export default function RatingModal({ isOpen, setIsOpen, onSubmit }: RatingModal
           </motion.div>
         </motion.div>
       )}
+      
     </AnimatePresence>
+      <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+`}</style>
+    </>
   );
+
 }

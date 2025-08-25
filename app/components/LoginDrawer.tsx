@@ -28,7 +28,7 @@ export default function LoginDrawer({
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 z-50 h-full w-full sm:w-96
+        className={`fixed top-0 right-0 z-50 h-full w-full sm:w-96 
                     bg-[#0b233f]/95 text-white backdrop-blur-xl shadow-2xl
                     transform transition-transform duration-300
                     ${isOpen ? "translate-x-0" : "translate-x-full"}`}
@@ -68,7 +68,10 @@ export default function LoginDrawer({
          <span className="relative z-10">Sign In</span>
           </button>
         </form>
+       
+
       </div>
+     
     </>
   );
 }

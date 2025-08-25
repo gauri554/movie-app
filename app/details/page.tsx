@@ -6,9 +6,13 @@ import { FaHome } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa";
+import { Play } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
 import { useRouter } from "next/navigation";
 import RatingModal from "../components/RatingModal";
 import { useState } from "react";
+import EnquiryForm from "../components/EnquiryForm";
 import "../new-release/new-release.css";
 import "../globals.css"; // Ensure global styles are imported
 // MovieDetailsDesktop.tsx
@@ -37,12 +41,18 @@ export default function MovieDetailsDesktop() {
     { name: "Anupam Kher", role: "Actor", img: "/anupm.png" },
     { name: "Shubhangi Dutt", role: "Actor", img: "/shubhangi.png" },
     { name: "Jackie Shroff", role: "Actor", img: "/jackie.png" },
+     { name: "Shruti Kale", role: "Actor", img: "/shubhangi.png" },
+    { name: "Kevin Hart", role: "Actor", img: "/jackie.png" },
+        { name: "Raman Negi", role: "Actor", img: "/anupm.png" },
   ];
 
   const crew: Person[] = [
     { name: "Anupam Kher", role: "Director", img: "/anupm.png" },
     { name: "M.M Keeravani", role: "Musician", img: "/keeravani.png" },
     { name: "Kausar Munir", role: "Lyricist", img: "/kausar.png" },
+     { name: "Rickraj Nath", role: "Director", img: "/anupm.png" },
+    { name: "Acyuta Gopi", role: "Musician", img: "/keeravani.png" },
+    { name: "Utkarsh Singh", role: "Lyricist", img: "/kausar.png" },
   ];
 
   const images = [
@@ -54,7 +64,7 @@ export default function MovieDetailsDesktop() {
 
   const [showDetails, setShowDetails] = useState(false);
  const [showFullText, setShowFullText] = useState(false);
-
+  const [isOpenTrailer, setIsOpenTrailer] = useState(false);
   const shortText =
     "In a world that saw her through a different lens, she kept shining with a light that could not be undone.";
   const fullText =
@@ -62,10 +72,10 @@ export default function MovieDetailsDesktop() {
     " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur obcaecati officiis, quia repellat dolorem ratione deleniti sint unde maxime libero, fugiat aliquid officia consequatur sapiente ipsum numquam nihil placeat.";
 
 const [isModalOpen, setIsModalOpen] = useState(false);
-
+ const [isOpenForm, setIsOpenForm] = useState(false);
    const router = useRouter();
   return (
-    <div className="min-h-screen  font-poppins bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] text-white p-4 px-2 md:p-8">
+    <div className="min-h-screen  font-montserrat bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] text-white p-4 px-2 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <header className="flex items-center justify-between mb-8">
@@ -79,7 +89,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <button className="p-2 rounded-full bg-white/10">⟳</button>
+          
           </div>
         </header>
 
@@ -89,11 +99,54 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           <aside className="col-span-1 md:col-span-4">
             <div className="rounded-xl overflow-hidden shadow-lg bg-gradient-to-b from-[#233e6a] to-[#1b2b4a]">
               {/* Use the uploaded mobile screenshot as a hero banner fallback */}
-              <img
-                src="/Image 29.png"
-                alt="poster"
-                className="w-full h-auto object-contain"
-              />
+
+    <div className="relative">
+      {/* Poster with play button overlay */}
+      <div className="relative">
+        <img
+          src="/Image 29.png"
+          alt="poster"
+          className="w-full h-auto object-contain rounded-lg shadow-lg"
+        />
+        <span
+          onClick={() => setIsOpenTrailer(true)}
+          className="absolute inset-0 flex items-center justify-center cursor-pointer"
+        >
+          <div className="bg-black/60 bg-opacity-60 rounded-full p-3 hover:scale-110 transition-transform">
+            <Play className="text-white w-6 h-6" />
+          </div>
+        </span>
+      </div>
+
+      {/* Modal for trailer video */}
+      {isOpenTrailer && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-md bg-opacity-80 flex items-center justify-center z-50">
+           
+          <div className="relative w-[90%] md:w-[70%] lg:w-[60%] aspect-video bg-black rounded-xl overflow-hidden">
+          
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+              title="Trailer"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            ></iframe>
+
+            {/* Close button */}
+            <span
+              className="absolute top-3 right-3 bg-black text-white rounded-full p-2 cursor-pointer"
+              onClick={() => setIsOpenTrailer(false)}
+            >
+              ✕
+            </span>
+          </div>
+          
+        </div>
+      )}
+    </div>
+  
+
 
               <div className="pt-2 md:p-5">
                 <h2 className="md:text-2xl font-bold">{title}</h2>
@@ -130,9 +183,11 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                   </div>
                   <p className="mt-3 text-sm text-white/70">{duration}</p>
                 </div>
-                <Link href="/enquiryform">
-                <button className="w-full mt-6 bg-pink-500 hover:bg-pink-600 text-white rounded-xl font-semibold cursor-pointer sweep-button"><span>Enquiry Now</span></button>
-            </Link>
+              <div>
+                <button   onClick={() => setIsOpenForm(true)} className="w-full mt-6 bg-pink-500 hover:bg-pink-600 text-white rounded-xl font-semibold cursor-pointer sweep-button"><span>Enquiry Now</span></button>
+        <EnquiryForm isOpen={isOpenForm} onClose={() => setIsOpenForm(false)} />
+        
+         </div>
               </div>
             </div>
 
@@ -214,38 +269,71 @@ const [isModalOpen, setIsModalOpen] = useState(false);
               </div>
             </section>
 
-            {/* Cast */}
+            {/* Cast 
             <section className="mb-6">
               <h3 className="text-xl font-semibold mb-4">Cast</h3>
               <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-3  sm:gap-6 md:gap-6">
                 {cast.map((c) => (
                   <div key={c.name} className="flex flex-col items-center sm:gap-2">
                      <div className="relative group w-20 h-20 sm:w-40 sm:h-40 cursor-pointer">
-                    <img src={c.img} alt={c.name} className="sm:w-40 sm:h-40 rounded-full object-cover border-2 border-white/10" />
-                    <div className="absolute inset-0 rounded-full bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <img src={c.img} alt={c.name} className="sm:w-40 sm:h-40 rounded-full object-cover hover:border-2 hover-border-white/80 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.7)]  transition duration-300" />
+                    <div className="absolute inset-0 rounded-full bg-black/40 opacity-0  transition-opacity duration-300"></div>
                     </div>
                     <div className="text-[11px] md:text-sm md:font-medium">{c.name}</div>
                     <div className="text-xs sm:text-sm text-white/70">{c.role}</div>
                   </div>
                 ))}
               </div>
-            </section>
+            </section>*/}
+
+ 
+     
+          <section className="mb-6">
+      <h3 className="text-xl font-semibold mb-4">Cast</h3>
+
+       <div className="flex gap-16 py-4 px-4 overflow-x-auto scrollbar-hide no-scrollbar">
+    {cast.map((c) => (
+      <div
+        key={c.name}
+        className="flex flex-col items-center flex-shrink-0"
+      >
+        <div className="relative group w-20 h-20 sm:w-40 sm:h-40 cursor-pointer">
+          <img
+            src={c.img}
+            alt={c.name}
+            className="w-full h-full rounded-full object-cover hover:border-2 hover:border-white/80 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.7)] transition duration-300"
+          />
+          <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+        <div className="text-[11px] md:text-sm md:font-medium">{c.name}</div>
+        <div className="text-xs sm:text-sm text-white/70">{c.role}</div>
+      </div>
+    ))}
+  </div>
+    </section>
+
 
             {/* Crew */}
             <section className="mb-6">
               <h3 className="text-xl font-semibold mb-4">Crew</h3>
-              <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
-                {crew.map((c) => (
-                  <div key={c.name} className="flex flex-col items-center sm:gap-2">
-                    <div className="relative group w-20 h-20 sm:w-40 sm:h-40 cursor-pointer">
-                    <img src={c.img} alt={c.name} className=" sm:w-40 sm:h-40 rounded-full object-cover border-2 border-white/10" />
-                      <div className="absolute inset-0 rounded-full bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div className="text-[11px] md:text-sm font-medium">{c.name}</div>
-                    <div className="text-xs sm:text-sm text-white/70">{c.role}</div>
-                  </div>
-                ))}
-              </div>
+              <div className="flex gap-16 py-4 px-4 overflow-x-auto scrollbar-hide no-scrollbar">
+    {crew.map((c) => (
+      <div
+        key={c.name}
+        className="flex flex-col items-center flex-shrink-0"
+      >
+        <div className="relative group w-20 h-20 sm:w-40 sm:h-40 cursor-pointer">
+          <img
+            src={c.img}
+            alt={c.name}
+            className="w-full h-full rounded-full object-cover hover:border-2 hover:border-white/80 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.7)] transition duration-300"
+          />
+          <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+        <div className="text-[11px] md:text-sm md:font-medium">{c.name}</div>
+        <div className="text-xs sm:text-sm text-white/70">{c.role}</div>
+      </div>
+    ))} </div>
             </section>
 
             {/* You might also like */}
@@ -306,10 +394,14 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           </main>
         </div>
       </div>
-       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        .font-poppins { font-family: 'Poppins', sans-serif; }
-      `}</style>
+     <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+`}</style>
+
     </div>
   );
 }

@@ -11,7 +11,11 @@ import CategoryButton from "./components/CategoryButton";
 import { Menu } from "lucide-react";
 import SidebarFilters from "./components/SidebarFilters";
 import { FaSearch } from "react-icons/fa";
+import {X} from "lucide-react";
+import { FaUserCircle } from "react-icons/fa";
+import LocationModal from "./components/LocationModal";
 import { FaBell } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6"; 
 import { FaBarcode } from "react-icons/fa";
 import { FaFilm, FaCalendarAlt, FaTicketAlt } from "react-icons/fa";
 
@@ -21,12 +25,19 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 //import Link from "next/link";
 
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "./globals.css";
 import { motion, AnimatePresence } from "framer-motion";
 
 
-
+const placeholders = [
+  "Search movies...",
+  "Search events...",
+  "Search sports...",
+  "Search concerts...",
+  "Search comedy shows...",
+  "Search workshops...",
+];
 
 
 export default function HomePage() {
@@ -35,6 +46,8 @@ export default function HomePage() {
   const [activeIndex, setActiveIndex] = useState(0);
    const [showLogin, setShowLogin] = useState(false);
 
+const [showModal, setShowModal] = useState(false);
+ const [openProfile, setOpenProfile] = useState(false);
 
 const images = [
    "/carsoul1.webp",
@@ -46,7 +59,7 @@ const images = [
    "/carsoul7.webp",
 ];
 
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState(false);
  const [selectedCity, setSelectedCity] = useState<string>("Ahmedabad");
   const handleCitySelect = (city: string) => {
      setSelectedCity(city);
@@ -74,9 +87,23 @@ const images = [
     return () => clearInterval(timer);
   }, [images.length]);*/}
 
+ const [placeholderIndex, setPlaceholderIndex] = useState(0);
+     const [value, setValue] = useState("");
+
+  // Cycle through placeholders every 2s
+  useEffect(() => {
+    if (value) return; // Stop animation when user types
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [value]);
+
+  
   return (
 
-    <div className="bg-[#0C1B4D] font-poppins text-white min-h-screen font-sans">
+    <div className="bg-[#0C1B4D] font-montserrat text-white min-h-screen">
       
  
 
@@ -93,7 +120,7 @@ const images = [
 
 
       {/* Navbar */}
-      <header className="flex justify-between items-center px-2 py-4 sm:px-8 sm:py-8 border-b border-white/10 sm:flex-wrap ">
+      <header className=" sticky top-0 z-50  bg-[#0C1B4D] flex gap-30 items-center px-2 py-4 sm:px-8 sm:py-4 border-b border-white/10  ">
         <div className="flex items-center gap-0 sm:gap-2 cursor-pointer">
            {/* <button
         className="p-1 sm:p-3 m-2 sm:m-4 bg-white/5 text-white rounded-md cursor-pointer "
@@ -101,11 +128,18 @@ const images = [
       >
         <Menu  className="w-3 h-3 sm:w-6 h-6" />
       </button>*/}
-      <div  onClick={() => setIsOpen(true)}
+      <div 
+       onClick={() => setIsOpen(true)}
         className="flex items-center gap-1 cursor-pointer select-none text-sm sm:text-lg">
+           <FaLocationDot size={20} />
           <span className="sm:font-semibold">{selectedCity}</span>
-          <span>▼</span></div>
-   <AnimatePresence>
+       </div>
+         <LocationModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onSelect={(city: string) => setSelectedCity(city)} 
+      />
+   {/*<AnimatePresence>
         {isOpen && (
           <motion.div
             className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 backdrop-blur-sm"
@@ -123,14 +157,14 @@ const images = [
               transition={{ duration: 0.4, ease: "easeOut" }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Search Bar */}
+            
               <input
                 type="text"
                 placeholder="Search for your city"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-white/10"
               />
 
-              {/* Example City List */}
+             
               <div className="mt-4 flex flex-col gap-2">
                 {["Mumbai", "Delhi", "Bengaluru", "Chennai"].map((city) => (
                   <motion.div
@@ -146,22 +180,140 @@ const images = [
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>*/}
 
         </div>
-        <div className="flex items-center gap-2 sm:gap-6  sm:mt-0 w-full sm:w-auto justify-end">
-          <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
-          onClick={() => setShowSearch(!showSearch)}>
-  <FaSearch />
-</span>
-
- {showSearch && (
-          <input
-            type="text"
-            placeholder="Search movies..."
-            className=" px-2 py-1 rounded-md text-white bg-text-white/10 focus:outline-none w-full sm:w-48 shadow-md text-sm"
-          />
-        )}
+        <div className="flex items-center gap-2 sm:gap-46  sm:mt-0 w-full sm:w-auto ">
+           <div className="flex items-center gap-2 relative">
+            <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+                  onClick={() => setShowModal(true)}  >
+           <FaSearch />
+         </span>
+         
+          
+                 <div className="relative w-full sm:w-full">
+                   <input
+                     type="text"
+                     onClick={() => setShowModal(true)}
+                     value={value}
+                      onChange={(e) => setValue(e.target.value)}
+                     className="px-3 py-2 rounded-md text-white bg-white/10 focus:outline-none w-full sm:w-[600px] shadow-md text-sm placeholder-transparent"
+                     placeholder="."
+                   />
+         
+                   {/* Fake placeholder (animated) */}
+                   {!value &&(
+                   <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                     <AnimatePresence mode="wait">
+                       <motion.span
+                         key={placeholderIndex}
+                         initial={{ y: "-100%", opacity: 0 }}
+                         animate={{ y: "0%", opacity: 1 }}
+                         exit={{ y: "100%", opacity: 0 }}
+                         transition={{ duration: 0.4 }}
+                          className="text-gray-400 text-sm"
+                       >
+                         {placeholders[placeholderIndex]}
+                       </motion.span>
+                     </AnimatePresence>
+                   </div>)}
+                 </div>
+          
+         
+         
+         
+         
+              <AnimatePresence>
+                 {showModal && (
+                   <motion.div
+                     className="fixed inset-0 flex items-start justify-center  pt-25  bg-black/60 backdrop-blur-sm z-50   " 
+                    onClick={() => setShowModal(false)}
+                     initial={{ opacity: 0 }}
+                     animate={{ opacity: 1 }}
+                     exit={{ opacity: 0 }}
+                   >
+                     <motion.div
+                       initial={{ y: -50, opacity: 0 }}
+                       animate={{ y: 0, opacity: 1 }}
+                       exit={{ y: -50, opacity: 0 }}
+                       transition={{ duration: 0.4 }}
+                       className=" w-[90%] sm:w-[650px] rounded-2xl shadow-lg mt-20 p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50  "
+                        onClick={(e) => e.stopPropagation()}
+                     >
+                       {/* Search Input */}
+                       <div className="relative w-full">
+                         <input
+                           type="text"
+                           value={value}
+                           onChange={(e) => setValue(e.target.value)}
+                           className="px-4 py-2  w-[600px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
+                           placeholder="."
+                         />
+         
+                         {/* Animated placeholder */}
+                         {!value && (
+                           <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                             <AnimatePresence mode="wait">
+                               <motion.span
+                                 key={placeholderIndex}
+                                 initial={{ y: "-100%", opacity: 0 }}
+                                 animate={{ y: "0%", opacity: 1 }}
+                                 exit={{ y: "100%", opacity: 0 }}
+                                 transition={{ duration: 0.4 }}
+                                 className="text-gray-800 text-sm"
+                               >
+                                 {placeholders[placeholderIndex]}
+                               </motion.span>
+                             </AnimatePresence>
+                           </div>
+                         )}
+                       </div>
+         
+                       {/* Tabs */}
+                       <div className="flex justify-around mt-6 text-white  text-sm">
+                         {["All", "Concerts", "Events", "Movies", "Activity"].map((tab, i) => (
+                           <button
+                             key={i}
+                             className={`px-4 py-1 rounded-full ${
+                               tab === "Movies" ? "bg-white/10 text-white" : "hover:bg-white/10 text-white"
+                             }`}
+                           >
+                             {tab}
+                           </button>
+                         ))}
+                       </div>
+         
+                       {/* Trending Section */}
+                       <div className="mt-6 pl-5">
+                         <h3 className="text-white font-semibold mb-3">
+                           Trending in Ahmedabad
+                         </h3>
+                         <div className="grid grid-cols-2 gap-4">
+                           {[
+                             { title: "War 2", img: "/movie1.jpeg" },
+                             { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                             { title: "Nobody 2", img: "/movie3.jpeg" },
+                             { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                           ].map((m, i) => (
+                             <div key={i} className="flex items-center gap-3">
+                               <img src={m.img} className="w-10 h-10 rounded-md" alt={m.title} />
+                               <div>
+                                 <p className="text-sm font-medium text-white">{m.title}</p>
+                                 <p className="text-xs text-white">Movie</p>
+                               </div>
+                             </div>
+                           ))}
+                         </div>
+                       </div>
+         
+                       {/* Close button */}
+                      
+                     </motion.div>
+                   </motion.div>
+                 )}
+               </AnimatePresence>
+      </div>
+      <div className="flex flex-row gap-6 items-end">
          <span className="text-sm sm:text-xl cursor-pointer hover:text-yellow-400"  onClick={() => setIsOpenBell(true)}>
   <FaBell />
 </span>
@@ -171,7 +323,54 @@ const images = [
   className="relative inline-block text-sm sm:text-base font-medium transition-transform duration-300 hover:text-yellow-400 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 hover:after:w-full after:bg-yellow-400 after:transition-all after:duration-300 cursor-pointer sign-in-btn"
 >
   Sign In
-</span>    
+</span>  
+<div className="relative">
+ <span
+       
+        className="flex items-center gap-2 cursor-pointer select-none hover:text-yellow-400"
+      >
+        <FaUserCircle size={23} className=" " />
+      </span>
+
+      {openProfile && (
+        <div
+          onClick={() => setOpenProfile(false)}
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+        />
+      )}
+
+      {/* Drawer */}
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-[#0b233f]/95 text-white shadow-lg z-50 transform transition-transform duration-300 ${
+          openProfile ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* Drawer Header */}
+        <div className="flex items-center justify-between p-4 border-b border-gray-700">
+          <h2 className="text-lg font-semibold">Profile</h2>
+          <button onClick={() => setOpenProfile(false)} className="cursor-pointer">
+            <X size={20} />
+          </button>
+        </div>
+
+        {/* Drawer Content */}
+        <div className="p-4 flex flex-col gap-4">
+          <span className="cursor-pointer hover:text-yellow-400 transition">
+            My Bookings
+          </span>
+          <span className="cursor-pointer hover:text-yellow-400 transition">
+            Watchlist
+          </span>
+          <span className="cursor-pointer hover:text-yellow-400 transition">
+            Account Settings
+          </span>
+          <span className="cursor-pointer hover:text-yellow-400 transition">
+            Logout
+          </span>
+        </div>
+      </div>
+    </div>
+</div>  
         
         </div>
       </header>
@@ -219,8 +418,8 @@ const images = [
         </div>
       </div>
       {/* Category Buttons */}
-      <div className="flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-6 border-b border-white/10">
-        <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
+      <div className="flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10">
+        <CategoryButton icon={<FaFilm />} label="Movies" href="/new-release" />
         <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
         <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
       </div>
@@ -279,17 +478,18 @@ const images = [
   
       <div className="w-full py-6">
       <Swiper
-        modules={[Navigation, Pagination]}
+        modules={[Navigation, Pagination,Autoplay]}
        
-        spaceBetween={10}
+      spaceBetween={10}
         slidesPerView={1.5}
         centeredSlides={true}
         navigation
-       initialSlide={4}
+    
+     initialSlide={4}
 
 
 
-         speed={1000}
+         speed={2000}
       
         coverflowEffect={{
           rotate: 0,
@@ -298,7 +498,7 @@ const images = [
           modifier: 2.2,
           slideShadows: false,
         }}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+       autoplay={{ delay: 3000, disableOnInteraction: false }}
         keyboard={{ enabled: true }}
         mousewheel={{ forceToAxis: true, releaseOnEdges: true }}
         pagination={{ clickable: true }}
@@ -307,7 +507,7 @@ const images = [
         className="custom-swiper"
       >
         {images.map((src, idx) => (
-          <SwiperSlide key={idx}>
+          <SwiperSlide key={idx}  >
             <div className={`slide-wrapper transition-all duration-500 ease-out ${
                 activeIndex === idx
                   ? "sm:scale-110 opacity-100 "
@@ -316,7 +516,7 @@ const images = [
               <img
                 src={src}
                 alt={`slide-${idx}`}
-                className="slide-img w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover rounded-lg"
+                className="slide-img w-full h-48 sm:h-64 md:h-180  lg:h-96 object-cover rounded-lg"
               />
             </div>
           </SwiperSlide>
@@ -331,18 +531,23 @@ const images = [
         <MovieCard img="/movie2.jpeg" title="Inception" rating={7.9} votes="10.5k" />
         <MovieCard img="/movie3.jpeg" title="Dune" rating={7.9} votes="10.5k" />
           <MovieCard img="/movie3.jpeg" title="Dune" rating={7.9} votes="10.5k" />
-       
+          <MovieCard img="/movie2.jpeg" title="Inception" rating={7.9} votes="10.5k" />
+             <MovieCard img="/movie1.jpeg" title="Joker" rating={7.9} votes="10.5k" />
       </Section>
 
 
 
      
       {/* Kids Special */}
-      <Section title="Kids’ Special" viewAllUrl="/events">
+      <Section title="Kid's Special" viewAllUrl="/events">
         <KidsCard img="/movie1.jpeg" title="Pemberton Music Festival" date="Thurs 19 Oct Onwards" />
         <KidsCard img="/movie2.jpeg" title="Bothica Music Festival" date="Thurs 20 Oct Onwards" />
          <KidsCard img="/movie2.jpeg" title="Bothica Music Festival" date="Thurs 20 Oct Onwards" />
           <KidsCard img="/movie2.jpeg" title="Bothica Music Festival" date="Thurs 20 Oct Onwards" />
+           <KidsCard img="/movie1.jpeg" title="Pemberton Music Festival" date="Thurs 19 Oct Onwards" />
+            <KidsCard img="/movie1.jpeg" title="Pemberton Music Festival" date="Thurs 19 Oct Onwards" />
+              <KidsCard img="/movie1.jpeg" title="Pemberton Music Festival" date="Thurs 19 Oct Onwards" />
+        <KidsCard img="/movie2.jpeg" title="Bothica Music Festival" date="Thurs 20 Oct Onwards" />
       </Section>
 
       {/* Ad Banner 
@@ -358,10 +563,14 @@ const images = [
 
       {/* Best Event This Week */}
       <Section title="Best Event this Week" viewAllUrl="/events">
-        <EventCard img="/food.png" title="Food Event - KOGU" />
-        <EventCard img="/comedy.png" title="Comedy by Peter Funk" />
-        <EventCard img="/concerts.png" title="Beat Box" />
-        <EventCard img="/standup.png" title="Beat Box" />
+        <EventCard img="/icon1.jpg" title="Music Event - KOGU" />
+        <EventCard img="/icon2.jpg" title="Comedy by Peter Funk" />
+        <EventCard img="/icon3.jpg" title="Beat Box" />
+        <EventCard img="/icon4.jpg" title="Beat Box" />
+          <EventCard img="/icon5.jpg" title="sports by Peter Funk" />
+            <EventCard img="/icon6.jpg" title="Food Event - KOGU" />
+             <EventCard img="/icon7.jpg" title="Food Event - KOGU" />
+              <EventCard img="/icon8.jpg" title="Food Event - KOGU" />
       </Section>
 
       {/* Cinema Near You */}
@@ -370,16 +579,23 @@ const images = [
         <CinemaCard name="EbonyLife Cinema" distance="6.5" rating={5.0} time="Closed 09:00 PM" imageUrl="/img-cinema (1).png" />
           <CinemaCard name="EbonyLife Cinema" distance="6.5" rating={5.0} time="Closed 09:00 PM" imageUrl="/img-cinema.png" />
              <CinemaCard name="EbonyLife Cinema" distance="6.5" rating={5.0} time="Closed 09:00 PM" imageUrl="/img-cinema (1).png" />
+              <CinemaCard name="EbonyLife Cinema" distance="6.5" rating={5.0} time="Closed 09:00 PM" imageUrl="/img-cinema.png" />
       </Section>
 
       {/* Footer */}
       <footer className="bg-[#091339] py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
         © 2025 Movie App. All Rights Reserved.
       </footer>
-       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        .font-poppins { font-family: 'Poppins', sans-serif; }
-      `}</style>
+    <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+`}</style>
+
+
+
     </div>
   );
 }

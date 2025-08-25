@@ -20,7 +20,7 @@ export default function Section({ title, children, viewAllUrl }: SectionProps) {
         <button  onClick={() => router.push(viewAllUrl)} className="text-xs sm:text-sm text-yellow-400 cursor-pointer">View All →</button>
      </div>
       
-      <div className="md:grid md:grid-cols-4 gap-6 flex md:flex-none overflow-x-auto no-scrollbar">{children}</div>
+      <div className="gap-6 flex overflow-x-auto no-scrollbar">{children}</div>
     </div>
   
   );

@@ -49,7 +49,7 @@ export default function MovieCard({ img, title, rating, votes }: MovieCardProps)
     alt={title}
     width={250}
     height={120}
-    className="rounded-lg w-[120px] h-[150px] sm:w-[250px] sm:h-[270px]"
+    className="rounded-lg w-[120px] h-[150px] sm:w-[200px] sm:h-[240px]"
   />
 
   {/* Dark overlay */}
