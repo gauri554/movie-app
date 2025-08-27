@@ -16,7 +16,7 @@ export default function Popup({ isOpen, onClose }: PopupProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center backdrop-blur  bg-opacity-50 z-50 font-poppins">
+    <div className="fixed inset-0 flex items-center justify-center backdrop-blur  bg-opacity-50 z-50 font-monsterrat">
       {/* Popup Container */}
       <div className="bg-[#101B42] rounded-2xl shadow-lg p-6 w-[350px] w-[400px] sm:w-[300px] relative text-center ml-5 md:ml-0 mr-5 md:mr-0">
         {/* Icon */}
@@ -51,9 +51,12 @@ export default function Popup({ isOpen, onClose }: PopupProps) {
         </button>
       </div>
        <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        .font-poppins { font-family: 'Poppins', sans-serif; }
-      `}</style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+`}</style>
     </div>
   );
 }

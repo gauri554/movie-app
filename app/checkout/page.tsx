@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaCcMastercard } from "react-icons/fa";
 import PaymentSuccess from "../components/PaymentSuccess";
+import Header from "../components/Header";
 export default function CheckoutPage() {
   const [email, setEmail] = useState("Milesmorales@gmail.com");
   const [name, setName] = useState("Miles Morales");
@@ -17,9 +18,11 @@ const router = useRouter();
     setShowPopup(true);
   };
   return (
-    <div className="min-h-screen bg-[#0D1B4C] font-poppins text-white  sm:py-12 px-2 sm:px-4 flex justify-center">
+    <div className="min-h-screen bg-[#0D1B4C] font-montserrat text-white   ">
+      <div className="sm:py-5 px-2 sm:px-4">
+        <Header title="Checkout" subtitle=""/>
       <div className=" p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-3xl mx-auto">
-        <div className="flex items-center gap-16 mb-6">
+       {/* <div className="flex items-center gap-16 mb-6">
        <div>  <button onClick={() => router.push(`/chooseseats`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
               ‹
             </button></div>
@@ -108,10 +111,17 @@ const router = useRouter();
          {/* Show Popup */}
       {showPopup && <PaymentSuccess onClose={() => setShowPopup(false)} />}
       </div>
-       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        .font-poppins { font-family: 'Poppins', sans-serif; }
-      `}</style>
+      </div>
+        <footer className="bg-white/10 py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
+        © 2025 Movie App. All Rights Reserved.
+      </footer>
+     <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+`}</style>
     </div>
   );
 }

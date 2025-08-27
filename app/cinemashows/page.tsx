@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Header from "../components/Header";
 import SeatSelection from "../components/seatselection";
 interface Cinema {
   name: string;
@@ -32,10 +33,11 @@ const router = useRouter();
   ];
 
   return (
-    <div className="min-h-screen font-poppins bg-[#0D1B4C] px-2 sm:px-6 py-4 sm:py-8">
+  
+    <div className="min-h-screen font-montserrat bg-[#0D1B4C] ">
       {/* Header */}
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-row gap-3"> 
+      <div className="max-w-7xl mx-auto px-2 sm:px-8 py-4 sm:py-8">
+      {/* <div className="flex flex-row gap-3"> 
           <div>
             <button onClick={() => router.push(`/`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl text-white">
               ‹
@@ -46,7 +48,9 @@ const router = useRouter();
         </div>
 </div>
         {/* Date Selector */}
-        <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2 mb-4 scrollbar-hide">
+
+         <Header title="Alladin" subtitle="⭐ 7.2/10 (20k Votes)"/>
+        <div className="flex gap-2 sm:gap-3 overflow-x-auto mt-8 pb-2 mb-4 scrollbar-hide">
           {dates.map((date) => (
             <button
               key={date}
@@ -110,10 +114,18 @@ const router = useRouter();
         </div>
       </div>
       <SeatSelection />
-       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        .font-poppins { font-family: 'Poppins', sans-serif; }
-      `}</style>
+      <footer className="bg-[#091339] py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
+        © 2025 Movie App. All Rights Reserved.
+      </footer>  
+<style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+`}</style>
+
     </div>
+    
   );
 }

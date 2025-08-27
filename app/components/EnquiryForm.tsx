@@ -21,7 +21,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       {/* Modal Content */}
       <div
         onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
-        className="max-w-3xl w-[500px] mx-2 h-[570px] bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-white/20 animate-fadeIn"
+        className="max-w-3xl w-[570px] mx-2 h-[590px] bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-white/20 animate-fadeIn"
       >
         {/* Header */}
         <header className="mb-6 border-b border-white/20 pb-3 flex justify-between items-center">
@@ -45,7 +45,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
             <input
               type="text"
               placeholder="Name"
-              className="w-full px-4 py-1 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
+              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
             />
           </div>
 
@@ -55,7 +55,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
             <input
               type="email"
               placeholder="yourname@domainname.com"
-              className="w-full px-4 py-1 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
+              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
             />
           </div>
 
@@ -65,14 +65,14 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
             <input
               type="tel"
               placeholder="+91 9999999999"
-              className="w-full px-4 py-1 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
+              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
             />
           </div>
 
           {/* Purpose */}
           <div>
             <label className="block text-sm mb-2">Purpose of Enquiry</label>
-            <select className="w-full px-4 py-1 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]">
+            <select className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]">
               <option>Licensing & Distribution</option>
               <option>Partnership</option>
               <option>Other</option>
@@ -85,7 +85,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
             <textarea
               placeholder="Description"
               rows={2}
-              className="w-full px-4 py-1 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
+              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
             ></textarea>
           </div>
 

@@ -3,20 +3,23 @@ import React from "react";
 import Popup from "../components/Popup";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Header from "../components/Header";
 export default function ETicketPage() {
     const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
   return (
-    <div className="min-h-screen bg-[#0B1A51] font-poppins flex flex-col items-center p-4 md:py-12 px-2 md:px-4">
-      {/* Header */}
+    <div className="min-h-screen bg-[#0B1A51] font-montserrat ">
+      {/* Header 
       <header className="w-full max-w-3xl flex items-center justify-between mb-8 px-4 md:mx-0">
         <button onClick={() => router.push(`/checkout`)} className="text-white text-lg cursor-pointer">←</button>
         <h1 className="text-white font-bold text-xl">E-Ticket</h1>
-        <div className="w-6" /> {/* spacer */}
-      </header>
-
+        <div className="w-6" /> 
+      </header>*/}
+      <div className="p-4 md:py-6 px-2 md:px-8">
+ <Header title="E-Ticket" subtitle=""/>
       {/* Instruction */}
-      <div className="w-full max-w-3xl text-white mb-6 px-4 md:px-0">
+      <div className="flex flex-col items-center mt-8">
+      <div className=" max-w-3xl text-white mb-6 px-4 md:px-0">
         <h2 className="font-bold text-base md:text-lg">Instruction</h2>
         <p className="text-gray-300 text-sm mt-1 leading-relaxed">
           Come to the cinema, show and scan the barcode to the space provided.
@@ -80,11 +83,20 @@ export default function ETicketPage() {
       <button  onClick={() => setShowPopup(true)} className="mt-6 md:mt-8 bg-[#E63946] text-white font-semibold py-2.5 md:py-3 px-5 md:px-6 rounded-lg hover:bg-red-600 transition cursor-pointer mx-4 md:mx-0">
         Download E-Ticket
       </button>
+      </div>
         <Popup isOpen={showPopup} onClose={() => setShowPopup(false)} />
-           <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        .font-poppins { font-family: 'Poppins', sans-serif; }
-      `}</style>
+          </div>
+           <footer className="bg-white/10 py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
+        © 2025 Movie App. All Rights Reserved.
+      </footer>
+
+          <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+`}</style>
     </div>
   );
 }

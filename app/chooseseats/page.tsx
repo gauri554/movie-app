@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Header from "../components/Header";
 type SeatStatus = "available" | "reserved" | "selected";
 
 interface Seat {
@@ -54,7 +55,10 @@ export default function ChooseSeats() {
   const times = ["11:15", "3:15", "6:15", "10:15"];
 
   return (
-    <div className="min-h-screen bg-[#0D1B4C] font-poppins text-white p-4 sm:py-10 px-2 sm:px-4 flex flex-col items-center">
+    <div className="min-h-screen bg-[#0D1B4C] font-montserrat text-white  ">
+      <div className="sm:py-3 px-3 sm:px-8 ">
+       <Header title="Choose Seat&apos;s" subtitle="⭐ 7.2/10 (20k Votes)"/>
+<div className="flex flex-col items-center sm:py-3 px-3 sm:px-8 ">
       <h1 className="text-xl sm:text-3xl font-bold mb-6">Choose Your Seat&apos;s</h1>
 
       {/* Screen
@@ -131,10 +135,20 @@ export default function ChooseSeats() {
           Buy Ticket
         </button>
       </div>
-       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        .font-poppins { font-family: 'Poppins', sans-serif; }
-      `}</style>
+      <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+`}</style>
+
+      </div>
+      </div>
+   <footer className="bg-white/10 py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
+        © 2025 Movie App. All Rights Reserved.
+      </footer>
+    
     </div>
   );
 }

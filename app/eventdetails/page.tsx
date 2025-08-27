@@ -4,6 +4,7 @@ import { NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Header from "../components/Header";
 import "../globals.css"; // Ensure global styles are imported
 import { FaMapMarkerAlt, FaMusic, FaMoneyBillAlt, FaLandmark } from "react-icons/fa";
 const EventDetails: NextPage = () => {
@@ -23,8 +24,8 @@ const EventDetails: NextPage = () => {
     "Customers that are searching for a particular topic often rely on targeted content and relevant keywords to find what they need. Providing high-quality, informative, and engaging material can increase trust, boost SEO rankings, and improve overall brand perception.";
 
   return (
-    <div className="bg-[#0B1E47] font-poppins text-white min-h-screen">
-      {/* Header */}
+    <div className="bg-[#0B1E47] font-montserrat text-white min-h-screen">
+      {/* Header 
       <header className="max-w-6xl mx-auto px-2 md:px-4 p-4 md:p-[auto] md:py-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
         <button onClick={() => router.push(`/events`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
@@ -36,7 +37,10 @@ const EventDetails: NextPage = () => {
       </header>
 
       {/* Main Banner */}
-      <div className="max-w-6xl mx-auto px-2  ">
+
+      
+      <div className="max-w-7xl mx-auto px-2 md:px-8 md:py-3 ">
+         <Header title="Tanvi: The Great" subtitle="Ahmedabad"/>
         <Image
           src="/coldplay.png" // replace with actual path
           alt="Coldplay Event"
@@ -47,7 +51,7 @@ const EventDetails: NextPage = () => {
       </div>
 
       {/* Event Info */}
-      <section className="max-w-6xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <section className="max-w-7xl mx-auto px-8 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <h2 className="md:text-2xl md:font-bold mb-4">
             Coldplay: Music Of The Spheres World Tour
@@ -193,10 +197,13 @@ Friday, 24 Aug 2019 | 6:30PM - 9:30PM</li>
          <span> Buy tickets</span>
        </button>
       </footer>
-       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        .font-poppins { font-family: 'Poppins', sans-serif; }
-      `}</style>
+     <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+`}</style>
     </div>
   );
 };

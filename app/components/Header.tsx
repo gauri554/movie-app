@@ -1,0 +1,218 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import { FaSearch } from "react-icons/fa";
+import { X } from "lucide-react";
+
+const placeholders = [
+  "Search movies...",
+  "Find events...",
+  "Look up concerts...",
+  "Discover activities..."
+];
+
+type HeaderProps = {
+  title: string;
+  subtitle: string;
+};
+
+export default function Header({ title, subtitle }: HeaderProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const [showModal, setShowModal] = useState(false);
+  const [value, setValue] = useState("");
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <header className="px-0 gap-14 md:gap-5   py-1 flex flex-row md:items-center md:justify-between mb-4">
+      {/* Left side: Title & Subtitle */}
+      <div className="flex items-center gap-4">
+        <button
+          onClick={() => router.push(`/`)}
+          className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl"
+        >
+          ‹
+        </button>
+        <div>
+          <h1 className="md:text-3xl sm:font-semibold">{title}</h1>
+          <div className="text-xs md:text-sm text-white/70">{subtitle}</div>
+        </div>
+      </div>
+
+      {/* Right side: Buttons + Search */}
+      <div className="flex flex-row md:items-center gap-4 md:gap-7 md:mt-0">
+        {/* Nav Buttons */}
+        <div className="hidden md:flex flex flex-col md:flex-row items-center gap-3 md:gap-3">
+          <button
+            onClick={() => router.push("/new-release")}
+            className={`w-full sm:w-auto px-4 py-2 rounded-full text-sm cursor-pointer ${
+              pathname === "/new-release"
+                ? "bg-[#ff4655] text-white"
+                : "bg-[#ff4655] hover:bg-white/10"
+            }`}
+          >
+            Film Mart
+          </button>
+          <button
+            onClick={() => router.push("/events")}
+            className={`w-full sm:w-auto px-4 py-2 rounded-full text-sm cursor-pointer ${
+              pathname === "/events"
+                ? "bg-[#ff4655] text-white"
+                : "bg-white/6 hover:bg-[#ff4655]"
+            }`}
+          >
+            Events
+          </button>
+          <button
+            onClick={() => router.push("/cinemashows")}
+            className={`w-full sm:w-auto px-4 py-2 rounded-full text-sm cursor-pointer ${
+              pathname === "/cinemashows"
+                ? "bg-[#ff4655] text-white"
+                : "bg-white/6 hover:bg-[#ff4655]"
+            }`}
+          >
+            Book Ticket
+          </button>
+        </div>
+
+        {/* Search / Modal */}
+        <div className="flex items-center gap-2 relative">
+          <span
+            className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+            onClick={() => setShowModal(true)}
+          >
+            <FaSearch />
+          </span>
+
+          {/* Modal */}
+          <AnimatePresence>
+            {showModal && (
+              <motion.div
+                className="fixed inset-0 flex items-start justify-center bg-black/60 backdrop-blur-sm z-50"
+                onClick={() => setShowModal(false)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <motion.div
+                  initial={{ y: -50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -50, opacity: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="w-[90%] sm:w-[600px] max-h-[80vh] rounded-2xl shadow-lg mt-20 bg-[#0b233f]/95 backdrop-blur-sm z-50 flex flex-col"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* Search Header */}
+                  <div className="sticky top-0 z-20 p-6 pb-3">
+                    <button
+                      onClick={() => setShowModal(false)}
+                      className="absolute top-2 right-4 text-gray-500 hover:text-white cursor-pointer"
+                    >
+                      <X size={22} />
+                    </button>
+
+                    {/* Search Input */}
+                    <div className="relative w-full">
+                      <input
+                        type="text"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        className="px-4 py-2 w-[600px] sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
+                        placeholder="."
+                      />
+
+                      {!value && (
+                        <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                          <AnimatePresence mode="wait">
+                            <motion.span
+                              key={placeholderIndex}
+                              initial={{ y: "-100%", opacity: 0 }}
+                              animate={{ y: "0%", opacity: 1 }}
+                              exit={{ y: "100%", opacity: 0 }}
+                              transition={{ duration: 0.4 }}
+                              className="text-gray-800 text-sm"
+                            >
+                              {placeholders[placeholderIndex]}
+                            </motion.span>
+                          </AnimatePresence>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Tabs */}
+                    <div className="flex items-start gap-7 mt-6 text-white text-sm">
+                      {["All", "Concerts", "Events", "Movies", "Activity"].map(
+                        (tab, i) => (
+                          <button
+                            key={i}
+                            className={`px-4 py-1 rounded-full ${
+                              tab === "All"
+                                ? "bg-white/10 text-white"
+                                : "hover:bg-white/10 text-white"
+                            }`}
+                          >
+                            {tab}
+                          </button>
+                        )
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Trending Content */}
+                  <div className="flex-1 overflow-y-auto scrollbar-hide p-6">
+                    <h3 className="text-white font-semibold mb-3">
+                      Trending in Ahmedabad
+                    </h3>
+                    <div className="grid grid-cols-2 gap-4">
+                      {[
+                        { title: "War 2", img: "/movie1.jpeg" },
+                        { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                        { title: "Nobody 2", img: "/movie3.jpeg" },
+                        { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                                                { title: "War 2", img: "/movie1.jpeg" },
+                        { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                        { title: "Nobody 2", img: "/movie3.jpeg" },
+                        { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                                                { title: "War 2", img: "/movie1.jpeg" },
+                        { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                        { title: "Nobody 2", img: "/movie3.jpeg" },
+                        { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                                                { title: "War 2", img: "/movie1.jpeg" },
+                        { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                        { title: "Nobody 2", img: "/movie3.jpeg" },
+                        { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                      ].map((m, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                          <img
+                            src={m.img}
+                            className="w-10 h-10 rounded-md"
+                            alt={m.title}
+                          />
+                          <div>
+                            <p className="text-sm font-medium text-white">
+                              {m.title}
+                            </p>
+                            <p className="text-xs text-white">Movie</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </header>
+  );
+}

@@ -8,6 +8,7 @@ import SidebarFilters from "../components/SidebarFilters";
 import Filters from "../components/Filters";
 import { FiFilter } from "react-icons/fi";
 import "../globals.css";
+import {X} from "lucide-react";
 import Card from "../components/Card";
 import "../components/EventCard.css";
 import { FaSearch } from "react-icons/fa";
@@ -86,7 +87,7 @@ const [openFilters, setOpenFilters] = useState(false);
     }, [value]);
   
     return (
-    <div className="min-h-screen font-poppins bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white">
+    <div className="min-h-screen font-montserrat bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white">
 
 
        <SidebarFilters isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
@@ -98,157 +99,173 @@ const [openFilters, setOpenFilters] = useState(false);
                     onClick={() => setIsSidebarOpen(false)}
                   />
                 )}
-      <div className="max-w-7xl mx-auto px-2 md:px-6 p-4 md:py-10">
+      <div className="max-w-7xl mx-auto px-2 md:px-8 p-4 md:py-3">
         {/* Header */}
-        <header className="flex flex-row md:flex-row items-center justify-between md:items-center md:justify-between  md:gap-4 mb-8">
-          <div className="flex items-center gap-18 md:gap-4">
-           {/* <button className="p-2 rounded-full bg-white/6 hover:bg-white/10">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white/90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>*/}
-            <button onClick={() => router.push(`/new-release`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
+ <header className=" px-0 gap-14 md:gap-5   py-2 flex flex-row md:items-center md:justify-between mb-4">
+          <div className="flex items-center gap-4">
+         <button onClick={() => router.push(`/new-release`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
               ‹
             </button>
             <div>
-              <h1 className="md:text-3xl md:font-semibold">All Events</h1>
+              <h1 className=" md:text-3xl sm:font-semibold">All Events</h1>
               <div className="text-xs md:text-sm text-white/70">Ahmedabad</div>
             </div>
           </div>
 
-         <div className="flex items-center gap-2 relative">
-             <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
-         onClick={() => setShowModal(true)}  >
-  <FaSearch />
-</span>
-
- 
-        <div className="relative w-full sm:w-64">
-          <input
-            type="text"
-            onClick={() => setShowModal(true)}
-            value={value}
-             onChange={(e) => setValue(e.target.value)}
-            className="px-3 py-1 rounded-md text-white bg-white/10 focus:outline-none w-full sm:w-64 shadow-md text-sm placeholder-transparent"
-            placeholder="."
-          />
-
-          {/* Fake placeholder (animated) */}
-          {!value &&(
-          <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={placeholderIndex}
-                initial={{ y: "-100%", opacity: 0 }}
-                animate={{ y: "0%", opacity: 1 }}
-                exit={{ y: "100%", opacity: 0 }}
-                transition={{ duration: 0.4 }}
-                 className="text-gray-400 text-sm"
-              >
-                {placeholders[placeholderIndex]}
-              </motion.span>
-            </AnimatePresence>
-          </div>)}
-        </div>
- 
-
-
-
-
-     <AnimatePresence>
-        {showModal && (
-          <motion.div
-            className="fixed inset-0 flex items-start justify-center  pt-25  bg-black/60 backdrop-blur-sm z-50   "
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              initial={{ y: -50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -50, opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className=" w-[90%] sm:w-[700px] rounded-2xl shadow-lg mt-20 p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50  "
-             
-            >
-              {/* Search Input */}
-              <div className="relative w-full">
-                <input
-                  type="text"
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
-                  className="px-4 py-3  w-[630px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
-                  placeholder="."
-                />
-
-                {/* Animated placeholder */}
-                {!value && (
-                  <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                    <AnimatePresence mode="wait">
-                      <motion.span
-                        key={placeholderIndex}
-                        initial={{ y: "-100%", opacity: 0 }}
-                        animate={{ y: "0%", opacity: 1 }}
-                        exit={{ y: "100%", opacity: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className="text-gray-400 text-sm"
-                      >
-                        {placeholders[placeholderIndex]}
-                      </motion.span>
-                    </AnimatePresence>
-                  </div>
-                )}
-              </div>
-
-              {/* Tabs */}
-              <div className="flex justify-around mt-6 text-white  text-sm">
-                {["All", "Concerts", "Events", "Movies", "Activity"].map((tab, i) => (
-                  <button
-                    key={i}
-                    className={`px-4 py-1 rounded-full ${
-                      tab === "Movies" ? "bg-white/60 text-white" : "hover:bg-white/60 text-white"
-                    }`}
-                  >
-                    {tab}
-                  </button>
-                ))}
-              </div>
-
-              {/* Trending Section */}
-              <div className="mt-6">
-                <h3 className="text-white font-semibold mb-3">
-                  Trending in Gurugram
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { title: "War 2", img: "/movie1.jpeg" },
-                    { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
-                    { title: "Nobody 2", img: "/movie3.jpeg" },
-                    { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
-                  ].map((m, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <img src={m.img} className="w-10 h-10 rounded-md" alt={m.title} />
-                      <div>
-                        <p className="text-sm font-medium text-white">{m.title}</p>
-                        <p className="text-xs text-white">Movie</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Close button */}
-              <button
-                onClick={() => setShowModal(false)}
-                className="absolute top-2 right-4 text-gray-500 hover:text-white cursor-pointer"
-              >
-                ✖
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+ <div className="flex flex-row md:items-center gap-4 md:gap-7 md:mt-0">
+          <div className=" hidden md:flex flex flex-col md:flex-row items-center gap-3 md:gap-3">
+            <button onClick={() => router.push("/new-release")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-white/6 hover:bg-[#ff4655] text-sm cursor-pointer">Film Mart</button>
+            <button onClick={() => router.push("/events")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-[#ff4655]  hover:bg-white/10 text-white text-sm cursor-pointer">Events</button>
+            <button onClick={() => router.push("/cinemashows")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-white/6 hover:bg-[#ff4655] text-sm cursor-pointer">Book Ticket</button>
           </div>
+
+       
+          <div className="flex items-center gap-2 relative">
+                   <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+                onClick={() => setShowModal(true)}    >
+             <FaSearch />
+           </span>
+           
+           
+                  {/*} <div className="relative w-full sm:w-64">
+                     <input
+                       type="text"
+                       value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                       className="px-3 py-1 rounded-md text-white bg-white/10 focus:outline-none w-full sm:w-64 shadow-md text-sm placeholder-transparent"
+                       placeholder="."
+                     />
+           
+
+                     {!value &&(
+                     <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                       <AnimatePresence mode="wait">
+                         <motion.span
+                           key={placeholderIndex}
+                           initial={{ y: "-100%", opacity: 0 }}
+                           animate={{ y: "0%", opacity: 1 }}
+                           exit={{ y: "100%", opacity: 0 }}
+                           transition={{ duration: 0.4 }}
+                            className="text-gray-400 text-sm"
+                         >
+                           {placeholders[placeholderIndex]}
+                         </motion.span>
+                       </AnimatePresence>
+                     </div>)}
+                   </div>*/}
+                 
+
+       
+                      <AnimatePresence>
+                 {showModal && (
+                   <motion.div
+                     className="fixed inset-0 flex items-start justify-center    bg-black/60 backdrop-blur-sm z-50   " 
+                     onClick={() => setShowModal(false)}
+                     initial={{ opacity: 0 }}
+                     animate={{ opacity: 1 }}
+                     exit={{ opacity: 0 }}
+                   >
+                     <motion.div
+                       initial={{ y: -50, opacity: 0 }}
+                       animate={{ y: 0, opacity: 1 }}
+                       exit={{ y: -50, opacity: 0 }}
+                       transition={{ duration: 0.4 }}
+                       className=" w-[90%] sm:w-[650px] max-h-[80vh] rounded-2xl shadow-lg mt-20 p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50 flex flex-col  "
+                        onClick={(e) => e.stopPropagation()}
+                     >
+
+                      <div className="sticky top-0  z-20 p-6 pb-3 ">
+          {/* Close button */}
+          <button
+              onClick={() => setShowModal(false)}
+            className="absolute top-2 right-2 text-gray-500 hover:text-white cursor-pointer"
+          >
+            <X size={22} />
+          </button>
+                       {/* Search Input */}
+                       <div className="relative w-full">
+                         <input
+                           type="text"
+                           value={value}
+                           onChange={(e) => setValue(e.target.value)}
+                           className="px-4 py-2  w-[600px] sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
+                           placeholder="."
+                         />
+         
+                         {/* Animated placeholder */}
+                         {!value && (
+                           <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                             <AnimatePresence mode="wait">
+                               <motion.span
+                                 key={placeholderIndex}
+                                 initial={{ y: "-100%", opacity: 0 }}
+                                 animate={{ y: "0%", opacity: 1 }}
+                                 exit={{ y: "100%", opacity: 0 }}
+                                 transition={{ duration: 0.4 }}
+                                 className="text-gray-800 text-sm"
+                               >
+                                 {placeholders[placeholderIndex]}
+                               </motion.span>
+                             </AnimatePresence>
+                           </div>
+                         )}
+                       </div>
+         
+                       {/* Tabs */}
+                       <div className="flex items-start gap-7 mt-6 text-white  text-sm">
+                         {["All", "Concerts", "Events", "Movies", "Activity"].map((tab, i) => (
+                           <button
+                             key={i}
+                             className={`px-4 py-1 rounded-full ${
+                               tab === "All" ? "bg-white/10 text-white" : "hover:bg-white/10 text-white"
+                             }`}
+                           >
+                             {tab}
+                           </button>
+                         ))}
+                       </div>
+         </div>
+       
+                       {/* Trending Section */}
+                       <div className="flex-1 overflow-y-auto scrollbar-hide p-6">
+                        
+                         <h3 className="text-white font-semibold mb-3">
+                           Trending in Ahmedabad
+                         </h3>
+                         <div className="grid grid-cols-2 gap-4">
+                           {[
+                             { title: "War 2", img: "/movie1.jpeg" },
+                             { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                             { title: "Nobody 2", img: "/movie3.jpeg" },
+                             { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                               { title: "War 2", img: "/movie1.jpeg" },
+                             { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                             { title: "Nobody 2", img: "/movie3.jpeg" },
+                             { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                                { title: "War 2", img: "/movie1.jpeg" },
+                             { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                             { title: "Nobody 2", img: "/movie3.jpeg" },
+                             { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                           ].map((m, i) => (
+                             <div key={i} className="flex items-center gap-3">
+                               <img src={m.img} className="w-10 h-10 rounded-md" alt={m.title} />
+                               <div>
+                                 <p className="text-sm font-medium text-white">{m.title}</p>
+                                 <p className="text-xs text-white">Movie</p>
+                               </div>
+                             </div>
+                           ))}
+                         </div>
+                       
+                       </div>
+        
+                       {/* Close button */}
+                      
+                     </motion.div>
+                   </motion.div>
+                 )}
+                 </AnimatePresence>
+          </div></div>
         </header>
 
         {/* Language chips 
@@ -295,7 +312,7 @@ const [openFilters, setOpenFilters] = useState(false);
             <FiFilter size={18} />
             Filter
           </button>
-          
+          <Filters open={openFilters} onClose={() => setOpenFilters(false)} />
         </div>
 
         {/* Upcoming Events Banner 
@@ -315,7 +332,7 @@ const [openFilters, setOpenFilters] = useState(false);
 
 
         <div className="mb-10">
-  <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-4 md:p-8 shadow-lg flex flex-row items-center justify-between md:flex-row md:items-center md:justify-between gap-4">
+  <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-4 md:p-6 shadow-lg flex flex-row items-center justify-between md:flex-row md:items-center md:justify-between gap-4">
     
     {/* Text Section */}
     <div>
@@ -347,10 +364,11 @@ const [openFilters, setOpenFilters] = useState(false);
 </div>
 
 
-        {/* Comedy and Music shows side-by-side on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
+        {/* Comedy and Music shows side-by-side on desktop 
+    
           <section>
             <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4 ">Comedy Shows</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
             <div className= "flex md:grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 overflow-x-auto no-scrollbar cursor-pointer">
               {filteredComedy.map((c) => (
                 <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="shrink-0 w-[120px] h-[150px] md:h-[auto] sm:w-[180px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]"   // default shadow
@@ -366,28 +384,63 @@ const [openFilters, setOpenFilters] = useState(false);
                 <p className="text-white/60">No comedy shows available for {selectedLang}</p>
               )}
             </div>
-
-           
-
-
-          </section>
-
-          <section>
-            <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4">Music Shows</h2>
-          {/*  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
+    <div className= "flex md:grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 overflow-x-auto no-scrollbar cursor-pointer">
               {filteredMusic.map((c) => (
-                <div key={c.title} onClick={() => router.push(`/eventlist`)} className="rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]">
-                  <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url('${c.img}')` }} />
-                  <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60">
-                    <div className="text-lg font-semibold">{c.title}</div>
-                    <div className="text-sm opacity-80">{c.subtitle}</div>
+                <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="shrink-0 w-[120px] h-[150px] md:h-[auto] md:w-[180px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]"   // default shadow
+  >
+                  <div className="h-44 bg-cover top bg-center" style={{ backgroundImage: `url('${c.img}')` }}     />
+                  <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60 ">
+                    <div className="text-sm md:text-lg font-semibold">{c.title}</div>
+                    <div className="text-xs md:text-sm opacity-80">{c.subtitle}</div>
                   </div>
                 </div>
               ))}
                {filteredMusic.length === 0 && (
                 <p className="text-white/60">No music shows available for {selectedLang}</p>
               )}
-            </div>*/}
+            </div>
+           
+
+</div>
+          </section> */}
+
+       
+        <section>
+  <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4">
+    Shows
+  </h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-10">
+    {filteredComedy.map((c) => (
+      <div key={c.title} onClick={() => router.push("/eventlist")}
+           className="shrink-0 w-full max-w-[180px] h-[150px] md:h-auto rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)] cursor-pointer">
+        <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url('${c.img}')` }} />
+        <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60">
+          <div className="text-sm md:text-lg font-semibold">{c.title}</div>
+          <div className="text-xs md:text-sm opacity-80">{c.subtitle}</div>
+        </div>
+      </div>
+    ))}
+    {filteredMusic.map((m) => (
+      <div key={m.title} onClick={() => router.push("/eventlist")}
+           className="shrink-0 w-full max-w-[180px] h-[150px] md:h-auto rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)] cursor-pointer">
+        <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url('${m.img}')` }} />
+        <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60">
+          <div className="text-sm md:text-lg font-semibold">{m.title}</div>
+          <div className="text-xs md:text-sm opacity-80">{m.subtitle}</div>
+        </div>
+      </div>
+    ))}
+
+    {filteredComedy.length + filteredMusic.length === 0 && (
+      <p className="text-white/60">No shows available for {selectedLang}</p>
+    )}
+  </div>
+</section>
+
+
+        {/*<section>
+            <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4">Music Shows</h2>
+        
 
               <div className= "flex md:grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 overflow-x-auto no-scrollbar cursor-pointer">
               {filteredMusic.map((c) => (
@@ -404,8 +457,8 @@ const [openFilters, setOpenFilters] = useState(false);
                 <p className="text-white/60">No music shows available for {selectedLang}</p>
               )}
             </div>
-          </section>
-        </div>
+          </section>*/}
+       
 
 
     
@@ -579,10 +632,14 @@ const [openFilters, setOpenFilters] = useState(false);
  <footer className="bg-[#0b223f] py-6 text-center text-xs md:text-sm text-white/90 mt-10">
         © 2025 Movie App. All Rights Reserved.
       </footer>
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        .font-poppins { font-family: 'Poppins', sans-serif; }
-      `}</style>
+<style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+`}</style>
+
     </div>
   );
 }

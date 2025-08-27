@@ -48,7 +48,7 @@ export default function HomePage() {
 
 const [showModal, setShowModal] = useState(false);
  const [openProfile, setOpenProfile] = useState(false);
-
+ const unreadCount = 5; 
 const images = [
    "/carsoul1.webp",
    "/carsoul2.webp",
@@ -99,6 +99,16 @@ const images = [
 
     return () => clearInterval(interval);
   }, [value]);
+
+   
+
+   const [hasNew, setHasNew] = useState(false);
+
+  useEffect(() => {
+    // simulate incoming notifications after 3s
+    const timer = setTimeout(() => setHasNew(true), 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   
   return (
@@ -226,8 +236,8 @@ const images = [
               <AnimatePresence>
                  {showModal && (
                    <motion.div
-                     className="fixed inset-0 flex items-start justify-center  pt-25  bg-black/60 backdrop-blur-sm z-50   " 
-                    onClick={() => setShowModal(false)}
+                     className="fixed inset-0 flex items-start justify-center    bg-black/60 backdrop-blur-sm z-50   " 
+                     onClick={() => setShowModal(false)}
                      initial={{ opacity: 0 }}
                      animate={{ opacity: 1 }}
                      exit={{ opacity: 0 }}
@@ -237,16 +247,25 @@ const images = [
                        animate={{ y: 0, opacity: 1 }}
                        exit={{ y: -50, opacity: 0 }}
                        transition={{ duration: 0.4 }}
-                       className=" w-[90%] sm:w-[650px] rounded-2xl shadow-lg mt-20 p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50  "
+                       className=" w-[90%] sm:w-[650px] max-h-[80vh] rounded-2xl shadow-lg mt-20 p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50 flex flex-col  "
                         onClick={(e) => e.stopPropagation()}
                      >
+
+                      <div className="sticky top-0  z-20 p-6 pb-3 ">
+          {/* Close button */}
+          <button
+              onClick={() => setShowModal(false)}
+            className="absolute top-2 right-2 text-gray-500 hover:text-white cursor-pointer"
+          >
+            <X size={22} />
+          </button>
                        {/* Search Input */}
                        <div className="relative w-full">
                          <input
                            type="text"
                            value={value}
                            onChange={(e) => setValue(e.target.value)}
-                           className="px-4 py-2  w-[600px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
+                           className="px-4 py-2  w-[600px] sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
                            placeholder="."
                          />
          
@@ -270,27 +289,37 @@ const images = [
                        </div>
          
                        {/* Tabs */}
-                       <div className="flex justify-around mt-6 text-white  text-sm">
+                       <div className="flex items-start gap-7 mt-6 text-white  text-sm">
                          {["All", "Concerts", "Events", "Movies", "Activity"].map((tab, i) => (
                            <button
                              key={i}
                              className={`px-4 py-1 rounded-full ${
-                               tab === "Movies" ? "bg-white/10 text-white" : "hover:bg-white/10 text-white"
+                               tab === "All" ? "bg-white/10 text-white" : "hover:bg-white/10 text-white"
                              }`}
                            >
                              {tab}
                            </button>
                          ))}
                        </div>
-         
+         </div>
+       
                        {/* Trending Section */}
-                       <div className="mt-6 pl-5">
+                       <div className="flex-1 overflow-y-auto scrollbar-hide p-6">
+                        
                          <h3 className="text-white font-semibold mb-3">
                            Trending in Ahmedabad
                          </h3>
                          <div className="grid grid-cols-2 gap-4">
                            {[
                              { title: "War 2", img: "/movie1.jpeg" },
+                             { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                             { title: "Nobody 2", img: "/movie3.jpeg" },
+                             { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                               { title: "War 2", img: "/movie1.jpeg" },
+                             { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                             { title: "Nobody 2", img: "/movie3.jpeg" },
+                             { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                                { title: "War 2", img: "/movie1.jpeg" },
                              { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
                              { title: "Nobody 2", img: "/movie3.jpeg" },
                              { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
@@ -304,8 +333,9 @@ const images = [
                              </div>
                            ))}
                          </div>
+                       
                        </div>
-         
+        
                        {/* Close button */}
                       
                      </motion.div>
@@ -315,7 +345,13 @@ const images = [
       </div>
       <div className="flex flex-row gap-6 items-end">
          <span className="text-sm sm:text-xl cursor-pointer hover:text-yellow-400"  onClick={() => setIsOpenBell(true)}>
-  <FaBell />
+  <FaBell   
+         />
+       
+        <span>
+        
+        </span>
+     
 </span>
     <span
   onClick={() => setShowLogin(true)}
@@ -419,7 +455,7 @@ const images = [
       </div>
       {/* Category Buttons */}
       <div className="flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10">
-        <CategoryButton icon={<FaFilm />} label="Movies" href="/new-release" />
+        <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
         <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
         <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
       </div>

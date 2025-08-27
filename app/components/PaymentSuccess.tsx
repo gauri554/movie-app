@@ -8,7 +8,7 @@ interface PaymentSuccessProps {
 const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ onClose }) => {
   const router = useRouter();
   return (
-    <div className="fixed inset-0 flex items-center justify-center backdrop-blur bg-opacity-40 z-50 font-poppins">
+    <div className="fixed inset-0 flex items-center justify-center backdrop-blur bg-opacity-40 z-50 font-montserrat">
       <div className="bg-[#1A1B4B] rounded-2xl px-6 sm:p-8 max-w-[90%] sm:max-w-md w-full shadow-lg text-center relative mx-4 sm:mx-auto">
         {/* Close Button */}
         <button
@@ -54,10 +54,13 @@ const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ onClose }) => {
           See E-Ticket
         </button>
       </div>
-       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        .font-poppins { font-family: 'Poppins', sans-serif; }
-      `}</style>
+     <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+`}</style>
     </div>
   );
   

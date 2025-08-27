@@ -7,11 +7,14 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa";
 import { Play } from "lucide-react";
+import {X} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaSearch } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { useRouter } from "next/navigation";
 import RatingModal from "../components/RatingModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EnquiryForm from "../components/EnquiryForm";
 import "../new-release/new-release.css";
 import "../globals.css"; // Ensure global styles are imported
@@ -26,6 +29,14 @@ type Person = {
   img?: string;
 };
 
+const placeholders = [
+  "Search movies...",
+  "Search events...",
+  "Search sports...",
+  "Search concerts...",
+  "Search comedy shows...",
+  "Search workshops...",
+];
 export default function MovieDetailsDesktop() {
   const title = "Tanvi: The Great";
   const subtitle = "Ahmedabad | 34 Movies";
@@ -74,8 +85,24 @@ export default function MovieDetailsDesktop() {
 const [isModalOpen, setIsModalOpen] = useState(false);
  const [isOpenForm, setIsOpenForm] = useState(false);
    const router = useRouter();
+   const [showModal, setShowModal] = useState(false);
+
+   
+          const [placeholderIndex, setPlaceholderIndex] = useState(0);
+              const [value, setValue] = useState("");
+         
+           // Cycle through placeholders every 2s
+           useEffect(() => {
+             if (value) return; // Stop animation when user types
+             const interval = setInterval(() => {
+               setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
+             }, 2000);
+         
+             return () => clearInterval(interval);
+           }, [value]);
   return (
-    <div className="min-h-screen  font-montserrat bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] text-white p-4 px-2 md:p-8">
+    <div className="min-h-screen  font-montserrat bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] text-white ">
+      <div className="p-4 px-2 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <header className="flex items-center justify-between mb-8">
@@ -89,7 +116,159 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             </div>
           </div>
           <div className="flex items-center gap-3">
+            <div className=" hidden md:flex flex flex-col md:flex-row items-center gap-3 md:gap-3">
+                      <button onClick={() => router.push("/new-release")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-[#ff4655] hover:bg-white/10 text-sm cursor-pointer">Film Mart</button>
+                      <button onClick={() => router.push("/events")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-[#ff4655] bg-white/6 hover:bg-[#ff4655] text-white text-sm cursor-pointer">Events</button>
+                      <button onClick={() => router.push("/cinemashows")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-white/6 hover:bg-[#ff4655] text-sm cursor-pointer">Book Ticket</button>
+                    </div>
           
+                 
+                    <div className="flex items-center gap-2 relative">
+                             <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+                          onClick={() => setShowModal(true)}    >
+                       <FaSearch />
+                     </span>
+                     
+                     
+                            {/*} <div className="relative w-full sm:w-64">
+                               <input
+                                 type="text"
+                                 value={value}
+                                  onChange={(e) => setValue(e.target.value)}
+                                 className="px-3 py-1 rounded-md text-white bg-white/10 focus:outline-none w-full sm:w-64 shadow-md text-sm placeholder-transparent"
+                                 placeholder="."
+                               />
+                     
+          
+                               {!value &&(
+                               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                                 <AnimatePresence mode="wait">
+                                   <motion.span
+                                     key={placeholderIndex}
+                                     initial={{ y: "-100%", opacity: 0 }}
+                                     animate={{ y: "0%", opacity: 1 }}
+                                     exit={{ y: "100%", opacity: 0 }}
+                                     transition={{ duration: 0.4 }}
+                                      className="text-gray-400 text-sm"
+                                   >
+                                     {placeholders[placeholderIndex]}
+                                   </motion.span>
+                                 </AnimatePresence>
+                               </div>)}
+                             </div>*/}
+                           
+          
+                 
+                                <AnimatePresence>
+                           {showModal && (
+                             <motion.div
+                               className="fixed inset-0 flex items-start justify-center    bg-black/60 backdrop-blur-sm z-50   " 
+                               onClick={() => setShowModal(false)}
+                               initial={{ opacity: 0 }}
+                               animate={{ opacity: 1 }}
+                               exit={{ opacity: 0 }}
+                             >
+                               <motion.div
+                                 initial={{ y: -50, opacity: 0 }}
+                                 animate={{ y: 0, opacity: 1 }}
+                                 exit={{ y: -50, opacity: 0 }}
+                                 transition={{ duration: 0.4 }}
+                                 className=" w-[90%] sm:w-[650px] max-h-[80vh] rounded-2xl shadow-lg mt-20 p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50 flex flex-col  "
+                                  onClick={(e) => e.stopPropagation()}
+                               >
+          
+                                <div className="sticky top-0  z-20 p-6 pb-3 ">
+                    {/* Close button */}
+                    <button
+                        onClick={() => setShowModal(false)}
+                      className="absolute top-2 right-2 text-gray-500 hover:text-white cursor-pointer"
+                    >
+                      <X size={22} />
+                    </button>
+                                 {/* Search Input */}
+                                 <div className="relative w-full">
+                                   <input
+                                     type="text"
+                                     value={value}
+                                     onChange={(e) => setValue(e.target.value)}
+                                     className="px-4 py-2  w-[600px] sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
+                                     placeholder="."
+                                   />
+                   
+                                   {/* Animated placeholder */}
+                                   {!value && (
+                                     <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                                       <AnimatePresence mode="wait">
+                                         <motion.span
+                                           key={placeholderIndex}
+                                           initial={{ y: "-100%", opacity: 0 }}
+                                           animate={{ y: "0%", opacity: 1 }}
+                                           exit={{ y: "100%", opacity: 0 }}
+                                           transition={{ duration: 0.4 }}
+                                           className="text-gray-800 text-sm"
+                                         >
+                                           {placeholders[placeholderIndex]}
+                                         </motion.span>
+                                       </AnimatePresence>
+                                     </div>
+                                   )}
+                                 </div>
+                   
+                                 {/* Tabs */}
+                                 <div className="flex items-start gap-7 mt-6 text-white  text-sm">
+                                   {["All", "Concerts", "Events", "Movies", "Activity"].map((tab, i) => (
+                                     <button
+                                       key={i}
+                                       className={`px-4 py-1 rounded-full ${
+                                         tab === "All" ? "bg-white/10 text-white" : "hover:bg-white/10 text-white"
+                                       }`}
+                                     >
+                                       {tab}
+                                     </button>
+                                   ))}
+                                 </div>
+                   </div>
+                 
+                                 {/* Trending Section */}
+                                 <div className="flex-1 overflow-y-auto scrollbar-hide p-6">
+                                  
+                                   <h3 className="text-white font-semibold mb-3">
+                                     Trending in Ahmedabad
+                                   </h3>
+                                   <div className="grid grid-cols-2 gap-4">
+                                     {[
+                                       { title: "War 2", img: "/movie1.jpeg" },
+                                       { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                                       { title: "Nobody 2", img: "/movie3.jpeg" },
+                                       { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                                         { title: "War 2", img: "/movie1.jpeg" },
+                                       { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                                       { title: "Nobody 2", img: "/movie3.jpeg" },
+                                       { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                                          { title: "War 2", img: "/movie1.jpeg" },
+                                       { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
+                                       { title: "Nobody 2", img: "/movie3.jpeg" },
+                                       { title: "Son Of Sardar 2", img: "/movie2.jpeg" },
+                                     ].map((m, i) => (
+                                       <div key={i} className="flex items-center gap-3">
+                                         <img src={m.img} className="w-10 h-10 rounded-md" alt={m.title} />
+                                         <div>
+                                           <p className="text-sm font-medium text-white">{m.title}</p>
+                                           <p className="text-xs text-white">Movie</p>
+                                         </div>
+                                       </div>
+                                     ))}
+                                   </div>
+                                 
+                                 </div>
+                  
+                                 {/* Close button */}
+                                
+                               </motion.div>
+                             </motion.div>
+                           )}
+                           </AnimatePresence>
+                    </div>
           </div>
         </header>
 
@@ -394,6 +573,10 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           </main>
         </div>
       </div>
+      </div>
+      <footer className="bg-white/10 py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
+        © 2025 Movie App. All Rights Reserved.
+      </footer>
      <style jsx global>{`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 

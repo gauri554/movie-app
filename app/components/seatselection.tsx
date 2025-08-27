@@ -17,7 +17,7 @@ export default function SeatSelection() {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl border p-4 sm:p-10 mt-12">
+    <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border p-4 sm:p-10 mt-12">
       {/* Title */}
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">How many seats?</h2>
       <p className="text-gray-500 mb-6 sm:mb-8 text-sm sm:text-base">Choose your type of person, seat count, and preferred class.</p>

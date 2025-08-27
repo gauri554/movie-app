@@ -7,7 +7,7 @@ import { GiElephant, GiIndianPalace } from "react-icons/gi";
 import { MdTempleBuddhist } from "react-icons/md";
 import { LuLandmark } from "react-icons/lu";
 import { GiSoccerField } from "react-icons/gi";
-
+import { useState } from "react";
 interface LocationModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -44,6 +44,42 @@ export default function LocationModal({
 
   if (!isOpen) return null;
 
+const [location, setLocation] = useState<string>("");
+
+  const getCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+
+        try {
+          // Reverse geocoding (using OpenStreetMap Nominatim)
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+          );
+          const data = await res.json();
+          const city =
+            data.address.city ||
+            data.address.town ||
+            data.address.village ||
+            data.display_name;
+
+          setLocation(city);
+        } catch (err) {
+          console.error(err);
+          setLocation(`Lat: ${latitude}, Lon: ${longitude}`);
+        }
+      },
+      (error) => {
+        alert("Unable to fetch location: " + error.message);
+      }
+    );
+  };
+
   return (
     <div className="fixed inset-0 z-50 font-montserrat flex items-center justify-center bg-black/60 backdrop-blur-sm">
       <div className="bg-[#0C1B4D] text-white rounded-xl shadow-2xl w-[620px] max-h-[85vh] relative flex flex-col">
@@ -70,8 +106,16 @@ export default function LocationModal({
 
           {/* Use current location */}
           <div className="flex items-center gap-2 text-white font-medium text-[15px] mt-4 cursor-pointer">
-            <FaLocationDot size={18} className="text-gray-400" />
-            <span>Use current location</span>
+            <FaLocationDot size={18} className="text-gray-300" />
+            <span  onClick={getCurrentLocation} >Use current location</span>
+           {location && (
+        <p className=" text-gray-400"  onClick={() => {
+                  onSelect(location);
+                  onClose();
+                }}>
+           --  Current Location: <strong>{location}</strong>
+        </p>
+      )}
           </div>
         </div>
 
