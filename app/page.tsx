@@ -113,7 +113,7 @@ const images = [
   
   return (
 
-    <div className="bg-[#0C1B4D] font-montserrat text-white min-h-screen">
+    <div className="bg-[#0C1B4D] font-montserrat text-white min-h-screen overflow-x-hidden">
       
  
 
@@ -127,6 +127,7 @@ const images = [
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
+
 
 
       {/* Navbar */}
