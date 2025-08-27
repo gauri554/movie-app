@@ -48,7 +48,7 @@ export default function HomePage() {
 
 const [showModal, setShowModal] = useState(false);
  const [openProfile, setOpenProfile] = useState(false);
- const unreadCount = 5; 
+ 
 const images = [
    "/carsoul1.webp",
    "/carsoul2.webp",
@@ -58,6 +58,14 @@ const images = [
    "/carsoul6.webp",
    "/carsoul7.webp",
 ];
+
+ const [messages, setMessages] = useState(5); // unread count
+  
+
+  const handleBellClick = () => {
+    setIsOpenBell(true);
+    setMessages(0); // clear messages when opened
+  };
 
     const [isOpen, setIsOpen] = useState(false);
  const [selectedCity, setSelectedCity] = useState<string>("Ahmedabad");
@@ -131,7 +139,7 @@ const images = [
 
 
       {/* Navbar */}
-      <header className=" sticky top-0 z-50  bg-[#0C1B4D] flex gap-30 items-center px-2 py-4 sm:px-8 sm:py-4 border-b border-white/10  ">
+      <header className=" sticky top-0 z-50  bg-[#0C1B4D] flex justify-between md:gap-30 md:items-center px-2 py-4 sm:px-8 sm:py-4 border-b border-white/10  ">
         <div className="flex items-center gap-0 sm:gap-2 cursor-pointer">
            {/* <button
         className="p-1 sm:p-3 m-2 sm:m-4 bg-white/5 text-white rounded-md cursor-pointer "
@@ -142,7 +150,7 @@ const images = [
       <div 
        onClick={() => setIsOpen(true)}
         className="flex items-center gap-1 cursor-pointer select-none text-sm sm:text-lg">
-           <FaLocationDot size={20} />
+           <FaLocationDot className="w-3 h-3 sm:w-5 sm:h-5 md:w-5 md:h-5 " />
           <span className="sm:font-semibold">{selectedCity}</span>
        </div>
          <LocationModal
@@ -194,16 +202,15 @@ const images = [
       </AnimatePresence>*/}
 
         </div>
-        <div className="flex items-center gap-2 sm:gap-46  sm:mt-0 w-full sm:w-auto ">
+        <div className="flex items-center gap-2 sm:gap-46   sm:w-auto ">
            <div className="flex items-center gap-2 relative">
-            <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
-                  onClick={() => setShowModal(true)}  >
-           <FaSearch />
-         </span>
+           
          
           
-                 <div className="relative w-full sm:w-full">
+                 <div className="hidden md:block relative w-full sm:w-full">
+                  <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-white w-5 h-5"  />
                    <input
+                   
                      type="text"
                      onClick={() => setShowModal(true)}
                      value={value}
@@ -211,10 +218,10 @@ const images = [
                      className="px-3 py-2 rounded-md text-white bg-white/10 focus:outline-none w-full sm:w-[600px] shadow-md text-sm placeholder-transparent"
                      placeholder="."
                    />
-         
+          
                    {/* Fake placeholder (animated) */}
                    {!value &&(
-                   <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                   <div className="absolute inset-y-0 left-12 flex items-center pointer-events-none">
                      <AnimatePresence mode="wait">
                        <motion.span
                          key={placeholderIndex}
@@ -222,7 +229,7 @@ const images = [
                          animate={{ y: "0%", opacity: 1 }}
                          exit={{ y: "100%", opacity: 0 }}
                          transition={{ duration: 0.4 }}
-                          className="text-gray-400 text-sm"
+                          className="text-gray-300 text-sm"
                        >
                          {placeholders[placeholderIndex]}
                        </motion.span>
@@ -248,25 +255,25 @@ const images = [
                        animate={{ y: 0, opacity: 1 }}
                        exit={{ y: -50, opacity: 0 }}
                        transition={{ duration: 0.4 }}
-                       className=" w-[90%] sm:w-[650px] max-h-[80vh] rounded-2xl shadow-lg mt-20 p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50 flex flex-col  "
+                       className=" w-[90%] sm:w-[650px] max-h-[80vh] rounded-2xl shadow-lg mt-15 md:mt-20 p-2 md:p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50 flex flex-col  "
                         onClick={(e) => e.stopPropagation()}
                      >
 
-                      <div className="sticky top-0  z-20 p-6 pb-3 ">
+                      <div className="sticky top-0  z-20 pt-6 md:pt-3 pl-3 md:pl-0 md:p-6 pb-3 ">
           {/* Close button */}
           <button
               onClick={() => setShowModal(false)}
-            className="absolute top-2 right-2 text-gray-500 hover:text-white cursor-pointer"
+            className="absolute top-1 right-1 md:top-1 md:right-1 text-gray-500 hover:text-white cursor-pointer"
           >
             <X size={22} />
           </button>
                        {/* Search Input */}
-                       <div className="relative w-full">
+                       <div className="relative md:w-full">
                          <input
                            type="text"
                            value={value}
                            onChange={(e) => setValue(e.target.value)}
-                           className="px-4 py-2  w-[600px] sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
+                           className="px-4 py-2  w-[220px] sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
                            placeholder="."
                          />
          
@@ -290,7 +297,7 @@ const images = [
                        </div>
          
                        {/* Tabs */}
-                       <div className="flex items-start gap-7 mt-6 text-white  text-sm">
+                       <div className="flex items-start gap-2 md:gap-7 mt-6 text-white  text-sm  max-sm:overflow-x-auto max-sm:whitespace-nowrap scrollbar-hide">
                          {["All", "Concerts", "Events", "Movies", "Activity"].map((tab, i) => (
                            <button
                              key={i}
@@ -310,7 +317,7 @@ const images = [
                          <h3 className="text-white font-semibold mb-3">
                            Trending in Ahmedabad
                          </h3>
-                         <div className="grid grid-cols-2 gap-4">
+                         <div className="grid sm:grid-cols-2 gap-4">
                            {[
                              { title: "War 2", img: "/movie1.jpeg" },
                              { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
@@ -344,20 +351,25 @@ const images = [
                  )}
                </AnimatePresence>
       </div>
-      <div className="flex flex-row gap-6 items-end">
-         <span className="text-sm sm:text-xl cursor-pointer hover:text-yellow-400"  onClick={() => setIsOpenBell(true)}>
+      <div className="flex flex-row gap-2 md:gap-5 items-end">
+        <div className="relative inline-block">
+         <span    onClick={handleBellClick} className="-top-2 text-sm sm:text-xl cursor-pointer hover:text-yellow-400"  >
   <FaBell   
-         />
+         /></span>
+       {messages > 0 && (
+    <span
+      className=" absolute -top-3 md:-top-2 -right-2 bg-red-600 text-white text-[10px] sm:text-xs font-bold px-1 py-0.1 md:px-1.5 md:py-0.5 rounded-full inline-flex items-center justify-center md:animate-badge-pulse"
+    aria-live="polite" >
+      {messages}
+    </span>
+  )}
        
-        <span>
-        
-        </span>
      
-</span>
+</div>
     <span
   onClick={() => setShowLogin(true)}
    
-  className="relative inline-block text-sm sm:text-base font-medium transition-transform duration-300 hover:text-yellow-400 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 hover:after:w-full after:bg-yellow-400 after:transition-all after:duration-300 cursor-pointer sign-in-btn"
+  className=" relative md:inline-block text-xs md:text-base md:font-medium transition-transform duration-300 hover:text-yellow-400 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 hover:after:w-full after:bg-yellow-400 after:transition-all after:duration-300 cursor-pointer md:sign-in-btn"
 >
   Sign In
 </span>  
@@ -366,7 +378,7 @@ const images = [
        
         className="flex items-center gap-2 cursor-pointer select-none hover:text-yellow-400"
       >
-        <FaUserCircle size={23} className=" " />
+        <FaUserCircle  className=" w-4 h-4 sm:w-4 sm:h-4 md:w-6 md:h-6" />
       </span>
 
       {openProfile && (

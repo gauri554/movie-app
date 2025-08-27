@@ -39,19 +39,19 @@ const EventDetails: NextPage = () => {
       {/* Main Banner */}
 
       
-      <div className="max-w-7xl mx-auto px-2 md:px-8 md:py-3 ">
+      <div className="max-w-7xl mx-auto  md:px-4 md:py-3 ">
          <Header title="Tanvi: The Great" subtitle="Ahmedabad"/>
         <Image
           src="/coldplay.png" // replace with actual path
           alt="Coldplay Event"
           width={700}
           height={300}
-          className="rounded-xl "
+          className="rounded-xl px-2"
         />
       </div>
 
       {/* Event Info */}
-      <section className="max-w-7xl mx-auto px-8 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <section className="max-w-7xl mx-auto px-2 md:px-8 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <h2 className="md:text-2xl md:font-bold mb-4">
             Coldplay: Music Of The Spheres World Tour
@@ -187,15 +187,15 @@ Friday, 24 Aug 2019 | 6:30PM - 9:30PM</li>
               className="h-[150] rounded-lg mt-2"
             />
           </div>
+            <button  onClick={() => router.push("/checkout")}className="bg-pink-500 text-white  rounded-lg font-semibold cursor-pointer sweep-button">
+         <span> Buy tickets</span>
+       </button>
         </aside>
       </section>
 
       {/* Bottom Bar */}
-      <footer className="bg-[#FDE9D9] flex justify-between items-center px-6 py-4 mt-10 rounded-t-xl">
-        <p className="text-gray-800 font-semibold">$30 - $80</p>
-        <button  onClick={() => router.push("/checkout")}className="bg-pink-500 text-white  rounded-lg font-semibold cursor-pointer sweep-button">
-         <span> Buy tickets</span>
-       </button>
+      <footer className="bg-[#091339] py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
+        © 2025 Movie App. All Rights Reserved.
       </footer>
      <style jsx global>{`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');

@@ -101,9 +101,9 @@ const [openFilters, setOpenFilters] = useState(false);
                 )}
       <div className="max-w-7xl mx-auto px-2 md:px-8 p-4 md:py-3">
         {/* Header */}
- <header className=" px-0 gap-14 md:gap-5   py-2 flex flex-row md:items-center md:justify-between mb-4">
+ <header className=" px-0  md:gap-5   py-2 flex flex-row justify-between md:items-center md:justify-between mb-4">
           <div className="flex items-center gap-4">
-         <button onClick={() => router.push(`/new-release`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
+         <button onClick={() => router.push(`/new-release`)} className="w-6 h-6 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-xl md:text-3xl">
               ‹
             </button>
             <div>
@@ -121,7 +121,7 @@ const [openFilters, setOpenFilters] = useState(false);
 
        
           <div className="flex items-center gap-2 relative">
-                   <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+                   <span   className="text-base sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
                 onClick={() => setShowModal(true)}    >
              <FaSearch />
            </span>
@@ -295,7 +295,7 @@ const [openFilters, setOpenFilters] = useState(false);
             <button
               key={lang}
               onClick={() => setSelectedLang(lang)}
-              className={`shrink-0 px-2 md:px-4 py-1 md:py-2 text-sm md:text-sm rounded-full cursor-pointer ${
+              className={`shrink-0 px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm rounded-full cursor-pointer ${
                 selectedLang === lang
                   ? "bg-[#ff4655] text-white"
                   : "bg-white/6 hover:bg-[#ff4655]"
@@ -307,7 +307,7 @@ const [openFilters, setOpenFilters] = useState(false);
         
           <button
             onClick={() => setOpenFilters(true)}
-            className="shrink-0 px-2 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-sm bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1 cursor-pointer"
+            className="shrink-0 px-2 md:px-4 py-1 md:py-2 rounded-full text-xs md:text-sm bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1 cursor-pointer"
           >
             <FiFilter size={18} />
             Filter
@@ -409,32 +409,68 @@ const [openFilters, setOpenFilters] = useState(false);
   <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4">
     Shows
   </h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-10">
-    {filteredComedy.map((c) => (
-      <div key={c.title} onClick={() => router.push("/eventlist")}
-           className="shrink-0 w-full max-w-[180px] h-[150px] md:h-auto rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)] cursor-pointer">
-        <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url('${c.img}')` }} />
-        <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60">
-          <div className="text-sm md:text-lg font-semibold">{c.title}</div>
-          <div className="text-xs md:text-sm opacity-80">{c.subtitle}</div>
-        </div>
+  <div className="flex gap-4 overflow-x-auto sm:hidden no-scrollbar mb-10">
+  {[...filteredComedy, ...filteredMusic].map((item) => (
+    <div
+      key={item.title}
+      onClick={() => router.push("/eventlist")}
+      className="shrink-0 w-[120px] h-[150px] md:w-[180px] md:h-[220px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)] cursor-pointer"
+    >
+      <div
+        className="h-44 bg-cover bg-center"
+        style={{ backgroundImage: `url('${item.img}')` }}
+      />
+      <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60">
+        <div className="text-sm font-semibold">{item.title}</div>
+        <div className="text-xs opacity-80">{item.subtitle}</div>
       </div>
-    ))}
-    {filteredMusic.map((m) => (
-      <div key={m.title} onClick={() => router.push("/eventlist")}
-           className="shrink-0 w-full max-w-[180px] h-[150px] md:h-auto rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)] cursor-pointer">
-        <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url('${m.img}')` }} />
-        <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60">
-          <div className="text-sm md:text-lg font-semibold">{m.title}</div>
-          <div className="text-xs md:text-sm opacity-80">{m.subtitle}</div>
-        </div>
-      </div>
-    ))}
+    </div>
+  ))}
 
-    {filteredComedy.length + filteredMusic.length === 0 && (
-      <p className="text-white/60">No shows available for {selectedLang}</p>
-    )}
-  </div>
+  {filteredComedy.length + filteredMusic.length === 0 && (
+    <p className="text-white/60">No shows available for {selectedLang}</p>
+  )}
+</div>
+
+{/* Tablet & Desktop view - Grid */}
+<div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-10">
+  {filteredComedy.map((c) => (
+    <div
+      key={c.title}
+      onClick={() => router.push("/eventlist")}
+      className="rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)] cursor-pointer"
+    >
+      <div
+        className="h-44 bg-cover bg-center"
+        style={{ backgroundImage: `url('${c.img}')` }}
+      />
+      <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60">
+        <div className="text-sm md:text-lg font-semibold">{c.title}</div>
+        <div className="text-xs md:text-sm opacity-80">{c.subtitle}</div>
+      </div>
+    </div>
+  ))}
+  {filteredMusic.map((m) => (
+    <div
+      key={m.title}
+      onClick={() => router.push("/eventlist")}
+      className="rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)] cursor-pointer"
+    >
+      <div
+        className="h-44 bg-cover bg-center"
+        style={{ backgroundImage: `url('${m.img}')` }}
+      />
+      <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60">
+        <div className="text-sm md:text-lg font-semibold">{m.title}</div>
+        <div className="text-xs md:text-sm opacity-80">{m.subtitle}</div>
+      </div>
+    </div>
+  ))}
+
+  {filteredComedy.length + filteredMusic.length === 0 && (
+    <p className="text-white/60">No shows available for {selectedLang}</p>
+  )}
+</div>
 </section>
 
 
@@ -582,7 +618,7 @@ const [openFilters, setOpenFilters] = useState(false);
           </div>*/}
 
           {/* Wrapper */}
-<div className="flex overflow-x-auto sm:grid sm:grid-cols-6 gap-2 md:gap-6 no-scrollbar">
+<div className="flex overflow-x-auto sm:grid sm:grid-cols-6 gap-4 md:gap-6 no-scrollbar">
   {bestThisWeek.map((b) => (
     <div
       key={b.title}

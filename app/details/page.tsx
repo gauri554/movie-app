@@ -16,6 +16,8 @@ import { useRouter } from "next/navigation";
 import RatingModal from "../components/RatingModal";
 import { useState, useEffect } from "react";
 import EnquiryForm from "../components/EnquiryForm";
+import CategoryButton from "../components/CategoryButton";
+import { FaFilm, FaCalendarAlt, FaTicketAlt } from "react-icons/fa";
 import "../new-release/new-release.css";
 import "../globals.css"; // Ensure global styles are imported
 // MovieDetailsDesktop.tsx
@@ -105,9 +107,9 @@ const [isModalOpen, setIsModalOpen] = useState(false);
       <div className="p-4 px-2 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <header className="flex items-center justify-between mb-8">
+        <header className="flex items-center justify-between mb-2 md:mb-8 md:border-none border-b border-white/10">
           <div className="flex items-center gap-3">
-            <button onClick={() => router.push(`/new-release`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
+            <button onClick={() => router.push(`/new-release`)} className="w-6 h-6 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-xl md:text-3xl">
               ‹
             </button>
             <div>
@@ -124,7 +126,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           
                  
                     <div className="flex items-center gap-2 relative">
-                             <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+                             <span   className="text-base sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
                           onClick={() => setShowModal(true)}    >
                        <FaSearch />
                      </span>
@@ -173,25 +175,25 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                                  animate={{ y: 0, opacity: 1 }}
                                  exit={{ y: -50, opacity: 0 }}
                                  transition={{ duration: 0.4 }}
-                                 className=" w-[90%] sm:w-[650px] max-h-[80vh] rounded-2xl shadow-lg mt-20 p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50 flex flex-col  "
+                                 className=" w-[90%] sm:w-[650px] max-h-[80vh] rounded-2xl shadow-lg mt-15 md:mt-20 p-2 md:p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50 flex flex-col  "
                                   onClick={(e) => e.stopPropagation()}
                                >
           
-                                <div className="sticky top-0  z-20 p-6 pb-3 ">
+                                <div className="sticky top-0  z-20 pt-6 md:pt-3 pl-3 md:pl-0 md:p-6 pb-3 ">
                     {/* Close button */}
                     <button
                         onClick={() => setShowModal(false)}
-                      className="absolute top-2 right-2 text-gray-500 hover:text-white cursor-pointer"
+                      className="absolute top-1 right-1 md:top-1 md:right-1 text-gray-500 hover:text-white cursor-pointer"
                     >
                       <X size={22} />
                     </button>
                                  {/* Search Input */}
-                                 <div className="relative w-full">
+                                 <div className="relative md:w-full">
                                    <input
                                      type="text"
                                      value={value}
                                      onChange={(e) => setValue(e.target.value)}
-                                     className="px-4 py-2  w-[600px] sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
+                                     className="px-4 py-2  w-[220px] sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
                                      placeholder="."
                                    />
                    
@@ -215,7 +217,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                                  </div>
                    
                                  {/* Tabs */}
-                                 <div className="flex items-start gap-7 mt-6 text-white  text-sm">
+                                 <div className="flex items-start gap-2 md:gap-7 mt-6 text-white  text-sm max-sm:overflow-x-auto max-sm:whitespace-nowrap scrollbar-hide">
                                    {["All", "Concerts", "Events", "Movies", "Activity"].map((tab, i) => (
                                      <button
                                        key={i}
@@ -235,7 +237,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                                    <h3 className="text-white font-semibold mb-3">
                                      Trending in Ahmedabad
                                    </h3>
-                                   <div className="grid grid-cols-2 gap-4">
+                                   <div className="grid sm:grid-cols-2 gap-4">
                                      {[
                                        { title: "War 2", img: "/movie1.jpeg" },
                                        { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
@@ -271,6 +273,11 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                     </div>
           </div>
         </header>
+   <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0">
+        <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
+        <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
+        <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
+      </div>
 
         {/* Main grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
@@ -338,7 +345,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                     <span className="text-sm text-white/70">| {reviews} Reviews</span>
                   </span>
 
-                  <button   onClick={() => setIsModalOpen(true)} className=" w-[90px] md:w-[auto] bg-yellow-400 text-black  hover:bg-yellow-300 md:px-3 py-1 rounded-full font-semibold cursor-pointer">Rate Now</button>
+                  <button   onClick={() => setIsModalOpen(true)} className=" w-[90px] md:w-[auto] bg-yellow-400 text-black  hover:bg-yellow-300 px-1 md:px-3 py-1 rounded-full font-semibold cursor-pointer">Rate Now</button>
                    <RatingModal
         isOpen={isModalOpen}
         setIsOpen={setIsModalOpen}
@@ -468,9 +475,9 @@ const [isModalOpen, setIsModalOpen] = useState(false);
  
      
           <section className="mb-6">
-      <h3 className="text-xl font-semibold mb-4">Cast</h3>
+      <h3 className=" md:text-xl font-semibold mb-4">Cast</h3>
 
-       <div className="flex gap-16 py-4 px-4 overflow-x-auto scrollbar-hide no-scrollbar">
+       <div className="flex gap-4 md:gap-16 py-4 px-4 overflow-x-auto scrollbar-hide no-scrollbar">
     {cast.map((c) => (
       <div
         key={c.name}
@@ -494,8 +501,8 @@ const [isModalOpen, setIsModalOpen] = useState(false);
 
             {/* Crew */}
             <section className="mb-6">
-              <h3 className="text-xl font-semibold mb-4">Crew</h3>
-              <div className="flex gap-16 py-4 px-4 overflow-x-auto scrollbar-hide no-scrollbar">
+              <h3 className=" md:text-xl font-semibold mb-4">Crew</h3>
+              <div className="flex gap-4 md:gap-16 py-4 px-4 overflow-x-auto scrollbar-hide no-scrollbar">
     {crew.map((c) => (
       <div
         key={c.name}
@@ -518,55 +525,81 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             {/* You might also like */}
             <section className="mb-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold">You might also like</h3>
-                <button className="text-sm text-white/70 underline">View All</button>
+                <h3 className="md:text-xl font-semibold">You might also like</h3>
+                <button className="text-xs md:text-sm text-white/70 underline">View All</button>
               </div>
 
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-                {/* sample cards */}
-                {Array.from({ length: 4 }).map((_, i) => (
-                  <div key={i} className="min-w-[160px]  rounded-xl overflow-hidden bg-white/5 ">
-                     <Image
-                             src={images[i]}
-                             alt="Inception"
-                             width={300}
-                             height={300}
-                             className="rounded-lg new-release-image"
-                           />
-                       
-                  
+             <div className="flex gap-4 overflow-x-auto md:hidden no-scrollbar">
+  {Array.from({ length: 4 }).map((_, i) => (
+    <div
+      key={i}
+      className="w-[120px] md:min-w-[160px] rounded-xl overflow-hidden bg-white/5 flex-shrink-0"
+    >
+      <Image
+        src={images[i]}
+        alt={`Movie ${i + 1}`}
+        width={300}
+        height={300}
+        className="rounded-lg new-release-image"
+      />
+      <div className="p-1 md:p-3">
+        <div className="text-sm md:text-lg md:font-semibold">Movie {i + 1}</div>
+        <div className="text-xs md:text-sm text-white/70 mt-1">
+          ⭐ 7.9 · 10.5k Votes
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
 
-                    <div className="p-3">
-                      <div className="font-semibold">Movie {i + 1}</div>
-                      <div className="text-sm text-white/70 mt-1">⭐ 7.9 · 10.5k Votes</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+{/* Desktop view - 4 column grid */}
+<div className="hidden md:grid grid-cols-4 gap-4">
+  {Array.from({ length: 4 }).map((_, i) => (
+    <div
+      key={i}
+      className="rounded-xl overflow-hidden bg-white/5"
+    >
+      <Image
+        src={images[i]}
+        alt={`Movie ${i + 1}`}
+        width={300}
+        height={300}
+        className="rounded-lg new-release-image"
+      />
+      <div className="p-3">
+        <div className="font-semibold">Movie {i + 1}</div>
+        <div className="text-sm text-white/70 mt-1">
+          ⭐ 7.9 · 10.5k Votes
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
             </section>
 
             {/* Company Detail */}
             <section className="mb-6 p-6 rounded-xl bg-white/5">
-              <h3 className="text-xl font-semibold mb-4">Company Detail</h3>
+              <h3 className="md:text-xl font-semibold mb-4">Company Detail</h3>
               <div className="grid grid-cols-1  md:grid-cols-2 gap-4 text-sm text-white/80">
                 <div>
-                  <div className="flex items-center gap-2"> <FaHome className="text-xl" /><strong>Production House</strong></div>
-                  <div className="mt-1 text-white/70">{producer}</div>
+                  <div className="flex items-center gap-2"> <FaHome className="md:text-xl" /><strong>Production House</strong></div>
+                  <div className="mt-1 text-white/70 text-xs md:text-sm">{producer}</div>
                 </div>
                 <div>
-                  <div className="flex items-center gap-2"><FaMapMarkerAlt className="text-xl" /><strong>Address</strong></div>
-                  <div className="mt-1 text-white/70">4140 Parker Rd. Allentown, Mumbai 31134</div>
+                  <div className="flex items-center gap-2"><FaMapMarkerAlt className="md:text-xl" /><strong>Address</strong></div>
+                  <div className="mt-1 text-white/70 text-xs md:text-sm">4140 Parker Rd. Allentown, Mumbai 31134</div>
                 </div>
 
                 <div>
-                  <div className="flex items-center gap-2"><FaPhone className="text-xl" /><strong>Phone No</strong></div>
-                  <div className="mt-1 text-white/70">+91 9999999999</div>
+                  <div className="flex items-center gap-2"><FaPhone className="md:text-xl" /><strong>Phone No</strong></div>
+                  <div className="mt-1 text-white/70 text-xs md:text-sm">+91 9999999999</div>
                 </div>
 
                 <div>
                   <div className="flex items-center gap-2">
-<FaGlobe className="text-xl" /><strong>Website</strong></div>
-                  <div className="mt-1 text-white/70">www.yourdomainname.com</div>
+<FaGlobe className="md:text-xl" /><strong>Website</strong></div>
+                  <div className="mt-1 text-white/70 text-xs md:text-sm">www.yourdomainname.com</div>
                 </div>
               </div>
             </section>

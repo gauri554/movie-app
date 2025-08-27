@@ -50,13 +50,13 @@ export default function LoginDrawer({
           <input
             type="email"
             placeholder="Email"
-            className="w-full px-4 py-3 rounded-lg bg-white/10 text-white placeholder-white/50
+            className="w-full px-4 py-2 sm:py-3 md:py-3 rounded-lg bg-white/10 text-white placeholder-white/50
                        focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
           />
           <input
             type="password"
             placeholder="Password"
-            className="w-full px-4 py-3 rounded-lg bg-white/10 text-white placeholder-white/50
+            className="w-full px-4 py-2 sm:py-3 md:py-3 rounded-lg bg-white/10 text-white placeholder-white/50
                        focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
           />
           <button

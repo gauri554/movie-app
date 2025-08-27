@@ -5,7 +5,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
 import { X } from "lucide-react";
-
+import { navConfig } from "../nav-config";
 const placeholders = [
   "Search movies...",
   "Find events...",
@@ -32,30 +32,36 @@ export default function Header({ title, subtitle }: HeaderProps) {
     return () => clearInterval(interval);
   }, []);
 
+
+   const {  backPath } = navConfig[pathname] || {
+    title: "App",
+    subtitle: "",
+    backPath: "/",
+  };
   return (
-    <header className="px-0 gap-14 md:gap-5   py-1 flex flex-row md:items-center md:justify-between mb-4">
+    <header className="px-2  sm:px-2 md:gap-5   py-2 sm:py-2 flex justify-between md:items-center md:justify-between mb-4 overflow-x-hidden">
       {/* Left side: Title & Subtitle */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3 sm:gap-4">
         <button
-          onClick={() => router.push(`/`)}
-          className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl"
+                  onClick={() => router.push(backPath)}
+          className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-xl sm:text-3xl"
         >
           ‹
         </button>
         <div>
-          <h1 className="md:text-3xl sm:font-semibold">{title}</h1>
-          <div className="text-xs md:text-sm text-white/70">{subtitle}</div>
+          <h1 className="text-lg sm:text-2xl md:text-3xl sm:font-semibold">{title}</h1>
+          <div className="text-xs sm:text-sm md:text-sm text-white/70">{subtitle}</div>
         </div>
       </div>
 
       {/* Right side: Buttons + Search */}
-      <div className="flex flex-row md:items-center gap-4 md:gap-7 md:mt-0">
+      <div className="flex flex-row items-center md:items-center md:gap-7 md:mt-0">
         {/* Nav Buttons */}
-        <div className="hidden md:flex flex flex-col md:flex-row items-center gap-3 md:gap-3">
+        <div className="hidden md:flex md:flex-row items-center gap-3 md:gap-3">
           <button
             onClick={() => router.push("/new-release")}
             className={`w-full sm:w-auto px-4 py-2 rounded-full text-sm cursor-pointer ${
-              pathname === "/new-release"
+              pathname === "/new-release" 
                 ? "bg-[#ff4655] text-white"
                 : "bg-[#ff4655] hover:bg-white/10"
             }`}
@@ -65,9 +71,10 @@ export default function Header({ title, subtitle }: HeaderProps) {
           <button
             onClick={() => router.push("/events")}
             className={`w-full sm:w-auto px-4 py-2 rounded-full text-sm cursor-pointer ${
-              pathname === "/events"
+              pathname === "/events" 
                 ? "bg-[#ff4655] text-white"
-                : "bg-white/6 hover:bg-[#ff4655]"
+                : "bg-white/6 hover:bg-[#ff4655]" 
+               
             }`}
           >
             Events
@@ -85,9 +92,9 @@ export default function Header({ title, subtitle }: HeaderProps) {
         </div>
 
         {/* Search / Modal */}
-        <div className="flex items-center gap-2 relative">
+        <div className="flex items-center sm:gap-2 relative">
           <span
-            className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+            className="text-base sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
             onClick={() => setShowModal(true)}
           >
             <FaSearch />
@@ -126,7 +133,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
                         type="text"
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
-                        className="px-4 py-2 w-[600px] sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
+                        className="px-4 py-2 w-full sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
                         placeholder="."
                       />
 

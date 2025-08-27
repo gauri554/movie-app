@@ -37,8 +37,8 @@ export default function RatingModal({ isOpen, setIsOpen, onSubmit }: RatingModal
             onClick={(e) => e.stopPropagation()}
           >
             {/* Title */}
-            <h2 className="text-2xl font-bold mb-4 text-center tracking-wide">Rate This Event</h2>
-            <p className="text-white/70 text-center mb-6">Your feedback helps us improve!</p>
+            <h2 className="md:text-2xl font-bold mb-4 text-center tracking-wide">Rate This Event</h2>
+            <p className="text-white/70 text-center mb-6 text-xs md:text-lg">Your feedback helps us improve!</p>
 
             {/* Star Rating */}
             <div className="flex justify-center gap-3 mb-6">

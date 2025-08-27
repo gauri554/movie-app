@@ -76,16 +76,17 @@ const EventListPage: React.FC = () => {
   const router = useRouter();
 
   const loadMore = () => {
-    setVisibleCount((prev) => prev + 4);
+    setVisibleCount((prev) => prev + 2);
   };
 
   return (
     <div className="min-h-screen font-montserrat bg-[#0D1B4C] text-white">
-      <div className="p-4 px-2 md:px-[auto] md:p-8">
+      <div className="  md:px-[auto] md:p-3">
         <Header title="Stand up comedy" subtitle="Ahmedabad" />
-
+</div>
+<div className="  px-2 md:px-[auto] md:p-3">
         <h2 className="text-sm md:text-lg md:text-left text-red-500 mt-4 mb-4 font-semibold">
-          Stand Up {events.length}+ Events
+          Stand Up {visibleCount}+ Events
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -102,22 +103,22 @@ const EventListPage: React.FC = () => {
                 />
               </div>
               <div className="p-4 flex flex-col flex-grow">
-                <h3 className="md:text-2xl font-semibold text-center md:text-left">
+                <h3 className="text-[15px] md:text-2xl font-semibold text-lext md:text-left">
                   {event.title}
                 </h3>
-                <p className="text-gray-300 text-center md:text-left">
+                <p className="text-xs md:text-base text-gray-300 text-left md:text-left">
                   {event.comedian}
                 </p>
-                <p className="mt-2 text-center md:text-left">
+                <p className="text-sm md:text-lg mt-2 text-left md:text-left">
                   Time: {event.time}
                 </p>
-                <p className="text-center md:text-left">
-                  <span className="font-bold">Venue</span> {event.venue}
+                <p className="text-sm md:text-lg text-left md:text-left">
+                  <span className="text-sm md:text-lg font-bold">Venue</span> {event.venue}
                 </p>
                 <button
                   onClick={() => router.push(`/checkout`)}
-                  className="mt-2 bg-red-500 text-white py-2 px-4 rounded-lg font-semibold 
-                             hover:bg-red-600 transition cursor-pointer"
+                  className="mt-2 bg-red-500 text-white py-1 px-2 md:py-2 md:px-4 rounded-lg font-semibold 
+                          text-xs md:text-base   hover:bg-red-600 transition cursor-pointer"
                 >
                   🎟 Buy tickets
                 </button>
@@ -130,13 +131,13 @@ const EventListPage: React.FC = () => {
           <div className="flex justify-center mt-10">
             <button
               onClick={loadMore}
-              className="px-8 py-3 bg-gradient-to-r from-red-600 to-red-400 text-white 
+              className="px-4 py-2 md:px-8 md:py-3 bg-gradient-to-r from-red-600 to-red-400 text-white 
                          font-semibold rounded-full shadow-lg hover:scale-105 
                          hover:from-red-500 hover:to-red-300 transition-all duration-300 
-                         flex items-center gap-2 "
+                         flex items-center gap-2 cursor-pointer text-xs md:text-lg"
             >
             Load More
-              <span className="animate-bounce">  <FaArrowDown className="text-lg" /></span>
+              <span className="animate-bounce">  <FaArrowDown className="md:text-lg" /></span>
             </button>
           </div>
         )}

@@ -82,7 +82,7 @@ const [location, setLocation] = useState<string>("");
 
   return (
     <div className="fixed inset-0 z-50 font-montserrat flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="bg-[#0C1B4D] text-white rounded-xl shadow-2xl w-[620px] max-h-[85vh] relative flex flex-col">
+      <div className="bg-[#0C1B4D] text-white rounded-xl shadow-2xl w-[620px] max-h-[85vh] max-sm:w-[90%] relative flex flex-col">
         
         {/* Sticky Header (only top part fixed) */}
         <div className="sticky top-0 bg-[#0C1B4D] z-10 p-6 pb-3 ">
@@ -91,11 +91,11 @@ const [location, setLocation] = useState<string>("");
             onClick={onClose}
             className="absolute top-4 right-4 text-gray-500 hover:text-white cursor-pointer"
           >
-            <X size={22} />
+            <X className="w-4 h-4 sm:w-4 sm:w-4 md:w-6 md:h-6" />
           </button>
 
           {/* Title */}
-          <h2 className="text-[20px] font-semibold mb-5">Select Location</h2>
+          <h2 className="text-sm sm:text-[20px] font-semibold mb-5">Select Location</h2>
 
           {/* Search */}
           <input
@@ -105,9 +105,9 @@ const [location, setLocation] = useState<string>("");
           />
 
           {/* Use current location */}
-          <div className="flex items-center gap-2 text-white font-medium text-[15px] mt-4 cursor-pointer">
-            <FaLocationDot size={18} className="text-gray-300" />
-            <span  onClick={getCurrentLocation} >Use current location</span>
+          <div className="flex items-center gap-2 text-white font-medium text-sm sm:text-[15px] mt-4 cursor-pointer">
+            <FaLocationDot  className="text-gray-300 w-4 h-4 sm:w-4 sm:h-4" />
+            <span  onClick={getCurrentLocation}  >Use current location</span>
            {location && (
         <p className=" text-gray-400"  onClick={() => {
                   onSelect(location);
@@ -125,16 +125,16 @@ const [location, setLocation] = useState<string>("");
           style={{ maxHeight: "calc(85vh - 140px)" }}
         >
           {/* Popular Cities */}
-          <h3 className="text-[16px] font-semibold mt-6 mb-4">Popular Cities</h3>
-          <div className="grid grid-cols-5 gap-4 mb-6">
+          <h3 className="text-sm md:text-[16px] font-semibold mt-6 mb-4">Popular Cities</h3>
+          <div className="grid grid-cols-3 md:grid-cols-5 md:gap-4 mb-6">
             {popularCities.map((city) => (
               <div
                 key={city.name}
                 onClick={() => onSelect(city.name)}
                 className="rounded-lg flex flex-col items-center justify-center py-1 cursor-pointer hover:shadow-md"
               >
-                <span className="text-[28px] mb-1">{city.icon}</span>
-                <span className="text-[13px] font-medium text-center">
+                <span className=" text-lg md:text-[28px] mb-1">{city.icon}</span>
+                <span className="text-[10px] md:text-[13px] font-medium text-center">
                   {city.name}
                 </span>
               </div>
@@ -142,8 +142,8 @@ const [location, setLocation] = useState<string>("");
           </div>
 
           {/* All Cities Alphabet Nav */}
-          <h3 className="text-[16px] font-semibold mb-3">All Cities</h3>
-          <div className="flex flex-wrap gap-3 text-white text-[14px] mb-3">
+          <h3 className="text-sm md:text-[16px] font-semibold mb-3">All Cities</h3>
+          <div className="flex flex-wrap gap-3 text-white text-xs md:text-[14px] mb-3">
             {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
               <span
                 key={letter}
@@ -155,7 +155,7 @@ const [location, setLocation] = useState<string>("");
           </div>
 
           {/* All Cities List */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-gray-400 text-sm">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-gray-400 text-xs md:text-sm">
             {cities.map((city, idx) => (
               <div
                 key={idx}

@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import "./new-release.css";
 import "../globals.css";
 import {X} from "lucide-react";
+import CategoryButton from "../components/CategoryButton";
+import { FaFilm, FaCalendarAlt, FaTicketAlt } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Filters from "../components/Filters";
 import { FaSearch } from "react-icons/fa";
@@ -96,9 +98,9 @@ const [showModal, setShowModal] = useState(false);
     
       <div className="max-w-7xl mx-auto px-2 md:px-8 md:py-3 ">
      
-       <header className=" px-0 gap-14 md:gap-5 sm:px-3 md:px-2 py-2 flex flex-row md:items-center md:justify-between mb-4">
+       <header className=" px-0  md:gap-5 sm:px-3 md:px-2 py-2 flex flex-row md:mb-6 justify-between md:items-center md:justify-between  md:border-none border-b border-white/10">
           <div className="flex items-center gap-4">
-         <button onClick={() => router.push(`/`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
+         <button onClick={() => router.push(`/`)} className="w-6 h-6 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-xl md:text-3xl">
               ‹
             </button>
             <div>
@@ -116,7 +118,7 @@ const [showModal, setShowModal] = useState(false);
 
        
           <div className="flex items-center gap-2 relative">
-                   <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+                   <span   className="text-base sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
                 onClick={() => setShowModal(true)}    >
              <FaSearch />
            </span>
@@ -165,25 +167,25 @@ const [showModal, setShowModal] = useState(false);
                        animate={{ y: 0, opacity: 1 }}
                        exit={{ y: -50, opacity: 0 }}
                        transition={{ duration: 0.4 }}
-                       className=" w-[90%] sm:w-[650px] max-h-[80vh] rounded-2xl shadow-lg mt-20 p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50 flex flex-col  "
+                       className=" w-[90%] sm:w-[650px] max-h-[80vh] rounded-2xl shadow-lg mt-15 md:mt-20 p-2 md:p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50 flex flex-col  "
                         onClick={(e) => e.stopPropagation()}
                      >
 
-                      <div className="sticky top-0  z-20 p-6 pb-3 ">
+                      <div className="sticky top-0  z-20 pt-6 md:pt-3 pl-3 md:pl-0 md:p-6 pb-3 ">
           {/* Close button */}
           <button
               onClick={() => setShowModal(false)}
-            className="absolute top-2 right-2 text-gray-500 hover:text-white cursor-pointer"
+            className="absolute top-1 right-1 md:top-1 md:right-1 text-gray-500 hover:text-white cursor-pointer"
           >
             <X size={22} />
           </button>
                        {/* Search Input */}
-                       <div className="relative w-full">
+                       <div className="relative md:w-full">
                          <input
                            type="text"
                            value={value}
                            onChange={(e) => setValue(e.target.value)}
-                           className="px-4 py-2  w-[600px] sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
+                           className="px-4 py-2  w-[220px] sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
                            placeholder="."
                          />
          
@@ -207,7 +209,7 @@ const [showModal, setShowModal] = useState(false);
                        </div>
          
                        {/* Tabs */}
-                       <div className="flex items-start gap-7 mt-6 text-white  text-sm">
+                       <div className="flex items-start gap-2 md:gap-7 mt-6 text-white  text-sm max-sm:overflow-x-auto max-sm:whitespace-nowrap scrollbar-hide">
                          {["All", "Concerts", "Events", "Movies", "Activity"].map((tab, i) => (
                            <button
                              key={i}
@@ -227,7 +229,7 @@ const [showModal, setShowModal] = useState(false);
                          <h3 className="text-white font-semibold mb-3">
                            Trending in Ahmedabad
                          </h3>
-                         <div className="grid grid-cols-2 gap-4">
+                         <div className="grid sm:grid-cols-2 gap-4">
                            {[
                              { title: "War 2", img: "/movie1.jpeg" },
                              { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
@@ -261,8 +263,13 @@ const [showModal, setShowModal] = useState(false);
                  )}
                  </AnimatePresence>
           </div></div>
+         
         </header>
-
+  <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0">
+        <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
+        <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
+        <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
+      </div>
      
         <div className="mb-8 relative">
           <div className="w-full mx-auto rounded-2xl overflow-hidden bg-[#0b223f]">
@@ -436,8 +443,8 @@ const [showModal, setShowModal] = useState(false);
         </section>
 
         
-        <div className="mt-10 flex flex-row items-center gap-10 md:gap-4 md:flex-row md:items-center md:justify-between  ">
-          <button onClick={() => router.push(`/details`)} className="w-[300px] md:w-[auto] bg-[#ff4655] text-white rounded-xl cursor-pointer mb-10 sweep-button"><span>Browse By Cinemas</span></button>
+        <div className="mt-7 sm:mt-10 md:mt-10 flex flex-row items-center gap-10 md:gap-4 md:flex-row md:items-center md:justify-between  ">
+          <button onClick={() => router.push(`/details`)} className="w-[140px] md:w-[auto] bg-[#ff4655] text-white rounded-xl cursor-pointer mb-10 sweep-button"><span>Browse By Cinemas</span></button>
        
         </div>
       </div>
@@ -447,7 +454,7 @@ const [showModal, setShowModal] = useState(false);
 
 
 
-  <footer className="bg-white/10 py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
+  <footer className="bg-white/10 py-6 text-center text-xs sm:text-sm text-white/80 mt-10">
         © 2025 Movie App. All Rights Reserved.
       </footer>
 

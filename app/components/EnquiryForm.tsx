@@ -21,13 +21,13 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       {/* Modal Content */}
       <div
         onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
-        className="max-w-3xl w-[570px] mx-2 h-[590px] bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-white/20 animate-fadeIn"
+        className="w-full md:max-w-3xl md:w-[570px] mx-2 h-[500px] md:h-[590px] bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-white/20 animate-fadeIn"
       >
         {/* Header */}
         <header className="mb-6 border-b border-white/20 pb-3 flex justify-between items-center">
           <div>
-            <h1 className="text-xl font-semibold">Enquiry Now</h1>
-            <p className="text-xs text-white/70">Tailored content discovery</p>
+            <h1 className="text-lg md:text-xl font-semibold">Enquiry Now</h1>
+            <p className="text-[10px] md:text-xs text-white/70">Tailored content discovery</p>
           </div>
           <button
             onClick={onClose}
@@ -38,41 +38,41 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         </header>
 
         {/* Form */}
-        <form className="grid grid-cols-2 gap-4">
+        <form className="grid  md:grid-cols-2 gap-4 md:gap-4">
           {/* Name */}
           <div>
-            <label className="block text-sm mb-2">Name</label>
+            <label className="block text-xs md:text-sm mb-2">Name</label>
             <input
               type="text"
               placeholder="Name"
-              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
+              className="w-full px-4 py-1 md:py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
             />
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-sm mb-2">Email Address</label>
+            <label className="block text-xs md:text-sm mb-2">Email Address</label>
             <input
               type="email"
               placeholder="yourname@domainname.com"
-              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
+              className="w-full px-4 py-1 md:py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
             />
           </div>
 
           {/* Mobile */}
           <div>
-            <label className="block text-sm mb-2">Mobile Number</label>
+            <label className="block text-xs md:text-sm mb-2">Mobile Number</label>
             <input
               type="tel"
               placeholder="+91 9999999999"
-              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
+              className="w-full px-4 py-1 md:py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
             />
           </div>
 
           {/* Purpose */}
           <div>
-            <label className="block text-sm mb-2">Purpose of Enquiry</label>
-            <select className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]">
+            <label className="block text-xs md:text-sm mb-2">Purpose of Enquiry</label>
+            <select className="w-full px-4 py-1 md:py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]">
               <option>Licensing & Distribution</option>
               <option>Partnership</option>
               <option>Other</option>
@@ -81,18 +81,18 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
           {/* Message */}
           <div className="col-span-2">
-            <label className="block text-sm mb-2">Message / Description</label>
+            <label className="block text-xs md:text-sm mb-2">Message / Description</label>
             <textarea
               placeholder="Description"
               rows={2}
-              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
+              className="w-full px-4 md:py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#ff4655]"
             ></textarea>
           </div>
 
           {/* Upload */}
           <div className="col-span-2">
-            <label className="block text-sm mb-2">Upload File</label>
-            <div className="flex flex-col items-center justify-center w-full h-20 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-[#ff4655]">
+            <label className="block text-xs md:text-sm mb-2">Upload File</label>
+            <div className="flex flex-col items-center justify-center w-full h-15 md:h-20 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-[#ff4655]">
         
               <input
                 type="file"
@@ -108,16 +108,16 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                 htmlFor="fileUpload"
                 className="flex flex-col items-center justify-center"
               >
-                <div className="w-8 h-8 bg-[#ff4655] rounded-full flex items-center justify-center text-xl mb-2">
-                  <FaUpload className="text-xl" />
+                <div className="w-5 h-5 md:w-8 md:h-8 bg-[#ff4655] rounded-full flex items-center justify-center text-xl mb-2">
+                  <FaUpload className="text-xs md:text-xl" />
                 </div>
-                <span className="text-sm">{fileName || "Upload"}</span>
+                <span className="text-xs md:text-sm">{fileName || "Upload"}</span>
               </label>
             </div>
           </div>
 
           {/* Submit */}
-          <div className="col-span-2 flex justify-center mt-4">
+          <div className="col-span-2 flex justify-center md:mt-4">
             <button
               type="submit"
               className="text-white rounded-lg font-semibold text-lg sweep-button"
