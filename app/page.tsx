@@ -121,7 +121,7 @@ const images = [
   
   return (
 
-    <div className="bg-[#0C1B4D] font-montserrat text-white min-h-screen overflow-x-hidden">
+    <div className="bg-[#0C1B4D] font-inter text-white min-h-screen ">
       
  
 
@@ -151,7 +151,7 @@ const images = [
        onClick={() => setIsOpen(true)}
         className="flex items-center gap-1 cursor-pointer select-none text-sm sm:text-lg">
            <FaLocationDot className="w-3 h-3 sm:w-5 sm:h-5 md:w-5 md:h-5 " />
-          <span className="sm:font-semibold">{selectedCity}</span>
+          <span className="text-xs sm:text-lg sm:font-semibold">{selectedCity}</span>
        </div>
          <LocationModal
         isOpen={isOpen}
@@ -353,12 +353,12 @@ const images = [
       </div>
       <div className="flex flex-row gap-2 md:gap-5 items-end">
         <div className="relative inline-block">
-         <span    onClick={handleBellClick} className="-top-2 text-sm sm:text-xl cursor-pointer hover:text-yellow-400"  >
+         <span    onClick={handleBellClick} className="-top-2 text-xs sm:text-xl cursor-pointer hover:text-yellow-400"  >
   <FaBell   
          /></span>
        {messages > 0 && (
     <span
-      className=" absolute -top-3 md:-top-2 -right-2 bg-red-600 text-white text-[10px] sm:text-xs font-bold px-1 py-0.1 md:px-1.5 md:py-0.5 rounded-full inline-flex items-center justify-center md:animate-badge-pulse"
+      className=" absolute -top-3 md:-top-2 -right-2 bg-red-600 text-white text-[10px] sm:text-xs font-bold px-1 py-0.1 md:px-1.5 md:py-0.5 rounded-full inline-flex items-center justify-center sm:animate-badge-pulse"
     aria-live="polite" >
       {messages}
     </span>
@@ -369,7 +369,7 @@ const images = [
     <span
   onClick={() => setShowLogin(true)}
    
-  className=" relative md:inline-block text-xs md:text-base md:font-medium transition-transform duration-300 hover:text-yellow-400 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 hover:after:w-full after:bg-yellow-400 after:transition-all after:duration-300 cursor-pointer md:sign-in-btn"
+  className=" relative md:inline-block text-[10px] md:text-base md:font-medium transition-transform duration-300 hover:text-yellow-400 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 hover:after:w-full after:bg-yellow-400 after:transition-all after:duration-300 cursor-pointer md:sign-in-btn"
 >
   Sign In
 </span>  
@@ -378,7 +378,7 @@ const images = [
        
         className="flex items-center gap-2 cursor-pointer select-none hover:text-yellow-400"
       >
-        <FaUserCircle  className=" w-4 h-4 sm:w-4 sm:h-4 md:w-6 md:h-6" />
+        <FaUserCircle  className=" w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6" />
       </span>
 
       {openProfile && (
@@ -635,11 +635,11 @@ const images = [
       <footer className="bg-[#091339] py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
         © 2025 Movie App. All Rights Reserved.
       </footer>
-    <style jsx global>{`
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+  <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-  .font-montserrat {
-    font-family: 'Montserrat', sans-serif;
+  .font-inter {
+    font-family: 'Inter', sans-serif;
   }
 `}</style>
 

@@ -83,7 +83,7 @@ const [showModal, setShowModal] = useState(false);
           return () => clearInterval(interval);
         }, [value]);
   return (
-    <div className="min-h-screen font-montserrat bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white ">
+    <div className="min-h-screen font-inter bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white ">
       {/* Sidebar */}
           <SidebarFilters isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
     
@@ -100,12 +100,12 @@ const [showModal, setShowModal] = useState(false);
      
        <header className=" px-0  md:gap-5 sm:px-3 md:px-2 py-2 flex flex-row md:mb-6 justify-between md:items-center md:justify-between  md:border-none border-b border-white/10">
           <div className="flex items-center gap-4">
-         <button onClick={() => router.push(`/`)} className="w-6 h-6 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-xl md:text-3xl">
+         <button onClick={() => router.push(`/`)} className="w-5 h-5 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-base md:text-3xl">
               ‹
             </button>
             <div>
-              <h1 className=" md:text-3xl sm:font-semibold">Film Trade</h1>
-              <div className="text-xs md:text-sm text-white/70">Ahmedabad | 34 Movies</div>
+              <h1 className=" text-sm md:text-3xl sm:font-semibold">Film Trade</h1>
+         
             </div>
           </div>
 
@@ -118,7 +118,7 @@ const [showModal, setShowModal] = useState(false);
 
        
           <div className="flex items-center gap-2 relative">
-                   <span   className="text-base sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+                   <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
                 onClick={() => setShowModal(true)}    >
              <FaSearch />
            </span>
@@ -361,7 +361,7 @@ const [showModal, setShowModal] = useState(false);
     <button
       key={lang}
       onClick={() => setSelectedLang(lang)}
-      className={`shrink-0 px-2 md:px-4 py-1 md:py-2 text-sm md:text-sm rounded-full cursor-pointer ${
+      className={`shrink-0 px-2 md:px-4 py-1 md:py-2 text-[10px] md:text-sm rounded-full cursor-pointer ${
         selectedLang === lang
           ? "bg-[#ff4655] text-white"
           : "bg-white/6 hover:bg-[#ff4655]"
@@ -373,9 +373,9 @@ const [showModal, setShowModal] = useState(false);
 
   <button
       onClick={() => setOpenFilters(true)}
-    className="shrink-0 px-2 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-sm bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1 cursor-pointer"
+    className="shrink-0 px-2 md:px-4 py-1 md:py-2 rounded-full text-[10px] md:text-sm bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1 cursor-pointer"
   >
-    <FiFilter size={18} />
+    <FiFilter className="w-3 h-3 md:w-4 md:h-4" />
     Filter
   </button>
    <Filters open={openFilters} onClose={() => setOpenFilters(false)} />
@@ -387,11 +387,11 @@ const [showModal, setShowModal] = useState(false);
         <div className="mb-8">
           <div className="rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-3 md:p-6 flex items-center justify-between">
             <div>
-              <div className="sm:text-lg font-semibold">Coming Soon </div>
+              <div className="text-sm sm:text-lg font-semibold">Coming Soon </div>
             
-              <div className="text-sm opacity-90">Explore Upcoming Movies</div>
+              <div className="text-xs md:text-sm opacity-90">Explore Upcoming Movies</div>
  </div>
-            <button onClick={() => router.push("/details")} className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center cursor-pointer">
+            <button onClick={() => router.push("/details")} className="w-7 h-7 md:h-10 md:w-10 rounded-full bg-white/20 flex items-center justify-center cursor-pointer">
               <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
@@ -401,7 +401,7 @@ const [showModal, setShowModal] = useState(false);
 
       
         <section>
-          <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4">Recommended Movies</h2>
+          <h2 className="text-xs md:text-2xl text-[#ff596b] font-semibold mb-4">Recommended Movies</h2>
 
          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6">
             {filteredMovies.map((m, i) => (
@@ -428,7 +428,7 @@ const [showModal, setShowModal] = useState(false);
                     <div className="text-[10px] md:text-lg md:font-semibold">{m.title}</div>
                     <div className="text-xm md:text-[10px] ml-3 text-white/70 hidden md:block">{m.rating} <span className=" text-white/60">•</span> <span className=" text-xm md:text-xm text-white/60">{m.votes}</span></div>
                   
-                  <button className="bg-white/6 md:px-3 md:py-1 rounded-md text-xs md:text-sm">Details</button>
+                  <button className="bg-white/6 md:px-3 md:py-1 rounded-md text-[10px] md:text-sm">Details</button>
                 </div>
               </div>
             ))}
@@ -461,10 +461,10 @@ const [showModal, setShowModal] = useState(false);
 
       {/* global styles: font import */}
 <style jsx global>{`
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-  .font-montserrat {
-    font-family: 'Montserrat', sans-serif;
+  .font-inter {
+    font-family: 'Inter', sans-serif;
   }
 `}</style>
 

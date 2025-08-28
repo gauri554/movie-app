@@ -36,12 +36,12 @@ export default function KidsCard({ img, title, date }: KidsCardProps) {
      }, []);
   return (
     <div ref={containerRef} onClick={() => router.push(`/events`)} className="bg-[#13214B] rounded-lg py-2 flex flex-col items-center overflow-x-auto shrink-0  text-center cursor-pointer hover:text-white/70 stagger-card">
-    <div className={`image-wrapper relative w-[200px] h-[150px] md:w-[160px] md:h-[180px]  movie-card ${isVisible ? "section-visible" : "section-hidden"}`}>
+    <div className={`image-wrapper relative w-[130px] h-[150px] md:w-[160px] md:h-[180px]  movie-card ${isVisible ? "section-visible" : "section-hidden"}`}>
       <Image src={img} alt={title} fill className="mx-auto rounded-lg event-image" /></div>
       <div className="p-3">
         
-        <h3 className="text-sm font-semibold">{title}</h3>
-        {date && <p className="text-xs text-gray-300">{date}</p>}
+        <h3 className="text-[10px] md:text-sm font-semibold">{title}</h3>
+        {date && <p className="text-[10px] md:text-xs text-gray-300">{date}</p>}
       </div>
    
     </div>

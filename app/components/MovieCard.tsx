@@ -38,7 +38,7 @@ export default function MovieCard({ img, title, rating, votes }: MovieCardProps)
   }, []);
     
   return (
-    <div   ref={containerRef} onClick={() => router.push(`/new-release`)} className="bg-[#13214B] rounded-lg p-3 flex flex-col items-center overflow-x-auto scroll-smooth no-scrollbar shrink-0  cursor-pointer hover:text-white/70"   
+    <div   ref={containerRef} onClick={() => router.push(`/new-release`)} className="bg-[#13214B] rounded-lg p-2 md:p-3 flex flex-col items-center overflow-x-auto scroll-smooth no-scrollbar shrink-0  cursor-pointer hover:text-white/70"   
     > 
    
       {/*<Image src={img} alt={title} width={250} height={120} className="rounded-lg  transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:shadow-black/50 " />*/}
@@ -70,8 +70,8 @@ export default function MovieCard({ img, title, rating, votes }: MovieCardProps)
   </div>
 </div>
 
-      <h3 className="mt-2 font-semibold">{title}</h3>
-      <p className="text-yellow-400 text-sm ">
+      <p className="mt-2 text-[10px] sm:text-base sm:font-semibold">{title}</p>
+      <p className="text-yellow-400 text-[10px] sm:text-sm ">
         ⭐ {rating} | {votes} Votes
       </p>
     </div>

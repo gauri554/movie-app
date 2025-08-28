@@ -13,6 +13,8 @@ import Card from "../components/Card";
 import "../components/EventCard.css";
 import { FaSearch } from "react-icons/fa";
 import { useEffect } from "react";
+import CategoryButton from "../components/CategoryButton";
+import { FaFilm, FaCalendarAlt, FaTicketAlt } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 type Chip = { label: string; active?: boolean };
 
@@ -87,7 +89,7 @@ const [openFilters, setOpenFilters] = useState(false);
     }, [value]);
   
     return (
-    <div className="min-h-screen font-montserrat bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white">
+    <div className="min-h-screen font-inter bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white">
 
 
        <SidebarFilters isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
@@ -99,16 +101,16 @@ const [openFilters, setOpenFilters] = useState(false);
                     onClick={() => setIsSidebarOpen(false)}
                   />
                 )}
-      <div className="max-w-7xl mx-auto px-2 md:px-8 p-4 md:py-3">
+      <div className="max-w-7xl mx-auto px-2 md:px-8 md:py-3">
         {/* Header */}
- <header className=" px-0  md:gap-5   py-2 flex flex-row justify-between md:items-center md:justify-between mb-4">
+ <header className=" px-0  md:gap-5 py-2 flex flex-row justify-between md:items-center md:justify-between mb-4 border-b border-white/10 md:border-0">
           <div className="flex items-center gap-4">
-         <button onClick={() => router.push(`/new-release`)} className="w-6 h-6 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-xl md:text-3xl">
+         <button onClick={() => router.push(`/new-release`)} className="w-5 h-5 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-base md:text-3xl">
               ‹
             </button>
             <div>
-              <h1 className=" md:text-3xl sm:font-semibold">All Events</h1>
-              <div className="text-xs md:text-sm text-white/70">Ahmedabad</div>
+              <h1 className=" text-sm md:text-3xl sm:font-semibold">All Events</h1>
+             
             </div>
           </div>
 
@@ -121,7 +123,7 @@ const [openFilters, setOpenFilters] = useState(false);
 
        
           <div className="flex items-center gap-2 relative">
-                   <span   className="text-base sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+                   <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
                 onClick={() => setShowModal(true)}    >
              <FaSearch />
            </span>
@@ -266,7 +268,15 @@ const [openFilters, setOpenFilters] = useState(false);
                  )}
                  </AnimatePresence>
           </div></div>
+
         </header>
+
+<div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12  sm:py-4 pb-3 md:pb-0 mb-4 border-b border-white/10 md:mb-0">
+        <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
+        <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
+        <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
+      </div>
+
 
         {/* Language chips 
         <div className="flex flex-wrap gap-3 mb-6">
@@ -295,7 +305,7 @@ const [openFilters, setOpenFilters] = useState(false);
             <button
               key={lang}
               onClick={() => setSelectedLang(lang)}
-              className={`shrink-0 px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm rounded-full cursor-pointer ${
+              className={`shrink-0 px-2 md:px-4 py-1 md:py-2 text-[10px] md:text-sm rounded-full cursor-pointer ${
                 selectedLang === lang
                   ? "bg-[#ff4655] text-white"
                   : "bg-white/6 hover:bg-[#ff4655]"
@@ -307,9 +317,9 @@ const [openFilters, setOpenFilters] = useState(false);
         
           <button
             onClick={() => setOpenFilters(true)}
-            className="shrink-0 px-2 md:px-4 py-1 md:py-2 rounded-full text-xs md:text-sm bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1 cursor-pointer"
+            className="shrink-0 px-2 md:px-4 py-1 md:py-2 rounded-full text-[10px] md:text-sm bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1 cursor-pointer"
           >
-            <FiFilter size={18} />
+            <FiFilter className="w-3 h-3 md:w-4 md:h-4" />
             Filter
           </button>
           <Filters open={openFilters} onClose={() => setOpenFilters(false)} />
@@ -336,18 +346,18 @@ const [openFilters, setOpenFilters] = useState(false);
     
     {/* Text Section */}
     <div>
-      <div className="text-base md:text-2xl font-semibold">Upcoming Events</div>
+      <div className="text-sm md:text-2xl font-semibold">Upcoming Events</div>
       <div className="text-xs sm:text-sm opacity-90">In Cinemas near you</div>
     </div>
 
     {/* Button */}
     <button
       onClick={() => router.push(`/eventlist`)}
-      className="w-10 h-10 md:w-12 md:h-12  md:mt-0 rounded-full bg-white/20 flex items-center justify-center cursor-pointer self-start md:self-auto"
+      className="w-9 h-9 md:w-12 md:h-12  md:mt-0 rounded-full bg-white/20 flex items-center justify-center cursor-pointer self-start md:self-auto"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5 md:h-6 md:w-6 text-white"
+        className="h-4 w-4 md:h-6 md:w-6 text-white"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -409,12 +419,12 @@ const [openFilters, setOpenFilters] = useState(false);
   <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4">
     Shows
   </h2>
-  <div className="flex gap-4 overflow-x-auto sm:hidden no-scrollbar mb-10">
+  <div className="flex gap-2 md:gap-4 overflow-x-auto sm:hidden no-scrollbar mb-10">
   {[...filteredComedy, ...filteredMusic].map((item) => (
     <div
       key={item.title}
       onClick={() => router.push("/eventlist")}
-      className="shrink-0 w-[120px] h-[150px] md:w-[180px] md:h-[220px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)] cursor-pointer"
+      className="shrink-0 w-[100px] h-[130px] md:w-[180px] md:h-[220px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)] cursor-pointer"
     >
       <div
         className="h-44 bg-cover bg-center"
@@ -604,7 +614,7 @@ const [openFilters, setOpenFilters] = useState(false);
         <section className="mb-16">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm md:text-2xl text-[#ff596b] font-bold">Best Event this Week</h2>
-            <a onClick={() => router.push(`/eventlist`)} className="text-sm text-white/80 hover:underline cursor-pointer">View All →</a>
+            <a onClick={() => router.push(`/eventlist`)} className="text-xs md:text-sm text-white/80 hover:underline cursor-pointer">View All →</a>
           </div>
          {/* <div className="grid grid-cols-1 sm:grid-cols-6 gap-10  ">
             {bestThisWeek.map((b) => (
@@ -618,12 +628,12 @@ const [openFilters, setOpenFilters] = useState(false);
           </div>*/}
 
           {/* Wrapper */}
-<div className="flex overflow-x-auto sm:grid sm:grid-cols-6 gap-4 md:gap-6 no-scrollbar">
+<div className="flex overflow-x-auto sm:grid sm:grid-cols-6 gap-5 md:gap-6 no-scrollbar">
   {bestThisWeek.map((b) => (
     <div
       key={b.title}
       onClick={() => router.push(`/eventlist`)}
-      className="shine-card shrink-0 w-30 h-60 sm:h-[auto] sm:w-auto rounded-lg overflow-hidden bg-[#0b223f] shadow-md text-center cursor-pointer"
+      className="shine-card shrink-0 w-32 h-60 sm:h-[auto] sm:w-auto rounded-lg overflow-hidden bg-[#0b223f] shadow-md text-center cursor-pointer"
     >
       <div
         className="h-40 bg-cover bg-center mt-5"
@@ -634,7 +644,7 @@ const [openFilters, setOpenFilters] = useState(false);
           backgroundPosition: "center",
         }}
       />
-      <div className="p-3 text-sm text-center">{b.title}</div>
+      <div className="p-3 text-[11px] md:text-sm text-center">{b.title}</div>
     </div>
   ))}
 </div>
@@ -669,10 +679,10 @@ const [openFilters, setOpenFilters] = useState(false);
         © 2025 Movie App. All Rights Reserved.
       </footer>
 <style jsx global>{`
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-  .font-montserrat {
-    font-family: 'Montserrat', sans-serif;
+  .font-inter {
+    font-family: 'Inter', sans-serif;
   }
 `}</style>
 

@@ -103,18 +103,18 @@ const [isModalOpen, setIsModalOpen] = useState(false);
              return () => clearInterval(interval);
            }, [value]);
   return (
-    <div className="min-h-screen  font-montserrat bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] text-white ">
+    <div className="min-h-screen  font-inter bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] text-white ">
       <div className="p-4 px-2 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <header className="flex items-center justify-between mb-2 md:mb-8 md:border-none border-b border-white/10">
-          <div className="flex items-center gap-3">
-            <button onClick={() => router.push(`/new-release`)} className="w-6 h-6 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-xl md:text-3xl">
+          <div className="flex items-center gap-3 mb-2">
+            <button onClick={() => router.push(`/new-release`)} className="w-5 h-5 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-base md:text-3xl">
               ‹
             </button>
             <div>
-              <h1 className="md:text-2xl md:font-semibold">{title}</h1>
-              <p className="text-xs md:text-sm text-white/70">{subtitle}</p>
+              <h1 className="text-sm md:text-2xl md:font-semibold">{title}</h1>
+          
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -126,7 +126,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           
                  
                     <div className="flex items-center gap-2 relative">
-                             <span   className="text-base sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
+                             <span   className="text-sm sm:text-xl text-white cursor-pointer hover:text-yellow-400 cursor-pointer"
                           onClick={() => setShowModal(true)}    >
                        <FaSearch />
                      </span>
@@ -273,7 +273,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                     </div>
           </div>
         </header>
-   <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0">
+   <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-1 sm:py-4 pb-3 md:pb-0 mb-4 border-b border-white/10 md:mb-0">
         <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
         <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
         <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
@@ -334,18 +334,18 @@ const [isModalOpen, setIsModalOpen] = useState(false);
   
 
 
-              <div className="pt-2 md:p-5">
-                <h2 className="md:text-2xl font-bold">{title}</h2>
+              <div className="pt-2 md:p-5 ">
+                <h2 className="text-sm md:text-2xl font-bold">{title}</h2>
                 <div className="flex flex-row items-center gap-2 md:gap-3 mt-2 md:mt-3 md:flex-row md:items-center md:justify-between">
                   <span className="inline-flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full">
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M12 .587l3.668 7.431L24 9.748l-6 5.853 1.417 8.279L12 19.771 4.583 23.88 6 15.6 0 9.747l8.332-1.73z" />
                     </svg>
-                    <span className="font-medium">{rating}/5</span>
-                    <span className="text-sm text-white/70">| {reviews} Reviews</span>
+                    <span className="text-xs md:text-base md:font-medium">{rating}/5</span>
+                    <span className="text-xs md:text-sm text-white/70">| {reviews} Reviews</span>
                   </span>
 
-                  <button   onClick={() => setIsModalOpen(true)} className=" w-[90px] md:w-[auto] bg-yellow-400 text-black  hover:bg-yellow-300 px-1 md:px-3 py-1 rounded-full font-semibold cursor-pointer">Rate Now</button>
+                  <button   onClick={() => setIsModalOpen(true)} className=" w-[90px] md:w-[auto] h-[25px] md:h-[auto] bg-yellow-400 text-black  hover:bg-yellow-300 px-1 md:px-3 md:py-1 rounded-full font-semibold cursor-pointer">Rate Now</button>
                    <RatingModal
         isOpen={isModalOpen}
         setIsOpen={setIsModalOpen}
@@ -356,18 +356,18 @@ const [isModalOpen, setIsModalOpen] = useState(false);
       />
                 </div>
 
-                <div className="mt-4 space-y-2 text-sm text-white/80">
+                <div className="mt-4 space-y-2 text-xs md:text-sm text-white/80">
                   <p><strong>Director</strong> · {director}</p>
                   <p><strong>Producer</strong> · {producer}</p>
                   <p><strong>Production cost</strong> · {productionCost}</p>
                 </div>
 
                 <div className="mt-4">
-                  <div className="inline-flex items-center gap-3 bg-white/5 px-3 py-2 rounded-lg">
-                    <span className="px-3 py-1 bg-white/8 rounded-full">2D</span>
-                    <span className="px-3 py-1 bg-white/8 rounded-full">Hindi</span>
+                  <div className="inline-flex items-center gap-3 bg-white/5 px-2 py-2 md:px-3 md:py-2 rounded-lg">
+                    <span className="px-3 py-1 text-[10px] md:text-base bg-white/8 rounded-full">2D</span>
+                    <span className="px-3 py-1 text-[10px] md:text-base bg-white/8 rounded-full">Hindi</span>
                   </div>
-                  <p className="mt-3 text-sm text-white/70">{duration}</p>
+                  <p className="mt-3 text-[10px] md:text-sm text-white/70">{duration}</p>
                 </div>
               <div>
                 <button   onClick={() => setIsOpenForm(true)} className="w-full mt-6 bg-pink-500 hover:bg-pink-600 text-white rounded-xl font-semibold cursor-pointer sweep-button"><span>Enquiry Now</span></button>
@@ -381,20 +381,20 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             <div className="mt-6 space-y-4">
               <div className="p-4 rounded-xl bg-white/5">
                 <div className="text-sm text-white/70">Trending</div>
-                <div className="font-semibold mt-1">{trending}</div>
+                <div className="text-xs md:text-base md:font-semibold mt-1">{trending}</div>
               </div>
 
               <div className="p-4 rounded-xl bg-white/5">
-                <h3 className="font-semibold">Top offers for you</h3>
-                <div className="mt-3 text-sm text-white/70">Buy 1 ticket and Get 1 Free!+ for Tanvi The Great</div>
-              <div className="mt-3 p-3 rounded-lg bg-white/10 text-sm text-white/80">
+                <h3 className="text-sm md:text-base font-semibold">Top offers for you</h3>
+                <div className="mt-3 text-xs md:text-sm text-white/70">Buy 1 ticket and Get 1 Free!+ for Tanvi The Great</div>
+              <div className="mt-3 p-3 rounded-lg bg-white/10 text-[10px] md:text-sm text-white/80">
           This offer is valid for a limited period. Applicable only on selected
           shows of “Tanvi The Great”. Maximum 1 free ticket per transaction.
           Terms and conditions apply.
         </div>
       
                   <button
-        className="mt-2 text-pink-400 text-sm underline cursor-pointer"
+        className="mt-2 text-pink-400  text-sm underline cursor-pointer"
         onClick={() => setShowDetails(!showDetails)}
       >
       
@@ -422,10 +422,10 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             </section>*/}
 
              <section className="mb-6 p-6 rounded-xl bg-white/5">
-      <p className="text-white/80 text-sm md:text-base">
+      <p className="text-white/80 text-xs md:text-sm md:text-base">
         {showFullText ? fullText : shortText}
         <button
-          className="ml-2 text-sm text-pink-300 cursor-pointer md:text-base" 
+          className="ml-2 text-xs md:text-sm text-pink-300 cursor-pointer md:text-base" 
           onClick={() => setShowFullText(!showFullText)}
         >
           {showFullText ? "less" : "more"}
@@ -438,19 +438,19 @@ const [isModalOpen, setIsModalOpen] = useState(false);
               <div className="flex-1 p-4 w-full md:w-[auto] rounded-xl bg-[#11243b] shadow-md">
                 <div className="flex items-center justify-between ">
                   <div>
-                    <div className="text-xl md:text-2xl font-semibold md:font-bold">4.6/5</div>
+                    <div className="text-sm md:text-2xl font-semibold md:font-bold">4.6/5</div>
                     <div className="text-xs md:text-sm text-white/70">135 Reviews</div>
                   </div>
-                  <button onClick={() => setIsModalOpen(true)} className="bg-yellow-400 text-black hover:bg-yellow-300 px-3 md:px-4 py-1 md:py-2 rounded-full font-semibold cursor-pointer">Rate Now</button>
+                  <button onClick={() => setIsModalOpen(true)} className="bg-yellow-400 text-black hover:bg-yellow-300 px-1 md:px-4 py-1 md:py-2 rounded-full font-semibold cursor-pointer">Rate Now</button>
                 </div>
               </div>
 
               <div className="w-full md:w-64 p-4 rounded-xl bg-[#11243b]">
                 <div className="text-sm text-white/70">Badges</div>
                 <div className="mt-2 flex md:gap-2">
-                  <span className="px-2 md:px-3 py-1 bg-white/6 rounded-full text-sm">#Hit</span>
-                  <span className="px-2 md:px-3 py-1 bg-white/6 rounded-full text-sm">#Epic</span>
-                  <span className="px-2 md:px-3 py-1 bg-white/6 rounded-full text-sm">#Legend</span>
+                  <span className="px-2 md:px-3 py-1 bg-white/6 rounded-full text-xs md:text-sm">#Hit</span>
+                  <span className="px-2 md:px-3 py-1 bg-white/6 rounded-full text-xs md:text-sm">#Epic</span>
+                  <span className="px-2 md:px-3 py-1 bg-white/6 rounded-full text-xs md:text-sm">#Legend</span>
                 </div>
               </div>
             </section>
@@ -475,9 +475,9 @@ const [isModalOpen, setIsModalOpen] = useState(false);
  
      
           <section className="mb-6">
-      <h3 className=" md:text-xl font-semibold mb-4">Cast</h3>
+      <h3 className=" text-sm md:text-xl font-semibold mb-4">Cast</h3>
 
-       <div className="flex gap-4 md:gap-16 py-4 px-4 overflow-x-auto scrollbar-hide no-scrollbar">
+       <div className="flex gap-4 md:gap-16 py-4 px-2 md:px-4 overflow-x-auto scrollbar-hide no-scrollbar">
     {cast.map((c) => (
       <div
         key={c.name}
@@ -501,8 +501,8 @@ const [isModalOpen, setIsModalOpen] = useState(false);
 
             {/* Crew */}
             <section className="mb-6">
-              <h3 className=" md:text-xl font-semibold mb-4">Crew</h3>
-              <div className="flex gap-4 md:gap-16 py-4 px-4 overflow-x-auto scrollbar-hide no-scrollbar">
+              <h3 className=" text-sm md:text-xl font-semibold mb-4">Crew</h3>
+              <div className="flex gap-4 md:gap-16 py-4 px-2 md:px-4 overflow-x-auto scrollbar-hide no-scrollbar">
     {crew.map((c) => (
       <div
         key={c.name}
@@ -525,15 +525,15 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             {/* You might also like */}
             <section className="mb-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="md:text-xl font-semibold">You might also like</h3>
-                <button className="text-xs md:text-sm text-white/70 underline">View All</button>
+                <h3 className="text-sm md:text-xl font-semibold">You might also like</h3>
+                <button onClick={() => router.push("/new-release")} className="text-[10px] md:text-sm text-white/70 underline cursor-pointer">View All</button>
               </div>
 
              <div className="flex gap-4 overflow-x-auto md:hidden no-scrollbar">
   {Array.from({ length: 4 }).map((_, i) => (
     <div
       key={i}
-      className="w-[120px] md:min-w-[160px] rounded-xl overflow-hidden bg-white/5 flex-shrink-0"
+      className="w-[130px] md:min-w-[160px] rounded-xl overflow-hidden bg-white/5 flex-shrink-0"
     >
       <Image
         src={images[i]}
@@ -580,26 +580,26 @@ const [isModalOpen, setIsModalOpen] = useState(false);
 
             {/* Company Detail */}
             <section className="mb-6 p-6 rounded-xl bg-white/5">
-              <h3 className="md:text-xl font-semibold mb-4">Company Detail</h3>
+              <h3 className="text-sm md:text-xl font-semibold mb-4">Company Detail</h3>
               <div className="grid grid-cols-1  md:grid-cols-2 gap-4 text-sm text-white/80">
                 <div>
                   <div className="flex items-center gap-2"> <FaHome className="md:text-xl" /><strong>Production House</strong></div>
-                  <div className="mt-1 text-white/70 text-xs md:text-sm">{producer}</div>
+                  <div className="mt-1 text-white/70 text-[12px] md:text-sm">{producer}</div>
                 </div>
                 <div>
                   <div className="flex items-center gap-2"><FaMapMarkerAlt className="md:text-xl" /><strong>Address</strong></div>
-                  <div className="mt-1 text-white/70 text-xs md:text-sm">4140 Parker Rd. Allentown, Mumbai 31134</div>
+                  <div className="mt-1 text-white/70 text-[12px] md:text-sm">4140 Parker Rd. Allentown, Mumbai 31134</div>
                 </div>
 
                 <div>
                   <div className="flex items-center gap-2"><FaPhone className="md:text-xl" /><strong>Phone No</strong></div>
-                  <div className="mt-1 text-white/70 text-xs md:text-sm">+91 9999999999</div>
+                  <div className="mt-1 text-white/70 text-[12px] md:text-sm">+91 9999999999</div>
                 </div>
 
                 <div>
                   <div className="flex items-center gap-2">
 <FaGlobe className="md:text-xl" /><strong>Website</strong></div>
-                  <div className="mt-1 text-white/70 text-xs md:text-sm">www.yourdomainname.com</div>
+                  <div className="mt-1 text-white/70 text-[12px] md:text-sm">www.yourdomainname.com</div>
                 </div>
               </div>
             </section>
@@ -610,11 +610,11 @@ const [isModalOpen, setIsModalOpen] = useState(false);
       <footer className="bg-white/10 py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
         © 2025 Movie App. All Rights Reserved.
       </footer>
-     <style jsx global>{`
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+    <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-  .font-montserrat {
-    font-family: 'Montserrat', sans-serif;
+  .font-inter {
+    font-family: 'Inter', sans-serif;
   }
 `}</style>
 
