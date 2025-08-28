@@ -172,25 +172,25 @@ const [openFilters, setOpenFilters] = useState(false);
                        animate={{ y: 0, opacity: 1 }}
                        exit={{ y: -50, opacity: 0 }}
                        transition={{ duration: 0.4 }}
-                       className=" w-[90%] sm:w-[650px] max-h-[80vh] rounded-2xl shadow-lg mt-20 p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50 flex flex-col  "
+                       className=" w-[90%] sm:w-[650px] max-h-[80vh] rounded-2xl shadow-lg mt-15 md:mt-20 p-2 md:p-6   bg-[#0b233f]/95  backdrop-blur-sm z-50 flex flex-col  "
                         onClick={(e) => e.stopPropagation()}
                      >
 
-                      <div className="sticky top-0  z-20 p-6 pb-3 ">
+                      <div className="sticky top-0  z-20 pt-6 md:pt-3 pl-3 md:pl-0 md:p-6 pb-3 ">
           {/* Close button */}
           <button
               onClick={() => setShowModal(false)}
-            className="absolute top-2 right-2 text-gray-500 hover:text-white cursor-pointer"
+            className="absolute top-1 right-1 md:top-1 md:right-1 text-gray-500 hover:text-white cursor-pointer"
           >
             <X size={22} />
           </button>
                        {/* Search Input */}
-                       <div className="relative w-full">
+                       <div className="relative md:w-full">
                          <input
                            type="text"
                            value={value}
                            onChange={(e) => setValue(e.target.value)}
-                           className="px-4 py-2  w-[600px] sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
+                           className="px-4 py-2  w-[220px] sm:w-[530px] rounded-xl border border-gray-200 bg-white text-black text-sm focus:outline-none placeholder-transparent"
                            placeholder="."
                          />
          
@@ -214,7 +214,7 @@ const [openFilters, setOpenFilters] = useState(false);
                        </div>
          
                        {/* Tabs */}
-                       <div className="flex items-start gap-7 mt-6 text-white  text-sm">
+                       <div className="flex items-start gap-2 md:gap-7 mt-6 text-white  text-[10px] md:text-sm max-sm:overflow-x-auto max-sm:whitespace-nowrap scrollbar-hide">
                          {["All", "Concerts", "Events", "Movies", "Activity"].map((tab, i) => (
                            <button
                              key={i}
@@ -229,12 +229,12 @@ const [openFilters, setOpenFilters] = useState(false);
          </div>
        
                        {/* Trending Section */}
-                       <div className="flex-1 overflow-y-auto scrollbar-hide p-6">
+                       <div className="flex-1 overflow-y-auto scrollbar-hide p-6 md:p-2">
                         
-                         <h3 className="text-white font-semibold mb-3">
+                         <h3 className="text-white text-xs md:text-base font-semibold mb-3">
                            Trending in Ahmedabad
                          </h3>
-                         <div className="grid grid-cols-2 gap-4">
+                         <div className="grid sm:grid-cols-2 gap-4">
                            {[
                              { title: "War 2", img: "/movie1.jpeg" },
                              { title: "Coolie The Powerhouse", img: "/movie2.jpeg" },
@@ -252,8 +252,8 @@ const [openFilters, setOpenFilters] = useState(false);
                              <div key={i} className="flex items-center gap-3">
                                <img src={m.img} className="w-10 h-10 rounded-md" alt={m.title} />
                                <div>
-                                 <p className="text-sm font-medium text-white">{m.title}</p>
-                                 <p className="text-xs text-white">Movie</p>
+                                 <p className="text-xs md:text-sm font-medium text-white">{m.title}</p>
+                                 <p className="text-[10px] md:text-xs text-white">Movie</p>
                                </div>
                              </div>
                            ))}
@@ -416,15 +416,15 @@ const [openFilters, setOpenFilters] = useState(false);
 
        
         <section>
-  <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4">
+  <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4 ">
     Shows
   </h2>
-  <div className="flex gap-2 md:gap-4 overflow-x-auto sm:hidden no-scrollbar mb-10">
+  <div className="flex gap-2 md:gap-4 overflow-x-auto sm:hidden no-scrollbar mb-10 ">
   {[...filteredComedy, ...filteredMusic].map((item) => (
     <div
       key={item.title}
       onClick={() => router.push("/eventlist")}
-      className="shrink-0 w-[100px] h-[130px] md:w-[180px] md:h-[220px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)] cursor-pointer"
+      className="shrink-0 w-[100px] h-[130px] md:w-[180px] md:h-[220px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)] cursor-pointer basis-1/2 sm:basis-1/4"
     >
       <div
         className="h-44 bg-cover bg-center"
@@ -633,7 +633,7 @@ const [openFilters, setOpenFilters] = useState(false);
     <div
       key={b.title}
       onClick={() => router.push(`/eventlist`)}
-      className="shine-card shrink-0 w-32 h-60 sm:h-[auto] sm:w-auto rounded-lg overflow-hidden bg-[#0b223f] shadow-md text-center cursor-pointer"
+      className="shine-card shrink-0 w-32 h-60 sm:h-[auto] sm:w-auto rounded-lg overflow-hidden bg-[#0b223f] shadow-md text-center cursor-pointer basis-1/2 sm:basis-1/3"
     >
       <div
         className="h-40 bg-cover bg-center mt-5"

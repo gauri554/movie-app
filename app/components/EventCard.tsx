@@ -35,7 +35,7 @@ export default function EventCard({ img, title, date }: EventCardProps) {
      }, []);
 
   return (
-    <div ref={containerRef} onClick={() => router.push(`/events`)} className="bg-[#13214B] rounded-lg overflow-x-auto py-2 shrink-0 text-center cursor-pointer flex flex-col justify-center items-center">
+    <div ref={containerRef} onClick={() => router.push(`/events`)} className="bg-[#13214B] rounded-lg overflow-x-auto py-2 shrink-0 text-center cursor-pointer flex flex-col justify-center items-center basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/4 xl:basis-1/6">
     <div className={`mx-auto relative movie-card ${isVisible ? "section-visible" : "section-hidden"} w-[133px] h-[130px] md:w-[160px] md:h-[180px]`}>
       <Image src={img} alt={title} fill className=" rounded-lg object-cover" />
        

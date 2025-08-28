@@ -217,7 +217,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                                  </div>
                    
                                  {/* Tabs */}
-                                 <div className="flex items-start gap-2 md:gap-7 mt-6 text-white  text-sm max-sm:overflow-x-auto max-sm:whitespace-nowrap scrollbar-hide">
+                                 <div className="flex items-start gap-2 md:gap-7 mt-6 text-white  text-[10px] md:text-sm max-sm:overflow-x-auto max-sm:whitespace-nowrap scrollbar-hide">
                                    {["All", "Concerts", "Events", "Movies", "Activity"].map((tab, i) => (
                                      <button
                                        key={i}
@@ -234,7 +234,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                                  {/* Trending Section */}
                                  <div className="flex-1 overflow-y-auto scrollbar-hide p-6">
                                   
-                                   <h3 className="text-white font-semibold mb-3">
+                                   <h3 className="text-white text-xs md:text-base font-semibold mb-3">
                                      Trending in Ahmedabad
                                    </h3>
                                    <div className="grid sm:grid-cols-2 gap-4">
@@ -255,8 +255,8 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                                        <div key={i} className="flex items-center gap-3">
                                          <img src={m.img} className="w-10 h-10 rounded-md" alt={m.title} />
                                          <div>
-                                           <p className="text-sm font-medium text-white">{m.title}</p>
-                                           <p className="text-xs text-white">Movie</p>
+                                           <p className="text-xs md:text-sm font-medium text-white">{m.title}</p>
+                                           <p className="text-[10px] md:text-xs text-white">Movie</p>
                                          </div>
                                        </div>
                                      ))}
@@ -477,13 +477,13 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           <section className="mb-6">
       <h3 className=" text-sm md:text-xl font-semibold mb-4">Cast</h3>
 
-       <div className="flex gap-4 md:gap-16 py-4 px-2 md:px-4 overflow-x-auto scrollbar-hide no-scrollbar">
+       <div className="flex gap-4 md:gap-16 py-4 px-2 md:px-4 overflow-x-auto scrollbar-hide no-scrollbar ">
     {cast.map((c) => (
       <div
         key={c.name}
-        className="flex flex-col items-center flex-shrink-0"
+        className="flex flex-col items-center flex-shrink-0 basis-1/3 sm:basis-1/4"
       >
-        <div className="relative group w-20 h-20 sm:w-40 sm:h-40 cursor-pointer">
+        <div className="relative group w-20 h-20 sm:w-40 sm:h-40 cursor-pointer ">
           <img
             src={c.img}
             alt={c.name}
@@ -506,7 +506,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
     {crew.map((c) => (
       <div
         key={c.name}
-        className="flex flex-col items-center flex-shrink-0"
+        className="flex flex-col items-center flex-shrink-0 basis-1/3 sm:basis-1/4"
       >
         <div className="relative group w-20 h-20 sm:w-40 sm:h-40 cursor-pointer">
           <img
@@ -533,7 +533,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
   {Array.from({ length: 4 }).map((_, i) => (
     <div
       key={i}
-      className="w-[130px] md:min-w-[160px] rounded-xl overflow-hidden bg-white/5 flex-shrink-0"
+      className="w-[130px] md:min-w-[160px] rounded-xl overflow-hidden bg-white/5 flex-shrink-0 basis-1/2 sm:basis-1/4"
     >
       <Image
         src={images[i]}

@@ -209,7 +209,7 @@ const [showModal, setShowModal] = useState(false);
                        </div>
          
                        {/* Tabs */}
-                       <div className="flex items-start gap-2 md:gap-7 mt-6 text-white  text-sm max-sm:overflow-x-auto max-sm:whitespace-nowrap scrollbar-hide">
+                       <div className="flex items-start gap-2 md:gap-7 mt-6 text-white  text-[10px] md:text-sm max-sm:overflow-x-auto max-sm:whitespace-nowrap scrollbar-hide">
                          {["All", "Concerts", "Events", "Movies", "Activity"].map((tab, i) => (
                            <button
                              key={i}
@@ -226,9 +226,9 @@ const [showModal, setShowModal] = useState(false);
                        {/* Trending Section */}
                        <div className="flex-1 overflow-y-auto scrollbar-hide p-6">
                         
-                         <h3 className="text-white font-semibold mb-3">
+                         <p className="text-white text-xs md:text-base font-semibold mb-3">
                            Trending in Ahmedabad
-                         </h3>
+                         </p>
                          <div className="grid sm:grid-cols-2 gap-4">
                            {[
                              { title: "War 2", img: "/movie1.jpeg" },
@@ -247,8 +247,8 @@ const [showModal, setShowModal] = useState(false);
                              <div key={i} className="flex items-center gap-3">
                                <img src={m.img} className="w-10 h-10 rounded-md" alt={m.title} />
                                <div>
-                                 <p className="text-sm font-medium text-white">{m.title}</p>
-                                 <p className="text-xs text-white">Movie</p>
+                                 <p className="text-xs md:text-sm font-medium text-white">{m.title}</p>
+                                 <p className="text-[10px] md:text-xs text-white">Movie</p>
                                </div>
                              </div>
                            ))}

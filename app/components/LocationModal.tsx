@@ -95,7 +95,7 @@ const [location, setLocation] = useState<string>("");
           </button>
 
           {/* Title */}
-          <h2 className="text-sm sm:text-[20px] font-semibold mb-5">Select Location</h2>
+          <h2 className="text-xs sm:text-[20px] font-semibold mb-5">Select Location</h2>
 
           {/* Search */}
           <input
@@ -105,7 +105,7 @@ const [location, setLocation] = useState<string>("");
           />
 
           {/* Use current location */}
-          <div className="flex items-center gap-2 text-white font-medium text-sm sm:text-[15px] mt-4 cursor-pointer">
+          <div className="flex items-center gap-2 text-white font-medium text-xs sm:text-[15px] mt-4 cursor-pointer">
             <FaLocationDot  className="text-gray-300 w-4 h-4 sm:w-4 sm:h-4" />
             <span  onClick={getCurrentLocation}  >Use current location</span>
            {location && (
@@ -125,7 +125,7 @@ const [location, setLocation] = useState<string>("");
           style={{ maxHeight: "calc(85vh - 140px)" }}
         >
           {/* Popular Cities */}
-          <h3 className="text-sm md:text-[16px] font-semibold mt-6 mb-4">Popular Cities</h3>
+          <h3 className="text-xs md:text-[16px] font-semibold mt-6 mb-4">Popular Cities</h3>
           <div className="grid grid-cols-3 md:grid-cols-5 md:gap-4 mb-6">
             {popularCities.map((city) => (
               <div
@@ -134,7 +134,7 @@ const [location, setLocation] = useState<string>("");
                 className="rounded-lg flex flex-col items-center justify-center py-1 cursor-pointer hover:shadow-md"
               >
                 <span className=" text-lg md:text-[28px] mb-1">{city.icon}</span>
-                <span className="text-[10px] md:text-[13px] font-medium text-center">
+                <span className="text-[8px] md:text-[13px] font-medium text-center">
                   {city.name}
                 </span>
               </div>
@@ -142,8 +142,8 @@ const [location, setLocation] = useState<string>("");
           </div>
 
           {/* All Cities Alphabet Nav */}
-          <h3 className="text-sm md:text-[16px] font-semibold mb-3">All Cities</h3>
-          <div className="flex flex-wrap gap-3 text-white text-xs md:text-[14px] mb-3">
+          <h3 className="text-xs md:text-[16px] font-semibold mb-3">All Cities</h3>
+          <div className="flex flex-wrap gap-3 text-white text-[10px] md:text-[14px] mb-3">
             {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
               <span
                 key={letter}
@@ -155,7 +155,7 @@ const [location, setLocation] = useState<string>("");
           </div>
 
           {/* All Cities List */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-gray-400 text-xs md:text-sm">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-gray-400 text-[10px] md:text-sm">
             {cities.map((city, idx) => (
               <div
                 key={idx}

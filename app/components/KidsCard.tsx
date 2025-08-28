@@ -35,7 +35,7 @@ export default function KidsCard({ img, title, date }: KidsCardProps) {
        return () => observer.disconnect();
      }, []);
   return (
-    <div ref={containerRef} onClick={() => router.push(`/events`)} className="bg-[#13214B] rounded-lg py-2 flex flex-col items-center overflow-x-auto shrink-0  text-center cursor-pointer hover:text-white/70 stagger-card">
+    <div ref={containerRef} onClick={() => router.push(`/events`)} className="bg-[#13214B] rounded-lg py-2 flex flex-col items-center overflow-x-auto shrink-0  text-center cursor-pointer hover:text-white/70 stagger-card basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/4 xl:basis-1/6">
     <div className={`image-wrapper relative w-[130px] h-[150px] md:w-[160px] md:h-[180px]  movie-card ${isVisible ? "section-visible" : "section-hidden"}`}>
       <Image src={img} alt={title} fill className="mx-auto rounded-lg event-image" /></div>
       <div className="p-3">

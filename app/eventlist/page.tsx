@@ -84,7 +84,7 @@ const EventListPage: React.FC = () => {
   return (
     <div className="min-h-screen font-inter bg-[#0D1B4C] text-white">
      
-      <div className="  md:px-[auto] md:p-3">
+      <div className=" py-3 md:px-[auto] ">
         <Header title="Stand up comedy" subtitle="" />
         <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0">
                 <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
