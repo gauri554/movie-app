@@ -39,17 +39,17 @@ export default function Header({ title, subtitle }: HeaderProps) {
     backPath: "/",
   };
   return (
-    <header className="px-2  sm:px-2 md:gap-5   py-2 sm:py-2 flex justify-between md:items-center md:justify-between md:mb-4 overflow-x-hidden border-b border-white/10 md:border-0">
+    <header className="px-2  sm:px-2 md:gap-5   py-2 sm:py-2 flex justify-between md:items-center md:justify-between md:mb-4 overflow-x-hidden border-b border-white/10 test-white md:border-0">
       {/* Left side: Title & Subtitle */}
-      <div className="flex items-center gap-3 sm:gap-4">
+      <div className="flex items-center gap-3 sm:gap-4 text-white">
         <button
                   onClick={() => router.push(backPath)}
-          className="w-5 h-5 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-base sm:text-3xl"
+          className="w-5 h-5 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-base sm:text-3xl"
         >
           ‹
         </button>
         <div>
-          <h1 className="text-sm sm:text-2xl md:text-3xl sm:font-semibold">{title}</h1>
+          <h1 className="text-sm sm:text-2xl md:text-2xl sm:font-semibold">{title}</h1>
         
         </div>
       </div>

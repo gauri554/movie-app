@@ -103,7 +103,7 @@ const [showPopup, setShowPopup] = useState(false);
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="max-w-6xl mx-auto px-3 py-2 md:px-6 md:py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* LEFT: main content */}
         <div className="lg:col-span-8 space-y-6">
           {/* Movie card */}
