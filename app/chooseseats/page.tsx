@@ -9,7 +9,6 @@ interface Seat {
   status: SeatStatus;
 }
 
-
 export default function ChooseSeats() {
    const router = useRouter();
   const initialSeats: Seat[] = [
@@ -60,9 +59,6 @@ export default function ChooseSeats() {
        <Header title="Choose Seat&apos;s" subtitle="⭐ 7.2/10 (20k Votes)"/>
 <div className="flex flex-col items-center sm:py-3 px-3 sm:px-8 ">
       <h1 className="text-xl sm:text-3xl font-bold mb-6">Choose Your Seat&apos;s</h1>
-
-      {/* Screen
-      <div className="w-3/4 h-6 bg-gradient-to-r from-yellow-300 to-yellow-500 rounded-t-full mb-8"></div> */}
 
       {/* Seat Grid */}
       <div className="grid gap-4 sm:gap-4 justify-center  grid-cols-6 sm:grid-cols-5 md:grid-cols-6">

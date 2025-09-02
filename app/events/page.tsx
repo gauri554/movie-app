@@ -3,29 +3,16 @@
 import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from 'next/link';
-import SidebarFilters from "../components/SidebarFilters";
 import Filters from "../components/Filters";
 import { FiFilter } from "react-icons/fi";
 import "../globals.css";
 import {X} from "lucide-react";
-import Card from "../components/Card";
 import "../components/EventCard.css";
 import { FaSearch } from "react-icons/fa";
 import { useEffect } from "react";
 import CategoryButton from "../components/CategoryButton";
 import { FaFilm, FaCalendarAlt, FaTicketAlt } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-type Chip = { label: string; active?: boolean };
-
-const languageChips: Chip[] = [
-  { label: "All", active: true },
-  { label:"English"},
-  { label: "Hindi" },
-  { label: "Telegu" },
-  { label: "Malayalam" },
-  { label: "Panjabi" },
-];
 
 const comedyShows = [
   { title: "Stand Up", subtitle: "25+ Events", img: "/standup.png" , slug: "stand-up", language:"English"},
@@ -91,16 +78,6 @@ const [openFilters, setOpenFilters] = useState(false);
     return (
     <div className="min-h-screen font-inter bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white">
 
-
-       <SidebarFilters isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-          
-                {/* Overlay */}
-                {isSidebarOpen && (
-                  <div
-                    className="fixed inset-0 bg-black/50 z-40"
-                    onClick={() => setIsSidebarOpen(false)}
-                  />
-                )}
       <div className="max-w-7xl mx-auto px-2 md:px-8 md:py-3">
         {/* Header */}
  <header className=" px-0  md:gap-5 py-2 flex flex-row justify-between md:items-center md:justify-between mb-4 border-b border-white/10 md:border-0">
@@ -127,37 +104,8 @@ const [openFilters, setOpenFilters] = useState(false);
                 onClick={() => setShowModal(true)}    >
              <FaSearch />
            </span>
-           
-           
-                  {/*} <div className="relative w-full sm:w-64">
-                     <input
-                       type="text"
-                       value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                       className="px-3 py-1 rounded-md text-white bg-white/10 focus:outline-none w-full sm:w-64 shadow-md text-sm placeholder-transparent"
-                       placeholder="."
-                     />
-           
-
-                     {!value &&(
-                     <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                       <AnimatePresence mode="wait">
-                         <motion.span
-                           key={placeholderIndex}
-                           initial={{ y: "-100%", opacity: 0 }}
-                           animate={{ y: "0%", opacity: 1 }}
-                           exit={{ y: "100%", opacity: 0 }}
-                           transition={{ duration: 0.4 }}
-                            className="text-gray-400 text-sm"
-                         >
-                           {placeholders[placeholderIndex]}
-                         </motion.span>
-                       </AnimatePresence>
-                     </div>)}
-                   </div>*/}
-                 
-
-       
+      
+      {/* Search Modal */}
                       <AnimatePresence>
                  {showModal && (
                    <motion.div
@@ -268,7 +216,6 @@ const [openFilters, setOpenFilters] = useState(false);
                  )}
                  </AnimatePresence>
           </div></div>
-
         </header>
 
 <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12  sm:py-4 pb-3 md:pb-0 mb-4 border-b border-white/10 md:mb-0">
@@ -276,29 +223,6 @@ const [openFilters, setOpenFilters] = useState(false);
         <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
         <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
       </div>
-
-
-        {/* Language chips 
-        <div className="flex flex-wrap gap-3 mb-6">
-          {languageChips.map((c) => (
-            <button key={c.label}  onClick={() => setSelectedLang(c.label)}
-              className={`px-4 py-2 rounded-full text-sm font-medium shadow-sm cursor-pointer ${
-                selectedLang === c.label
-                  ? "bg-[#ff4655] text-white"
-                  : "bg-white/6 text-white/80 hover:bg-white/10"
-              }`}
-            >
-              {c.label}
-            </button>
-          ))}
-            <button
-        onClick={() => setIsSidebarOpen(true)}
-        className="px-4 py-2 rounded-full bg-white/6 text-sm font-medium shadow-sm hover:bg-[#ff4655] text-white flex items-center gap-1"
-      >
-        <FiFilter size={18} />
-        Filter
-      </button>
-        </div>*/}
 
           <div className="flex gap-3 md:flex-wrap flex-nowrap overflow-x-auto no-scrollbar items-center mb-6">
           {["New Releases", "English", "Hindi", "Malayalam", "Telugu", "Tamil"].map((lang) => (
@@ -325,22 +249,7 @@ const [openFilters, setOpenFilters] = useState(false);
           <Filters open={openFilters} onClose={() => setOpenFilters(false)} />
         </div>
 
-        {/* Upcoming Events Banner 
-        <div className="mb-10">
-          <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-4 md:p-8 shadow-lg flex flex-row gap-35 md:gap-[auto] md:flex-row md:items-center md:justify-between">
-            <div>
-              <div className="text-sm md:text-2xl font-semibold">Upcoming Events</div>
-              <div className="text-xs sm:text-sm opacity-90">In Cinemas near you</div>
-            </div>
-            <button onClick={() => router.push(`/eventlist`)} className="md:h-12 md:w-12 w-10 h-10 mt-2 rounded-full bg-white/20 flex items-center justify-center cursor-pointer self-start md:self-auto">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </div>*/}
-
-
+{/* Upcoming Events Banner */}
         <div className="mb-10">
   <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-4 md:p-6 shadow-lg flex flex-row items-center justify-between md:flex-row md:items-center md:justify-between gap-4">
     
@@ -373,48 +282,6 @@ const [openFilters, setOpenFilters] = useState(false);
   </div>
 </div>
 
-
-        {/* Comedy and Music shows side-by-side on desktop 
-    
-          <section>
-            <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4 ">Comedy Shows</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
-            <div className= "flex md:grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 overflow-x-auto no-scrollbar cursor-pointer">
-              {filteredComedy.map((c) => (
-                <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="shrink-0 w-[120px] h-[150px] md:h-[auto] sm:w-[180px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]"   // default shadow
-  >
-                  <div className="h-44 bg-cover top bg-center" style={{ backgroundImage: `url('${c.img}')` }}     />
-                  <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60 ">
-                    <div className="text-sm md:text-lg font-semibold">{c.title}</div>
-                    <div className="text-xs md:text-sm opacity-80">{c.subtitle}</div>
-                  </div>
-                </div>
-              ))}
-               {filteredComedy.length === 0 && (
-                <p className="text-white/60">No comedy shows available for {selectedLang}</p>
-              )}
-            </div>
-    <div className= "flex md:grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 overflow-x-auto no-scrollbar cursor-pointer">
-              {filteredMusic.map((c) => (
-                <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="shrink-0 w-[120px] h-[150px] md:h-[auto] md:w-[180px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]"   // default shadow
-  >
-                  <div className="h-44 bg-cover top bg-center" style={{ backgroundImage: `url('${c.img}')` }}     />
-                  <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60 ">
-                    <div className="text-sm md:text-lg font-semibold">{c.title}</div>
-                    <div className="text-xs md:text-sm opacity-80">{c.subtitle}</div>
-                  </div>
-                </div>
-              ))}
-               {filteredMusic.length === 0 && (
-                <p className="text-white/60">No music shows available for {selectedLang}</p>
-              )}
-            </div>
-           
-
-</div>
-          </section> */}
-
-       
         <section>
   <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4 ">
     Shows
@@ -484,90 +351,9 @@ const [openFilters, setOpenFilters] = useState(false);
 </section>
 
 
-        {/*<section>
-            <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4">Music Shows</h2>
-        
-
-              <div className= "flex md:grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 overflow-x-auto no-scrollbar cursor-pointer">
-              {filteredMusic.map((c) => (
-                <div key={c.title}  onClick={() => router.push(`/eventlist`)} className="shrink-0 w-[120px] h-[150px] md:h-[auto] md:w-[180px] rounded-xl overflow-hidden relative bg-white/10 backdrop-blur-md border border-white/20 transition duration-500 hover:border-white/40 hover:shadow-[0_8px_20px_rgba(255,255,255,0.2)]"   // default shadow
-  >
-                  <div className="h-44 bg-cover top bg-center" style={{ backgroundImage: `url('${c.img}')` }}     />
-                  <div className="p-1 pl-2 bg-gradient-to-t from-black/40 to-transparent absolute bottom-0 left-0 right-0 bg-black/60 ">
-                    <div className="text-sm md:text-lg font-semibold">{c.title}</div>
-                    <div className="text-xs md:text-sm opacity-80">{c.subtitle}</div>
-                  </div>
-                </div>
-              ))}
-               {filteredMusic.length === 0 && (
-                <p className="text-white/60">No music shows available for {selectedLang}</p>
-              )}
-            </div>
-          </section>*/}
-       
-
-
-    
-
-      
-
-
-
-
-
-
-
         {/* Events Hero */}
         <section className="mb-10">
           <h2 className="text-sm md:text-2xl text-[#ff596b] font-semibold mb-4">Events</h2>
-          {/*<div  onClick={() => router.push(`/eventdetails`)} className=" overflow-hidden relative h-72  object-contain cursor-pointer" style={{ backgroundImage: `url('/coldplay.png')` , backgroundSize: "contain",
-    backgroundRepeat: "no-repeat",
-     }} >
-            <div className="absolute inset-0 " />
-            <div className="absolute left-6 bottom-6 text-white">
-              <div className="text-xl font-bold">Cricket</div>
-              <div className="text-sm opacity-80">20+ Events</div>
-            </div>
-          </div>*/}
-
-          {/*<div className="flex flex-col md:flex-row gap-4">
- 
-  <div
-    onClick={() => router.push(`/eventdetails`)}
-    className="overflow-hidden relative h-32 md:w-full  md:w-1/2 object-contain cursor-pointer"
-    style={{
-      backgroundImage: `url('/coldplay.png')`,
-      backgroundSize: "contain",
-      backgroundRepeat: "no-repeat",
-    }}
-  >
-    <div className="absolute inset-0" />
-    <div className="absolute left-6 bottom-6 text-white bg-black/60 p-2 pr-5 rounded-lg">
-      <div className="md:text-xl font-bold">Cricket</div>
-      <div className="text-sm opacity-80">20+ Events</div>
-    </div>
-  </div>
-
-  
-  <div
-    onClick={() => router.push(`/details`)}
-    className="overflow-hidden relative h-32 md:w-1/2 object-contain cursor-pointer "
-    style={{
-      backgroundImage: `url('/Image 29.png')`,
-      backgroundSize: "contain",
-      backgroundRepeat: "no-repeat",
-
-    }}
-  >
-    <div className="absolute inset-0  " />
-    <div className="absolute left-6 bottom-6 text-white md:text-white/500 bg-black/60 p-2 pr-5 rounded-lg">
-      <div className="md:text-xl font-bold z-10">Football</div>
-      <div className="text-sm opacity-80">15+ Events</div>
-    </div>
-  </div>
-</div>*/}
-
-{/* Wrapper */}
 <div className="flex md:grid md:grid-cols-2 gap-4 overflow-x-auto md:overflow-visible no-scrollbar">
   {/* Event 1 */}
   <div
@@ -616,17 +402,6 @@ const [openFilters, setOpenFilters] = useState(false);
             <h2 className="text-sm md:text-2xl text-[#ff596b] font-bold">Best Event this Week</h2>
             <a onClick={() => router.push(`/eventlist`)} className="text-xs md:text-sm text-white/80 hover:underline cursor-pointer">View All →</a>
           </div>
-         {/* <div className="grid grid-cols-1 sm:grid-cols-6 gap-10  ">
-            {bestThisWeek.map((b) => (
-              <div key={b.title} onClick={() => router.push(`/eventlist`)} className="shine-card rounded-lg overflow-hidden bg-[#0b223f] shadow-md text-center cursor-pointer ">
-                <div className="h-40 bg-cover bg-center mt-5 " style={{ backgroundImage: `url('${b.img}')`,  backgroundSize: "contain",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center" }} />
-                <div className="p-3 text-sm text-center">{b.title}</div>
-              </div>
-            ))}
-          </div>*/}
-
           {/* Wrapper */}
 <div className="flex overflow-x-auto sm:grid sm:grid-cols-6 gap-5 md:gap-6 no-scrollbar">
   {bestThisWeek.map((b) => (
@@ -651,29 +426,6 @@ const [openFilters, setOpenFilters] = useState(false);
 
         </section>
       </div>
-
-      {/* Desktop footer 
-      <footer className="bg-[#f7e7d6] text-[#2b2b2b] py-6 mt-10">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-5 gap-4 text-center text-sm">
-           <Link href="/">
-          <div>Home</div>
-          </Link>
-            <Link href="/new-release">
-          <div>Film Mart</div>
-          </Link>
-          
-          <Link href="/events">
-          <div className="text-[#ff4655] font-semibold">Events</div>
-          </Link>
-          <Link href="/cinemashows">
-          <div>Book Ticket</div>
-          </Link>
-           <Link href="/">
-          <div>Profile</div>
-          </Link>
-        </div>
-      </footer>*/}
-
 
  <footer className="bg-[#0b223f] py-6 text-center text-xs md:text-sm text-white/90 mt-10">
         © 2025 Movie App. All Rights Reserved.

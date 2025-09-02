@@ -1,4 +1,3 @@
-// components/SeatSelection.tsx
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -44,21 +43,6 @@ export default function SeatSelection() {
           {/* Seat Count */}
           <div>
             <p className="text-xs sm:text-sm text-gray-500 mb-2">Number of Seats</p>
-          {/* <div className="flex items-center gap-4">
-              <button
-                onClick={() => setSeats((prev) => Math.max(1, prev - 1))}
-                className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-lg font-bold"
-              >
-                −
-              </button>
-              <span className="text-xl font-semibold w-10 text-center">{seats}</span>
-              <button
-                onClick={() => setSeats((prev) => Math.min(10, prev + 1))}
-                className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-lg font-bold"
-              >
-                +
-              </button>
-            </div>*/}
 
                <div className="flex flex-wrap gap-2 sm:gap-3">
               {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (

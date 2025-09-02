@@ -11,7 +11,7 @@ interface EnquiryModalProps {
 export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   const [fileName, setFileName] = useState<string>("");
 
-  if (!isOpen) return null; // ⬅️ prevents empty screen issue
+  if (!isOpen) return null; 
 
   return (
     <div

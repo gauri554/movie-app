@@ -2,8 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import "./MovieCard.css";
-import "../globals.css"; // Ensure global styles are imported
-import { Plus } from "lucide-react";
+import "../globals.css"; 
 import { useState, useEffect } from "react";
 type MovieCardProps = {
   img: string;
@@ -40,9 +39,6 @@ export default function MovieCard({ img, title, rating, votes }: MovieCardProps)
   return (
     <div   ref={containerRef} onClick={() => router.push(`/new-release`)} className="bg-[#13214B] rounded-lg p-2 md:p-3 flex flex-col items-center overflow-x-auto scroll-smooth no-scrollbar shrink-0  cursor-pointer hover:text-white/70  basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/4 xl:basis-1/6"   
   > 
-   
-      {/*<Image src={img} alt={title} width={250} height={120} className="rounded-lg  transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:shadow-black/50 " />*/}
-
       <div className={`relative movie-card ${isVisible ? "section-visible" : "section-hidden"}`}   >
   <Image
     src={img}

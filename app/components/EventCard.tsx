@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import "./EventCard.css";
 import "./MovieCard.css";
-import { FaEye } from "react-icons/fa";
 import { useState, useEffect, useRef } from "react";
 type EventCardProps = {
   img: string;
@@ -23,8 +22,8 @@ export default function EventCard({ img, title, date }: EventCardProps) {
        const observer = new IntersectionObserver(
          ([entry]) => {
            if (entry.isIntersecting) {
-             setIsVisible(true);      // trigger once
-             observer.unobserve(el);  // stop observing after first reveal
+             setIsVisible(true);     
+             observer.unobserve(el);
            }
          },
          { threshold: 0.2 }

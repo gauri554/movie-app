@@ -1,5 +1,4 @@
 "use client";
-
 import { X } from "lucide-react";
 import { FaLocationDot , FaBridge, FaMosque} from "react-icons/fa6";
 import { FaTreeCity, FaUmbrellaBeach } from "react-icons/fa6";
@@ -8,6 +7,7 @@ import { MdTempleBuddhist } from "react-icons/md";
 import { LuLandmark } from "react-icons/lu";
 import { GiSoccerField } from "react-icons/gi";
 import { useState } from "react";
+import "../globals.css";
 interface LocationModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -57,7 +57,7 @@ const [location, setLocation] = useState<string>("");
         const { latitude, longitude } = position.coords;
 
         try {
-          // Reverse geocoding (using OpenStreetMap Nominatim)
+      
           const res = await fetch(
             `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
           );
@@ -171,8 +171,7 @@ const [location, setLocation] = useState<string>("");
           </div>
         </div>
       </div>
-
-      {/* Hide scrollbar with CSS */}
+        {/* Hide scrollbar with CSS */}
       <style jsx>{`
         .hide-scrollbar {
           scrollbar-width: none; /* Firefox */

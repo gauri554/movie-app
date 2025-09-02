@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { useRouter } from "next/navigation";
-import "../globals.css"; // Ensure global styles are imported
+import "../globals.css"; 
 type SectionProps = {
   title: string;
   children: ReactNode;

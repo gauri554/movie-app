@@ -54,12 +54,12 @@ export default function FilterModal({ open, onClose }: FilterModalProps) {
             {/* Header */}
             <div className="flex justify-between items-center mb-4">
               <div>
-                <h2 className="text-lg font-semibold text-white">Filters</h2>
-                <p className="text-xs text-white/60">Tailored content discovery</p>
+                <h2 className="text-sm sm:text-base md:text-lg font-semibold text-white">Filters</h2>
+                <p className="text-xs sm:text-xs md:text-xs text-white/60">Tailored content discovery</p>
               </div>
               <button
                 onClick={onClose}
-                className="text-sm text-[#ff4655] hover:underline cursor-pointer"
+                className="text-xs sm:text-xs md:text-sm text-[#ff4655] hover:underline cursor-pointer"
               >
                 Reset All
               </button>
@@ -71,7 +71,7 @@ export default function FilterModal({ open, onClose }: FilterModalProps) {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`flex-1 py-2 text-sm font-medium transition-colors
+                  className={`flex-1 py-2 text-[10px] sm:text-sm md:text-sm font-medium transition-colors
                     ${
                       activeTab === tab
                         ? "text-[#ff4655] border-b-2 border-[#ff596b]"
@@ -91,8 +91,8 @@ export default function FilterModal({ open, onClose }: FilterModalProps) {
                   className="flex items-center justify-between px-2 py-2 rounded-md 
                              hover:bg-white/10 cursor-pointer transition"
                 >
-                  <span className="text-white">{item}</span>
-                  <input type="checkbox" className="w-5 h-5 accent-[#ff596b]" />
+                  <span className="text-white text-xs md:text-base">{item}</span>
+                  <input type="checkbox" className="w-3 h-3 md:w-5 md:h-5 accent-[#ff596b]" />
                 </label>
               ))}
             </div>

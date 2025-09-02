@@ -92,6 +92,9 @@ const EventListPage: React.FC = () => {
                 <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
               </div>
 </div>
+
+
+{/* Ecentlist */}
 <div className="  px-2 md:px-[auto] md:p-3">
         <h2 className="text-xs md:text-lg md:text-left text-red-500 mt-4 mb-4 font-semibold">
           Stand Up {visibleCount}+ Events

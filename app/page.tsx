@@ -1,5 +1,4 @@
 "use client";
-//import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import Section from "./components/Section";
 import MovieCard from "./components/MovieCard";
@@ -8,26 +7,21 @@ import KidsCard from "./components/KidsCard";
 import CinemaCard from "./components/CinemaCard";
 import LoginDrawer from "./components/LoginDrawer";
 import CategoryButton from "./components/CategoryButton";
-import { Menu } from "lucide-react";
-import SidebarFilters from "./components/SidebarFilters";
 import { FaSearch } from "react-icons/fa";
 import {X} from "lucide-react";
 import { FaUserCircle } from "react-icons/fa";
 import LocationModal from "./components/LocationModal";
 import { FaBell } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6"; 
-import { FaBarcode } from "react-icons/fa";
 import { FaFilm, FaCalendarAlt, FaTicketAlt } from "react-icons/fa";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-//import Link from "next/link";
-
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "./globals.css";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 
 const placeholders = [
@@ -45,7 +39,7 @@ export default function HomePage() {
  const [showSearch, setShowSearch] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
    const [showLogin, setShowLogin] = useState(false);
-
+const router=useRouter();
 const [showModal, setShowModal] = useState(false);
  const [openProfile, setOpenProfile] = useState(false);
  
@@ -61,7 +55,6 @@ const images = [
 
  const [messages, setMessages] = useState(5); // unread count
   
-
   const handleBellClick = () => {
     setIsOpenBell(true);
     setMessages(0); // clear messages when opened
@@ -79,21 +72,6 @@ const images = [
     { id: 2, message: "Your subscription will expire soon", time: "1d ago" },
     { id: 3, message: "Update available in app", time: "3d ago" },
   ];
-{/*const images = [
-    "/Group 2529.png",
-    "/Image 29.png",
-    "/Coldplay.png",
-  ];
-
-  const [current, setCurrent] = useState(0);
-
-  // Auto-slide every 3 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [images.length]);*/}
 
  const [placeholderIndex, setPlaceholderIndex] = useState(0);
      const [value, setValue] = useState("");
@@ -108,7 +86,6 @@ const images = [
     return () => clearInterval(interval);
   }, [value]);
 
-   
 
    const [hasNew, setHasNew] = useState(false);
 
@@ -122,31 +99,11 @@ const images = [
   return (
 
     <div className="bg-[#0C1B4D] font-inter text-white min-h-screen ">
-      
- 
-
-      {/* Sidebar */}
-      <SidebarFilters isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-
-      {/* Overlay */}
-      {isSidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 transform transition-transform duration-300 cursor-pointer"
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
-
-
 
       {/* Navbar */}
       <header className=" sticky top-0 z-50  bg-[#0C1B4D] flex justify-between md:gap-30 md:items-center px-2 py-4 sm:px-8 sm:py-4 border-b border-white/10  ">
         <div className="flex items-center gap-0 sm:gap-2 cursor-pointer">
-           {/* <button
-        className="p-1 sm:p-3 m-2 sm:m-4 bg-white/5 text-white rounded-md cursor-pointer "
-        onClick={() => setIsSidebarOpen(true)}
-      >
-        <Menu  className="w-3 h-3 sm:w-6 h-6" />
-      </button>*/}
+         
       <div 
        onClick={() => setIsOpen(true)}
         className="flex items-center gap-1 cursor-pointer select-none text-sm sm:text-lg">
@@ -158,59 +115,14 @@ const images = [
         onClose={() => setIsOpen(false)}
         onSelect={(city: string) => setSelectedCity(city)} 
       />
-   {/*<AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => setIsOpen(false)}
-          >
-            <motion.div
-              className="bg-[#0C1B4D] text-white rounded-2xl p-6 w-[90%] max-w-md shadow-2xl"
-              initial={{ scale: 0.5, opacity: 0, y: 50 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.5, opacity: 0, y: 50 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              onClick={(e) => e.stopPropagation()}
-            >
-            
-              <input
-                type="text"
-                placeholder="Search for your city"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-white/10"
-              />
-
-             
-              <div className="mt-4 flex flex-col gap-2">
-                {["Mumbai", "Delhi", "Bengaluru", "Chennai"].map((city) => (
-                  <motion.div
-                    key={city}
-                    onClick={() => handleCitySelect(city)}
-                    className="p-2 hover:bg-white/10 rounded cursor-pointer"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    {city}
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>*/}
-
+  
         </div>
         <div className="flex items-center gap-2 sm:gap-46   sm:w-auto ">
            <div className="flex items-center gap-2 relative">
            
-         
-          
                  <div className= "hidden md:block relative w-full sm:w-full">
                   <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-white w-5 h-5"  />
                    <input
-                   
                      type="text"
                      onClick={() => setShowModal(true)}
                      value={value}
@@ -236,10 +148,6 @@ const images = [
                      </AnimatePresence>
                    </div>)}
                  </div>
-          
-         
-         
-         
          
               <AnimatePresence>
                  {showModal && (
@@ -378,7 +286,7 @@ const images = [
 <div className="relative">
  <span
        
-        className="flex items-center gap-2 cursor-pointer select-none hover:text-yellow-400"
+     onClick={() => router.push("/profile")}   className="flex items-center gap-2 cursor-pointer select-none hover:text-yellow-400"
       >
         <FaUserCircle  className=" w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6" />
       </span>
@@ -429,6 +337,8 @@ const images = [
 
   <LoginDrawer isOpen={showLogin} onClose={() => setShowLogin(false)} />
 
+
+{/*Notification drawer*/}
 {isOpenBell && (
   <div
     className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
@@ -442,7 +352,7 @@ const images = [
       >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-700">
-          <h2 className="text-base sm:text-lg font-semibold">Notifications</h2>
+          <h2 className="text-sm sm:text-lg font-semibold">Notifications</h2>
           <button
             className="text-gray-400 hover:text-white cursor-pointer"
             onClick={() => setIsOpenBell(false)}
@@ -459,8 +369,8 @@ const images = [
                 key={n.id}
                 className="p-3 bg-white/10 rounded-lg hover:bg-white/5 transition"
               >
-                <p className="text-sm">{n.message}</p>
-                <span className="text-xs text-gray-400">{n.time}</span>
+                <p className="text-xs md:text-sm">{n.message}</p>
+                <span className="text-xs md:text-xs text-gray-400">{n.time}</span>
               </div>
             ))
           ) : (
@@ -468,65 +378,15 @@ const images = [
           )}
         </div>
       </div>
+
+
       {/* Category Buttons */}
       <div className="flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10">
         <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
         <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
-        <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
+        <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/movieticket" />
       </div>
 
-      {/* Hero Banner 
-      <div className="px-8 mt-6">
-        <div className="relative rounded-lg overflow-hidden">
-          <Image
-            src="/Group 2529.png"
-            alt="Now in Cinema"
-            width={900}
-            height={200}
-            className="w-full h-[320px] "
-          />
-         
-        </div>
-      </div>*/}
-
-     {/*} <div className="px-8 mt-6">
-      <div className="relative rounded-lg overflow-hidden h-[320px]">
-        {images.map((src, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-700w-full overflow-hidden ${
-              index === current ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <Image
-              src={src}
-              alt={`Slide ${index + 1}`}
-             width={1600}
-             height={500}
-              className=" w-full h-full ob
-              ject-contain"
-      
-            />
-          </div>
-        ))}
-
-       
-        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrent(index)}
-              className={`w-3 h-3 rounded-full ${
-                index === current ? "bg-white" : "bg-gray-400"
-              }`}
-            />
-          ))}
-        </div>
-      </div>
-    </div>*/}
-
-
-  
       <div className="w-full py-6">
       <Swiper
         modules={[Navigation, Pagination,Autoplay]}
@@ -601,16 +461,7 @@ const images = [
         <KidsCard img="/movie2.jpeg" title="Bothica Music Festival" date="Thurs 20 Oct Onwards" />
       </Section>
 
-      {/* Ad Banner 
-      <div className="px-8 my-8">
-        <Image
-          src="/ad-banner.png"
-          alt="Recharge Offer"
-          width={1200}
-          height={200}
-          className="rounded-lg"
-        />
-      </div>*/}
+    
 
       {/* Best Event This Week */}
       <Section title="Best Event this Week" viewAllUrl="/events">
@@ -644,8 +495,6 @@ const images = [
     font-family: 'Inter', sans-serif;
   }
 `}</style>
-
-
 
     </div>
   );

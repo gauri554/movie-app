@@ -8,7 +8,7 @@ interface PaymentSuccessProps {
 const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ onClose }) => {
   const router = useRouter();
   return (
-    <div className="fixed inset-0 flex items-center justify-center backdrop-blur bg-opacity-40 z-50 font-montserrat">
+    <div className="fixed inset-0 flex items-center justify-center backdrop-blur bg-opacity-40 z-50 font-inter">
       <div className="bg-[#1A1B4B] rounded-2xl px-6 sm:p-8 max-w-[90%] sm:max-w-md w-full shadow-lg text-center relative mx-4 sm:mx-auto">
         {/* Close Button */}
         <button
@@ -39,26 +39,26 @@ const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ onClose }) => {
         </div>
 
         {/* Title */}
-        <h2 className="text-white text-lg sm:text-xl font-bold mb-2">
+        <h2 className="text-white text-xs sm:text-lg md:text-xl font-bold mb-2">
           Your payment was successful
         </h2>
 
         {/* Description */}
-        <p className="text-gray-300 mb-6 text-xs sm:text-sm leading-relaxed">
+        <p className="text-gray-300 mb-6 text-[10px] sm:text-sm md:text-sm leading-relaxed">
           Adele is a Scottish heiress whose extremely wealthy family owns
           estates and grounds. When she was a teenager. Read More
         </p>
 
         {/* Button */}
-        <button  onClick={() => router.push("/eticket")} className="bg-[#E63946] text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:bg-red-600 transition cursor-pointer w-full sm:w-auto mb-3">
-          See E-Ticket
+        <button  onClick={() => router.push("/eticket")} className="bg-[#E63946] text-white font-semibold  rounded-lg hover:bg-red-600 transition cursor-pointer w-full sm:w-auto mb-3 sweep-button">
+        <span> See E-Ticket</span> 
         </button>
       </div>
-     <style jsx global>{`
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+    <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-  .font-montserrat {
-    font-family: 'Montserrat', sans-serif;
+  .font-inter {
+    font-family: 'Inter', sans-serif;
   }
 `}</style>
     </div>

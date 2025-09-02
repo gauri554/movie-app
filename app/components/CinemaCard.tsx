@@ -14,7 +14,7 @@ export default function CinemaCard({ name, distance, rating, time, imageUrl }: C
     <div className="bg-[#13214B] rounded-lg p-1 md:p-2 flex items-center shrink-0  gap-1 md:gap-2 cursor-pointer ">
   {/* Left Image */}
   <Image
-    src={imageUrl} // change to your image path
+    src={imageUrl} 
     alt={name}
     width={60}
     height={60}

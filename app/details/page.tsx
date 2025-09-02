@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import { FaHome } from "react-icons/fa";
@@ -19,11 +18,7 @@ import EnquiryForm from "../components/EnquiryForm";
 import CategoryButton from "../components/CategoryButton";
 import { FaFilm, FaCalendarAlt, FaTicketAlt } from "react-icons/fa";
 import "../new-release/new-release.css";
-import "../globals.css"; // Ensure global styles are imported
-// MovieDetailsDesktop.tsx
-// A single-file Next.js (App Router compatible) React + TypeScript component
-// styled with Tailwind CSS to convert the provided mobile Figma details screen into
-// a website (desktop) view while keeping the same content.
+import "../globals.css"; 
 
 type Person = {
   name: string;
@@ -89,9 +84,8 @@ const [isModalOpen, setIsModalOpen] = useState(false);
    const router = useRouter();
    const [showModal, setShowModal] = useState(false);
 
-   
-          const [placeholderIndex, setPlaceholderIndex] = useState(0);
-              const [value, setValue] = useState("");
+      const [placeholderIndex, setPlaceholderIndex] = useState(0);
+      const [value, setValue] = useState("");
          
            // Cycle through placeholders every 2s
            useEffect(() => {
@@ -102,6 +96,8 @@ const [isModalOpen, setIsModalOpen] = useState(false);
          
              return () => clearInterval(interval);
            }, [value]);
+
+
   return (
     <div className="min-h-screen  font-inter bg-gradient-to-b from-[#0f2547] via-[#152c57] to-[#1f3558] text-white ">
       <div className="p-4 px-2 md:p-8">
@@ -131,36 +127,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                        <FaSearch />
                      </span>
                      
-                     
-                            {/*} <div className="relative w-full sm:w-64">
-                               <input
-                                 type="text"
-                                 value={value}
-                                  onChange={(e) => setValue(e.target.value)}
-                                 className="px-3 py-1 rounded-md text-white bg-white/10 focus:outline-none w-full sm:w-64 shadow-md text-sm placeholder-transparent"
-                                 placeholder="."
-                               />
-                     
-          
-                               {!value &&(
-                               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                                 <AnimatePresence mode="wait">
-                                   <motion.span
-                                     key={placeholderIndex}
-                                     initial={{ y: "-100%", opacity: 0 }}
-                                     animate={{ y: "0%", opacity: 1 }}
-                                     exit={{ y: "100%", opacity: 0 }}
-                                     transition={{ duration: 0.4 }}
-                                      className="text-gray-400 text-sm"
-                                   >
-                                     {placeholders[placeholderIndex]}
-                                   </motion.span>
-                                 </AnimatePresence>
-                               </div>)}
-                             </div>*/}
-                           
-          
-                 
+                     {/* Search Modal */}
                                 <AnimatePresence>
                            {showModal && (
                              <motion.div
@@ -273,6 +240,8 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                     </div>
           </div>
         </header>
+
+
    <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-1 sm:py-4 pb-3 md:pb-0 mb-4 border-b border-white/10 md:mb-0">
         <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
         <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
@@ -284,10 +253,8 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           {/* Left column: Poster & details */}
           <aside className="col-span-1 md:col-span-4">
             <div className="rounded-xl overflow-hidden shadow-lg bg-gradient-to-b from-[#233e6a] to-[#1b2b4a]">
-              {/* Use the uploaded mobile screenshot as a hero banner fallback */}
 
     <div className="relative">
-      {/* Poster with play button overlay */}
       <div className="relative">
         <img
           src="/Image 29.png"
@@ -332,8 +299,6 @@ const [isModalOpen, setIsModalOpen] = useState(false);
       )}
     </div>
   
-
-
               <div className="pt-2 md:p-5 ">
                 <h2 className="text-sm md:text-2xl font-bold">{title}</h2>
                 <div className="flex flex-row items-center gap-2 md:gap-3 mt-2 md:mt-3 md:flex-row md:items-center md:justify-between">
@@ -354,9 +319,8 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           alert(`Thanks for rating! You gave ${rating} stars.`);
         }}
       />
-                </div>
-
-                <div className="mt-4 space-y-2 text-xs md:text-sm text-white/80">
+      </div>
+             <div className="mt-4 space-y-2 text-xs md:text-sm text-white/80">
                   <p><strong>Director</strong> · {director}</p>
                   <p><strong>Producer</strong> · {producer}</p>
                   <p><strong>Production cost</strong> · {productionCost}</p>
@@ -372,7 +336,6 @@ const [isModalOpen, setIsModalOpen] = useState(false);
               <div>
                 <button   onClick={() => setIsOpenForm(true)} className="w-full mt-6 bg-pink-500 hover:bg-pink-600 text-white rounded-xl font-semibold cursor-pointer sweep-button"><span>Enquiry Now</span></button>
         <EnquiryForm isOpen={isOpenForm} onClose={() => setIsOpenForm(false)} />
-        
          </div>
               </div>
             </div>
@@ -413,14 +376,6 @@ const [isModalOpen, setIsModalOpen] = useState(false);
 
           {/* Right column: Content */}
           <main className="col-span-1 md:col-span-8">
-            {/* Description card 
-            <section className="mb-6 p-6 rounded-xl bg-white/5">
-              <p className="text-white/80">
-                In a world that saw her through a different lens, she kept shining with a light that could not be undone. Lorem ipsum dolor sit amet, consectetur adipisicing elit...
-                <button className="ml-2 text-sm text-pink-300">more</button>
-              </p>
-            </section>*/}
-
              <section className="mb-6 p-6 rounded-xl bg-white/5">
       <p className="text-white/80 text-xs md:text-sm md:text-base">
         {showFullText ? fullText : shortText}
@@ -454,24 +409,6 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                 </div>
               </div>
             </section>
-
-            {/* Cast 
-            <section className="mb-6">
-              <h3 className="text-xl font-semibold mb-4">Cast</h3>
-              <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-3  sm:gap-6 md:gap-6">
-                {cast.map((c) => (
-                  <div key={c.name} className="flex flex-col items-center sm:gap-2">
-                     <div className="relative group w-20 h-20 sm:w-40 sm:h-40 cursor-pointer">
-                    <img src={c.img} alt={c.name} className="sm:w-40 sm:h-40 rounded-full object-cover hover:border-2 hover-border-white/80 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.7)]  transition duration-300" />
-                    <div className="absolute inset-0 rounded-full bg-black/40 opacity-0  transition-opacity duration-300"></div>
-                    </div>
-                    <div className="text-[11px] md:text-sm md:font-medium">{c.name}</div>
-                    <div className="text-xs sm:text-sm text-white/70">{c.role}</div>
-                  </div>
-                ))}
-              </div>
-            </section>*/}
-
  
      
           <section className="mb-6">

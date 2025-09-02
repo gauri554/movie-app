@@ -36,7 +36,7 @@ export default function LoginDrawer({
         aria-modal="true"
       >
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
-          <h2 className="text-xl font-semibold">Sign In</h2>
+          <h2 className="text-sm md:text-xl font-semibold">Sign In</h2>
           <button
             onClick={onClose}
             className="text-2xl leading-none text-white/70 hover:text-white cursor-pointer"

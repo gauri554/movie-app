@@ -100,7 +100,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
             <FaSearch />
           </span>
 
-          {/* Modal */}
+          {/* Search Modal */}
           <AnimatePresence>
             {showModal && (
               <motion.div

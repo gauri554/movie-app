@@ -1,11 +1,8 @@
-// components/NewReleasesPage.tsx
 "use client";
-
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import { FiFilter } from "react-icons/fi";
-import SidebarFilters from "../components/SidebarFilters";
 import { useRouter } from "next/navigation";
 import "./new-release.css";
 import "../globals.css";
@@ -82,20 +79,10 @@ const [showModal, setShowModal] = useState(false);
       
           return () => clearInterval(interval);
         }, [value]);
+
+
   return (
     <div className="min-h-screen font-inter bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white ">
-      {/* Sidebar */}
-          <SidebarFilters isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-    
-          {/* Overlay */}
-          {isSidebarOpen && (
-            <div
-              className="fixed inset-0 bg-black/50 z-40"
-              onClick={() => setIsSidebarOpen(false)}
-            />
-          )}
-    
-    
       <div className="max-w-7xl mx-auto px-2 md:px-8 md:py-3 ">
      
        <header className=" px-0  md:gap-5 sm:px-3 md:px-2 py-2 flex flex-row md:mb-6 justify-between md:items-center md:justify-between  md:border-none border-b border-white/10">
@@ -122,37 +109,8 @@ const [showModal, setShowModal] = useState(false);
                 onClick={() => setShowModal(true)}    >
              <FaSearch />
            </span>
-           
-           
-                  {/*} <div className="relative w-full sm:w-64">
-                     <input
-                       type="text"
-                       value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                       className="px-3 py-1 rounded-md text-white bg-white/10 focus:outline-none w-full sm:w-64 shadow-md text-sm placeholder-transparent"
-                       placeholder="."
-                     />
-           
 
-                     {!value &&(
-                     <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                       <AnimatePresence mode="wait">
-                         <motion.span
-                           key={placeholderIndex}
-                           initial={{ y: "-100%", opacity: 0 }}
-                           animate={{ y: "0%", opacity: 1 }}
-                           exit={{ y: "100%", opacity: 0 }}
-                           transition={{ duration: 0.4 }}
-                            className="text-gray-400 text-sm"
-                         >
-                           {placeholders[placeholderIndex]}
-                         </motion.span>
-                       </AnimatePresence>
-                     </div>)}
-                   </div>*/}
-                 
-
-       
+           {/*Search bar Modal*/}
                       <AnimatePresence>
                  {showModal && (
                    <motion.div
@@ -265,12 +223,16 @@ const [showModal, setShowModal] = useState(false);
           </div></div>
          
         </header>
+
+
   <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0">
         <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
         <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
         <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
       </div>
      
+
+     {/* Carsouel */}
         <div className="mb-8 relative">
           <div className="w-full mx-auto rounded-2xl overflow-hidden bg-[#0b223f]">
             <div className="relative w-full h-[50vw] md:h-[420px]">
@@ -331,31 +293,6 @@ const [showModal, setShowModal] = useState(false);
           </div>
         </div>
 
-        
-
-
-  {/*<div className="flex gap-3 flex-wrap md-flex:no-wrap items-center mb-6">
-        {["New Releases", "English", "Hindi", "Malayalam", "Telugu"].map((lang) => (
-          <button
-            key={lang}
-            onClick={() => setSelectedLang(lang)}
-            className={`px-2 md:px-4 py-1 md:py-2 text-sm md:text-lg rounded-full cursor-pointer ${
-              selectedLang === lang ? "bg-[#ff4655] text-white" : "bg-white/6 hover:bg-[#ff4655]"
-            }`}
-          >
-            {lang}
-          </button>
-
-        ))}
-         <button
-        onClick={() => setIsSidebarOpen(true)}
-        className="px-2 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-lg bg-white/6 hover:bg-[#ff4655] text-white flex items-center gap-1"
-      >
-        <FiFilter size={18} />
-        Filter
-      </button>
-      </div>*/}
-
       <div className="flex gap-3 md:flex-wrap flex-nowrap overflow-x-auto no-scrollbar items-center mb-6">
   {["New Releases", "English", "Hindi", "Malayalam", "Telugu", "Tamil"].map((lang) => (
     <button
@@ -383,14 +320,14 @@ const [showModal, setShowModal] = useState(false);
 
 
 
-        
+{/* Coming Soon Banner */}
         <div className="mb-8">
           <div className="rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-r from-[#ff5a6b] to-[#ff2f6d] p-3 md:p-6 flex items-center justify-between">
             <div>
               <div className="text-sm sm:text-lg font-semibold">Coming Soon </div>
             
               <div className="text-xs md:text-sm opacity-90">Explore Upcoming Movies</div>
- </div>
+                 </div>
             <button onClick={() => router.push("/details")} className="w-7 h-7 md:h-10 md:w-10 rounded-full bg-white/20 flex items-center justify-center cursor-pointer">
               <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -399,15 +336,15 @@ const [showModal, setShowModal] = useState(false);
           </div>
         </div>
 
-      
+      {/* Recommended Movies */}
         <section>
           <h2 className="text-xs md:text-2xl text-[#ff596b] font-semibold mb-4">Recommended Movies</h2>
 
          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6">
             {filteredMovies.map((m, i) => (
 
-              <div key={i} onClick={() => router.push(`/details`)} className="rounded-xl overflow-hidden bg-[#0b233f] p-3 cursor-pointer hover:text-white/70 ">
-                <div className="relative rounded-md overflow-hidden">
+              <div key={i} className="rounded-xl overflow-hidden bg-[#0b233f] p-3 cursor-pointer hover:text-white/70 ">
+                <div onClick={() => router.push(`movieticket`)} className="relative rounded-md overflow-hidden">
                 
                   <Image
                     src={m.poster}
@@ -428,31 +365,18 @@ const [showModal, setShowModal] = useState(false);
                     <div className="text-[10px] md:text-lg md:font-semibold">{m.title}</div>
                     <div className="text-xm md:text-[10px] ml-3 text-white/70 hidden md:block">{m.rating} <span className=" text-white/60">•</span> <span className=" text-xm md:text-xm text-white/60">{m.votes}</span></div>
                   
-                  <button className="bg-white/6 md:px-3 md:py-1 rounded-md text-[10px] md:text-sm">Details</button>
+                  <button onClick={() => router.push(`/details`)} className="bg-white/6 md:px-3 md:py-1 rounded-md text-[10px] md:text-sm cursor-pointer">Details</button>
                 </div>
               </div>
             ))}
           </div>
-
-
-
-    
-
-      
-
         </section>
 
         
         <div className="mt-7 sm:mt-10 md:mt-10 flex flex-row items-center gap-10 md:gap-4 md:flex-row md:items-center md:justify-between  ">
           <button onClick={() => router.push(`/details`)} className="w-[140px] md:w-[auto] bg-[#ff4655] text-white rounded-xl cursor-pointer mb-10 sweep-button"><span>Browse By Cinemas</span></button>
-       
         </div>
       </div>
-
-
-
-
-
 
   <footer className="bg-white/10 py-6 text-center text-xs sm:text-sm text-white/80 mt-10">
         © 2025 Movie App. All Rights Reserved.

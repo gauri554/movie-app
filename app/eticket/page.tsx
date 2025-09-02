@@ -8,7 +8,7 @@ export default function ETicketPage() {
     const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
   return (
-    <div className="min-h-screen bg-[#0B1A51] font-montserrat ">
+    <div className="min-h-screen bg-[#0B1A51] font-inter ">
       {/* Header 
       <header className="w-full max-w-3xl flex items-center justify-between mb-8 px-4 md:mx-0">
         <button onClick={() => router.push(`/checkout`)} className="text-white text-lg cursor-pointer">←</button>
@@ -20,8 +20,8 @@ export default function ETicketPage() {
       {/* Instruction */}
       <div className="flex flex-col items-center mt-8">
       <div className=" max-w-3xl text-white mb-6 px-4 md:px-0">
-        <h2 className="font-bold text-base md:text-lg">Instruction</h2>
-        <p className="text-gray-300 text-sm mt-1 leading-relaxed">
+        <h2 className="font-bold text-xs sm:text-sm md:text-base md:text-lg">Instruction</h2>
+        <p className="text-gray-300 text-[10px] sm:text-sm md:text-sm  mt-1 leading-relaxed">
           Come to the cinema, show and scan the barcode to the space provided.
           Continue to comply with health protocols.
         </p>
@@ -33,13 +33,13 @@ export default function ETicketPage() {
           {/* Ticket Details */}
           <div className="flex-1 p-4 md:p-6">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="font-bold text-base md:text-lg text-black">
+              <h3 className="font-bold text-xs sm:text-base md:text-lg text-black">
                 Film: <span className="font-normal">Shang-Chi</span>
               </h3>
-              <span className="text-pink-500 font-semibold text-sm md:text-base">e-ticket</span>
+              <span className="text-pink-500 font-semibold text-xs sm:text-sm md:text-base">e-ticket</span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 text-[10px] sm:text-xs md:text-sm">
               <div>
                 <p className="text-yellow-500 font-semibold">Date</p>
                 <p className="text-black">06/09/2021</p>
@@ -80,8 +80,8 @@ export default function ETicketPage() {
       </div>
 
       {/* Download Button */}
-      <button  onClick={() => setShowPopup(true)} className="mt-6 md:mt-8 bg-[#E63946] text-white font-semibold py-2.5 md:py-3 px-5 md:px-6 rounded-lg hover:bg-red-600 transition cursor-pointer mx-4 md:mx-0">
-        Download E-Ticket
+      <button  onClick={() => setShowPopup(true)} className="mt-6 md:mt-8 bg-[#E63946] text-white font-semibold  rounded-lg hover:bg-red-600 transition cursor-pointer mx-4 md:mx-0 sweep-button">
+      <span>Download E-Ticket</span>
       </button>
       </div>
         <Popup isOpen={showPopup} onClose={() => setShowPopup(false)} />
@@ -90,11 +90,11 @@ export default function ETicketPage() {
         © 2025 Movie App. All Rights Reserved.
       </footer>
 
-          <style jsx global>{`
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+         <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-  .font-montserrat {
-    font-family: 'Montserrat', sans-serif;
+  .font-inter {
+    font-family: 'Inter', sans-serif;
   }
 `}</style>
     </div>

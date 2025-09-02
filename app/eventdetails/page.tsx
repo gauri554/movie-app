@@ -1,4 +1,3 @@
-// pages/event-details.tsx
 "use client";
 import { NextPage } from "next";
 import Image from "next/image";
@@ -27,20 +26,6 @@ const EventDetails: NextPage = () => {
 
   return (
     <div className="bg-[#0B1E47] font-inter text-white min-h-screen">
-      {/* Header 
-      <header className="max-w-6xl mx-auto px-2 md:px-4 p-4 md:p-[auto] md:py-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-        <button onClick={() => router.push(`/events`)} className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-3xl">
-              ‹
-            </button>
-            <div>
-        <h1 className="md:text-lg md:font-semibold">Tanvi: The Great</h1>
-        <p className="text-xs md:text-sm text-gray-300">Ahmedabad | 34 Movies</p></div></div>
-      </header>
-
-      {/* Main Banner */}
-
-      
       <div className="max-w-7xl mx-auto  md:px-4 md:py-3 ">
          <Header title="Tanvi: The Great" subtitle="Ahmedabad"/>
           <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0">
@@ -49,7 +34,7 @@ const EventDetails: NextPage = () => {
                          <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
                        </div>
         <Image
-          src="/coldplay.png" // replace with actual path
+          src="/coldplay.png" 
           alt="Coldplay Event"
           width={700}
           height={300}
