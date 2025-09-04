@@ -32,6 +32,7 @@ export default function VendorOnboarding() {
     gstNumber: "",
      panFile: null as File | null,
   aadhaarFile: null as File | null,
+  termsAccepted:false
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
