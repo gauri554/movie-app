@@ -33,4 +33,24 @@ export const navConfig: Record<
     subtitle: "Your gateway to cinema & business",
     backPath: "/events",
   },
+    "/movieticket": {
+    title: "Film Mart",
+    subtitle: "Your gateway to cinema & business",
+    backPath: "/new-release",
+  },
+   "/vendor-login": {
+    title: "Film Mart",
+    subtitle: "Your gateway to cinema & business",
+    backPath: "/",
+  },
+     "/vendor-signup": {
+    title: "Film Mart",
+    subtitle: "Your gateway to cinema & business",
+    backPath: "/vendor-login",
+  },
+     "/vendor": {
+    title: "Film Mart",
+    subtitle: "Your gateway to cinema & business",
+    backPath: "/",
+  },
 };

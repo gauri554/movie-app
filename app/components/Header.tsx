@@ -80,9 +80,9 @@ export default function Header({ title, subtitle }: HeaderProps) {
             Events
           </button>
           <button
-            onClick={() => router.push("/cinemashows")}
+            onClick={() => router.push("/movieticket")}
             className={`w-full sm:w-auto px-4 py-2 rounded-full text-sm cursor-pointer ${
-              pathname === "/cinemashows"
+              pathname === "/movieticket"
                 ? "bg-[#ff4655] text-white"
                 : "bg-white/6 hover:bg-[#ff4655]"
             }`}

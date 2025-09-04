@@ -117,7 +117,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             <div className=" hidden md:flex flex flex-col md:flex-row items-center gap-3 md:gap-3">
                       <button onClick={() => router.push("/new-release")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-[#ff4655] hover:bg-white/10 text-sm cursor-pointer">Film Mart</button>
                       <button onClick={() => router.push("/events")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-[#ff4655] bg-white/6 hover:bg-[#ff4655] text-white text-sm cursor-pointer">Events</button>
-                      <button onClick={() => router.push("/cinemashows")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-white/6 hover:bg-[#ff4655] text-sm cursor-pointer">Book Ticket</button>
+                      <button onClick={() => router.push("/movieticket")} className="w-full sm:w-auto px-4 py-2 rounded-full bg-white/6 hover:bg-[#ff4655] text-sm cursor-pointer">Book Ticket</button>
                     </div>
           
                  
@@ -245,7 +245,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
    <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-1 sm:py-4 pb-3 md:pb-0 mb-4 border-b border-white/10 md:mb-0">
         <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
         <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
-        <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
+        <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/movieticket" />
       </div>
 
         {/* Main grid */}

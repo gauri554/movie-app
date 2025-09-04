@@ -101,7 +101,7 @@ const images = [
     <div className="bg-[#0C1B4D] font-inter text-white min-h-screen ">
 
       {/* Navbar */}
-      <header className=" sticky top-0 z-50  bg-[#0C1B4D] flex justify-between md:gap-30 md:items-center px-2 py-4 sm:px-8 sm:py-4 border-b border-white/10  ">
+      <header className=" sticky top-0 z-50  bg-[#0C1B4D] flex justify-between md:items-center sm:gap-10 md:gap-10 lg:gap-30 lg:items-center px-2 py-4 sm:px-8 sm:py-4 border-b border-white/10     tablet:px-10 tablet:py-6 tablet:gap-6">
         <div className="flex items-center gap-0 sm:gap-2 cursor-pointer">
          
       <div 
@@ -117,10 +117,10 @@ const images = [
       />
   
         </div>
-        <div className="flex items-center gap-2 sm:gap-46   sm:w-auto ">
+        <div className="flex items-center gap-2 sm:gap-46  md:gap-10 lg:gap-46 sm:w-[auto] md:w-[auto]  ">
            <div className="flex items-center gap-2 relative">
            
-                 <div className= "hidden md:block relative w-full sm:w-full">
+                 <div className= "hidden md:block relative w-full sm:w-full md:w-full ">
                   <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-white w-5 h-5"  />
                    <input
                      type="text"
@@ -427,7 +427,7 @@ const images = [
               <img
                 src={src}
                 alt={`slide-${idx}`}
-                className="slide-img w-full h-48 sm:h-64 md:h-180  lg:h-96 object-cover rounded-lg"
+                className="slide-img w-full h-48 sm:h-64 md:h-75  lg:h-96  object-cover rounded-lg"
               />
             </div>
           </SwiperSlide>

@@ -83,14 +83,14 @@ const filteredTheatres = selectedFilter
         <section className="max-w-5xl mx-auto px-4 py-6">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
             <Image
-              src="/war2.jpg"
+              src="/tanvi.png"
               alt="War 2"
     width={160}
     height={200}
               className="rounded-lg shadow-md object-cover"
             />
             <div className="text-center sm:text-left">
-              <h2 className="text-sm sm:text-xl md:text-2xl font-semibold text-white">War 2</h2>
+              <h2 className="text-sm sm:text-xl md:text-2xl font-semibold text-white">Tanvi</h2>
               <p className="text-[10px] md:text-lg text-gray-200 mt-1">UA16+ | Hindi | 3 hr 3 min</p>
               <button
                 onClick={() => router.push("/details")}

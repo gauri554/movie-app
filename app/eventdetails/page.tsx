@@ -31,7 +31,7 @@ const EventDetails: NextPage = () => {
           <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0">
                          <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
                          <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
-                         <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/cinemashows" />
+                         <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/movieticket" />
                        </div>
         <Image
           src="/coldplay.png" 

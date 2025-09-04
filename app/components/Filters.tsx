@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import {X} from "lucide-react";
 const tabs = ["Languages", "Format", "New Releases"] as const;
 type Tab = typeof tabs[number];
 
@@ -61,7 +61,7 @@ export default function FilterModal({ open, onClose }: FilterModalProps) {
                 onClick={onClose}
                 className="text-xs sm:text-xs md:text-sm text-[#ff4655] hover:underline cursor-pointer"
               >
-                Reset All
+                <X className="w-6 h-6 text-gray-600 hover:text-white cursor-pointer" />
               </button>
             </div>
 

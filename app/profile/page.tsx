@@ -78,28 +78,28 @@ const router=useRouter();
           <>
             {/* Login card */}
             <div className="rounded-2xl bg-white/3 border border-gray-800 p-6 shadow-lg mb-10 text-center">
-              <p className="text-xs md:text-lg text-gray-300 mb-5">
+              <p className="text-[11px] sm:text-xs md:text-lg text-gray-300 mb-5">
                 Sign up or log in to start booking your plans!
               </p>
-              <button onClick={() => setShowLogin(true)} className="flex items-center justify-center text-sm md:text-base gap-2 w-full py-3 rounded-xl bg-white text-black font-semibold hover:bg-gray-200 transition cursor-pointer">
-                <LogIn size={18} /> Login / Sign up
+              <button onClick={() => setShowLogin(true)} className="flex items-center justify-center text-xs sm:text-sm md:text-base gap-2 w-full py-2 sm:py-2 md:py-3 rounded-xl bg-white text-black font-semibold hover:bg-gray-200 transition cursor-pointer">
+                <LogIn className="w-3 h-3 sm:w-4 sm:h-4 md:w-4 md:h-4"/> Login / Sign up
               </button>
             </div>
 <LoginDrawer isOpen={showLogin} onClose={() => setShowLogin(false)} />
             {/* Quick Links */}
             <section>
-              <h2 className="text-sm md:text-base font-semibold text-gray-400 mb-4">
+              <h2 className="text-xs sm:text-sm md:text-base font-semibold text-gray-400 mb-4">
                 Quick Access
               </h2>
               <div className="space-y-4">
                 <ProfileItem
                   label="My Bookings"
-                  icon={<BookOpen size={18} />}
+                  icon={<BookOpen className="w-4 h-4 sm:w-4 sm:h-4 md:w-4 md:h-4" />}
                   onClick={() => setActiveSection("bookings")}
                 />
                 <ProfileItem
                   label="Payments"
-                  icon={<CreditCard size={18} />}
+                  icon={<CreditCard className="w-4 h-4 sm:w-4 sm:h-4 md:w-4 md:h-4" />}
                   onClick={() => setActiveSection("payments")}
                 />
               </div>
@@ -107,11 +107,11 @@ const router=useRouter();
 
             {/* Support */}
             <section className="mt-10">
-              <h2 className="text-sm font-semibold text-gray-400 mb-4">Support</h2>
+              <h2 className="text-xs sm:text-sm font-semibold text-gray-400 mb-4">Support</h2>
               <div className="space-y-4 ">
                 <ProfileItem
                   label="Frequently Asked Questions"
-                  icon={<HelpCircle size={18} />}
+                  icon={<HelpCircle className="w-4 h-4" />}
                   onClick={() => setActiveSection("faq")}
                 />
               </div>
@@ -119,11 +119,11 @@ const router=useRouter();
 
             {/* More */}
             <section className="mt-10">
-              <h2 className="text-sm font-semibold text-gray-400 mb-4">More</h2>
+              <h2 className="text-xs sm:text-sm font-semibold text-gray-400 mb-4">More</h2>
               <div className="space-y-4">
                 <ProfileItem
                   label="About Us"
-                  icon={<Info size={18} />}
+                  icon={<Info className="w-4 h-4" />}
                   onClick={() => setActiveSection("about")}
                 />
               </div>
@@ -141,12 +141,12 @@ const router=useRouter();
               >
                 <div className="flex items-center gap-3 mb-2">
                   <Ticket size={20} />
-                  <h2 className="font-semibold">{b.movie}</h2>
+                  <p className="font-semibold text-xs sm:text-sm md:text-base">{b.movie}</p>
                 </div>
-                <p className="text-gray-400 text-xs md:text-sm">
+                <p className="text-gray-400 text-xs sm:text-xs md:text-sm">
                   {b.date} • {b.time}
                 </p>
-                <p className="text-gray-400 text-sm mt-1">Seats: {b.seats}</p>
+                <p className="text-gray-400 text-xs sm:text-xs md:text-sm mt-1">Seats: {b.seats}</p>
               </div>
             ))}
           </div>
@@ -162,12 +162,12 @@ const router=useRouter();
               >
                 <div className="flex items-center gap-3 mb-2">
                   <CreditCard size={20} />
-                  <h2 className="font-semibold">{p.method}</h2>
+                  <p className="font-semibold text-xs sm:text-sm md:text-base">{p.method}</p>
                 </div>
-                <p className="text-gray-400 text-xs md:text-sm">
+                <p className="text-gray-400 text-xs sm:text-xs md:text-sm">
                   {p.date} • {p.status}
                 </p>
-                <p className="text-gray-200 text-sm mt-1">Amount: {p.amount}</p>
+                <p className="text-gray-200 text-xs sm:text-xs md:text-sm mt-1">Amount: {p.amount}</p>
               </div>
             ))}
           </div>
@@ -181,8 +181,8 @@ const router=useRouter();
                 key={idx}
                 className="bg-white/3 rounded-xl p-5 border border-white/5 shadow hover:bg-white/10 transition"
               >
-                <p className="text-sm md:text-base font-semibold mb-2">{f.q}</p>
-                <p className="text-gray-400 text-xs sm:text-sm md:text-sm">{f.a}</p>
+                <p className="text-xs sm:text-sm md:text-base font-semibold mb-2">{f.q}</p>
+                <p className="text-gray-400 text-[10px] sm:text-sm md:text-sm">{f.a}</p>
               </div>
             ))}
           </div>
@@ -191,8 +191,8 @@ const router=useRouter();
         {/* About Us */}
         {activeSection === "about" && (
           <div className="bg-white/3 rounded-xl p-6 border border-white/5 shadow leading-relaxed">
-            <h2 className="font-semibold text-lg mb-3">About Us</h2>
-            <p className="text-gray-300 text-xs md:text-sm text-justify">
+            <p className="font-semibold text-lg mb-3 text-xs sm:text-sm md:text-base">About Us</p>
+            <p className="text-gray-300 text-[10px] md:text-sm text-justify">
               District is your one-stop destination to discover and book amazing
               experiences, movies, and events around you. Our mission is to
               simplify entertainment booking with a seamless, secure, and
@@ -229,7 +229,7 @@ function ProfileItem({
     >
       <div className="flex items-center gap-3">
         {icon}
-        <span className="text-sm">{label}</span>
+        <span className="text-[11px] sm:text-sm md:text-sm">{label}</span>
       </div>
       <span className="text-gray-500">{">"}</span>
     </div>
