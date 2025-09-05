@@ -85,7 +85,7 @@ const [showPopup, setShowPopup] = useState(false);
 
   const router =useRouter();
   return (
-    <div className="min-h-screen bg-[#0C1B4D] text-white">
+    <div className="min-h-screen bg-[#0C1B4D] text-white font-inter">
       {/* Top bar */}
       <div className="sticky top-0 z-20 bg-[#0C1B4D]/80 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -331,6 +331,13 @@ const [showPopup, setShowPopup] = useState(false);
           </div>
         </div>
       )}
+       <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+`}</style>
     </div>
   );
 }

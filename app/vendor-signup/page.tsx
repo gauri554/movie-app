@@ -32,7 +32,7 @@ export default function VendorSignupPage() {
     <div className="min-h-screen bg-[#0C1B4D] font-inter">
       <div className="px-4 py-3 mb-15 md:mb-0">
        <Header title="Vendor:Sign up" subtitle=""/>
-         <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0">
+         <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0 text-white">
                        <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
                        <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
                        <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/movieticket" />
@@ -53,13 +53,13 @@ export default function VendorSignupPage() {
               name="name"
               value={form.name}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500"
+              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500 text-white"
               placeholder="John Doe"
               required
             />
           </div>
           <div>
-            <label className="block text-[11px] sm:text-sm md:text-sm font-medium text-gray-200 mb-1">
+            <label className="block text-[11px] sm:text-sm md:text-sm font-medium text-gray-200 mb-1 ">
               Email
             </label>
             <input
@@ -67,7 +67,7 @@ export default function VendorSignupPage() {
               name="email"
               value={form.email}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500"
+              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500 text-white"
               placeholder="vendor@domain.com"
               required
             />
@@ -81,7 +81,7 @@ export default function VendorSignupPage() {
               name="phone"
               value={form.phone}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500"
+              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500 text-white"
               placeholder="+91 9876543210"
               required
             />
@@ -95,7 +95,7 @@ export default function VendorSignupPage() {
               name="password"
               value={form.password}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500"
+              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500 text-white"
               required
             />
           </div>
@@ -108,7 +108,7 @@ export default function VendorSignupPage() {
               name="confirmPassword"
               value={form.confirmPassword}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500"
+              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500 text-white"
               required
             />
           </div>

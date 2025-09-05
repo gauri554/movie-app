@@ -18,8 +18,8 @@ export default function VendorLoginPage() {
   return (
     <div className="min-h-screen  bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] font-inter">
       <div className="px-4 py-3 mb-25 md:mb-0">
-         <Header title="Vendor Login" subtitle="Ahmedabad"/>
-         <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0">
+         <Header title="Vendor Login" subtitle=""/>
+         <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0 text-white">
                          <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
                          <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
                          <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/movieticket" />
@@ -39,7 +39,7 @@ export default function VendorLoginPage() {
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500"
+              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500 text-white"
               placeholder="name@domain.com"
             />
           </div>
@@ -51,7 +51,7 @@ export default function VendorLoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500"
+              className="w-full border border-gray-300 rounded-lg py-1 sm:py-2 px-4 md:py-2 focus:outline-none focus:ring-1 focus:ring-red-500 text-white"
               placeholder="Enter your password"
             />
           </div>

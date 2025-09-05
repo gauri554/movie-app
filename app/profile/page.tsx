@@ -36,7 +36,7 @@ export default function ProfilePage() {
      const [showLogin, setShowLogin] = useState(false);
 const router=useRouter();
   return (
-    <div className="min-h-screen bg-[#0C1B4D] text-white flex flex-col">
+    <div className="min-h-screen bg-[#0C1B4D] text-white flex flex-col font-inter">
       {/* Header */}
      
       <header className="flex items-center justify-between px-6 py-5 border-b border-gray-800 bg-[#0C1B4D]/80 backdrop-blur-sm sticky top-0">
@@ -232,6 +232,13 @@ function ProfileItem({
         <span className="text-[11px] sm:text-sm md:text-sm">{label}</span>
       </div>
       <span className="text-gray-500">{">"}</span>
+       <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+`}</style>
     </div>
   );
 }

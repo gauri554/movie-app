@@ -105,7 +105,7 @@ function buildLayout() {
 
 function Legend() {
   return (
-    <div className="flex items-center gap-5 text-sm text-gray-300">
+    <div className="flex items-center gap-5 text-sm text-gray-300 font-inter">
       <div className="flex items-center gap-2">
         <span className="w-2 h-2 sm:w-3 sm:h-3  md:h-4 md:w-4 rounded grid place-items-center " style={{ background: COLORS.available }}/>
         <span className="text-[10px] sm:text-xs md:text-sm">Available</span>
@@ -329,6 +329,13 @@ const router=useRouter();
 
       {/* Sticky proceed */}
       <StickyProceed count={count} total={total} onProceed={proceed} onClear={clearAll} />
+       <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+`}</style>
     </div>
   );
 }

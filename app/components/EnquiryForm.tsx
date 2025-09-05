@@ -16,7 +16,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0  backdrop-blur-md flex items-center justify-center z-50 "
+      className="fixed inset-0  backdrop-blur-md flex items-center justify-center z-50 font-inter "  
     >
       {/* Modal Content */}
       <div
@@ -144,6 +144,13 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
           }
         }
       `}</style>
+        <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+`}</style>
     </div>
   );
 }

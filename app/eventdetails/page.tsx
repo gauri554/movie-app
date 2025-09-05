@@ -184,7 +184,7 @@ Friday, 24 Aug 2019 | 6:30PM - 9:30PM</li>
               className="h-[150] w-[150] md:w-[180] md:h-[150]  rounded-lg mt-2"
             />
           </div>
-            <button  onClick={() => router.push("/checkout")}className="bg-pink-500 text-white  rounded-lg font-semibold cursor-pointer sweep-button">
+            <button  onClick={() => router.push("/event-ticket")}className="bg-pink-500 text-white  rounded-lg font-semibold cursor-pointer sweep-button">
          <span> Buy tickets</span>
        </button>
         </aside>

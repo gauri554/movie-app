@@ -24,7 +24,7 @@ export default function LoginDrawer({
       {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm font-inter"
           onClick={onClose}
         />
       )}
@@ -54,7 +54,7 @@ export default function LoginDrawer({
           <div className="p-6 space-y-4">
             <button
               onClick={() => setMode("user")}
-              className="w-full py-2 md:py-3 rounded-lg bg-white/10 hover:bg-white/20 transition font-medium cursor-pointer"
+              className="w-full py-2 md:py-3 rounded-lg bg-white/10 hover:bg-white/20 transition font-medium cursor-pointer text-xs md:text-base"
             >
               Sign in as User
             </button>
@@ -63,7 +63,7 @@ export default function LoginDrawer({
                 onClose();
                 window.location.href = "/vendor-login";
               }}
-              className="w-full py-2 md:py-3 rounded-lg bg-[#ff4655] hover:bg-[#ff3344] transition font-medium cursor-pointer"
+              className="w-full py-2 md:py-3 rounded-lg bg-[#ff4655] hover:bg-[#ff3344] transition font-medium cursor-pointer text-xs md:text-base"
             >
               Sign in as Vendor
             </button>
@@ -101,7 +101,9 @@ export default function LoginDrawer({
             </button>
           </form>
         )}
+          
       </div>
+        
     </>
   );
 }

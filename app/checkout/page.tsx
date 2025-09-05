@@ -18,7 +18,7 @@ const router = useRouter();
     setShowPopup(true);
   };
   return (
-    <div className="min-h-screen bg-[#0D1B4C] font-montserrat text-white   ">
+    <div className="min-h-screen bg-[#0D1B4C] font-inter text-white   ">
       <div className="sm:py-5 px-2 sm:px-4">
         <Header title="Checkout" subtitle=""/>
       <div className=" p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-3xl mx-auto">
@@ -110,11 +110,11 @@ const router = useRouter();
         <footer className="bg-white/10 py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
         © 2025 Movie App. All Rights Reserved.
       </footer>
-     <style jsx global>{`
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+    <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-  .font-montserrat {
-    font-family: 'Montserrat', sans-serif;
+  .font-inter {
+    font-family: 'Inter', sans-serif;
   }
 `}</style>
     </div>

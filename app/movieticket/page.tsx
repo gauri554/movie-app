@@ -5,6 +5,8 @@ import { Search, User, Heart } from "lucide-react";
 import Image from "next/image";
 import Header from "../components/Header";
 import FilterModal from "../components/FilterModal";
+import CategoryButton from "../components/CategoryButton";
+import { FaFilm, FaCalendarAlt, FaTicketAlt } from "react-icons/fa";
 type Theatre = {
   id: number;
   name: string;
@@ -75,10 +77,14 @@ const filteredTheatres = selectedFilter
   : theatreData[selectedDate] || [];
 
   return (
-    <div className="min-h-screen bg-[#0D1B4C]">
+    <div className="min-h-screen bg-[#0D1B4C] font-inter">
       <div className="px-2 py-3">
         <Header title="Book Ticket" subtitle="" />
-
+   <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0 text-white">
+                        <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
+                        <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
+                        <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/movieticket" />
+                      </div>
         {/* Movie Details */}
         <section className="max-w-5xl mx-auto px-4 py-6">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
@@ -208,6 +214,14 @@ const filteredTheatres = selectedFilter
       <footer className="bg-white/10 py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
         © 2025 Movie App. All Rights Reserved.
       </footer>
+
+       <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+`}</style>
     </div>
   );
 }

@@ -127,11 +127,12 @@ const EventListPage: React.FC = () => {
                   <span className="text-[11px] md:text-lg md:font-bold">Venue</span> {event.venue}
                 </p>
                 <button
-                  onClick={() => router.push(`/checkout`)}
+              
+                  onClick={() => router.push(`/event-ticket`)}
                   className="mt-1 md:mt-2 bg-red-500 text-white py-1 px-2 md:py-2 md:px-4 rounded-lg font-semibold 
-                          text-xs md:text-base   hover:bg-red-600 transition cursor-pointer"
+                          text-xs md:text-base flex items-center justify-center gap-2  hover:bg-red-600 transition cursor-pointer"
                 >
-                  🎟 Buy tickets
+          <FaTicketAlt className="text-sm md:text-lg" />        Buy tickets
                 </button>
               </div>
             </div>

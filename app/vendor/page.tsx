@@ -46,7 +46,7 @@ export default function VendorOnboarding() {
     <div className="min-h-screen bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] font-inter">
         <div className="px-4 py-2 md:py-3   ">
         <Header title="Vendor" subtitle=""/>
-          <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0">
+          <div className="md:hidden flex flex-row justify-center items-center gap-2 sm:gap-12 py-3 sm:py-4 border-b border-white/10 mb-4 md:mb-0 text-white">
                         <CategoryButton icon={<FaFilm />} label="Film Mart" href="/new-release" />
                         <CategoryButton icon={<FaCalendarAlt />} label="Events" href="/events" />
                         <CategoryButton icon={<FaTicketAlt />} label="Book Ticket" href="/movieticket" />

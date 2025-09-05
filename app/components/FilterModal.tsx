@@ -15,7 +15,7 @@ export default function FilterModal({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/70 backdrop-blur-sm">
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/70 backdrop-blur-sm font-inter">
       <div className=" w-[90%] md:w-[700px] rounded-2xl shadow-lg overflow-hidden 
                        bg-gradient-to-b from-[#0f1c46] to-[#050e28] ">
         {/* Header */}
@@ -167,6 +167,13 @@ function FilterOption({
         <p className="font-medium text-[11px] sm:text-sm md:text-base">{label}</p>
         {time && <p className="text-xs sm:text-sm md:text-sm text-gray-500">{time}</p>}
       </div>
+        <style jsx global>{`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+`}</style>
     </div>
   );
 }
