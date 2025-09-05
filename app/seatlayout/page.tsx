@@ -329,6 +329,9 @@ const router=useRouter();
 
       {/* Sticky proceed */}
       <StickyProceed count={count} total={total} onProceed={proceed} onClear={clearAll} />
+       <footer className="bg-white/10 py-6 text-center text-xs sm:text-sm text-white/70 mt-10">
+        © 2025 Movie App. All Rights Reserved.
+      </footer> 
        <style jsx global>{`
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 

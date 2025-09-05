@@ -119,16 +119,16 @@ export default function Header({ title, subtitle }: HeaderProps) {
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Search Header */}
-                  <div className="sticky top-0 z-20 pt-6 md:pt-3 pl-3 md:pl-0 md:p-6 pb-3">
+                  <div className="sticky top-0 z-20 pt-6 md:pt-2 pl-3 md:pl-0 md:p-4 pb-3">
                     <button
                       onClick={() => setShowModal(false)}
-                      className="absolute top-1 right-1 md:top-1 md:right-1 text-gray-500 hover:text-white cursor-pointer"
+                      className="absolute top-1 right-1 md:top-0 md:right-0  text-gray-500 hover:text-white cursor-pointer"
                     >
                       <X size={22} />
                     </button>
 
                     {/* Search Input */}
-                    <div className="relative md:w-full">
+                    <div className="relative md:w-full md:mt-4">
                       <input
                         type="text"
                         value={value}

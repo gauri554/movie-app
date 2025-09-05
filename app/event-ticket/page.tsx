@@ -68,8 +68,16 @@ export default function EventBooking() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#07133a] via-[#0c2a52] to-[#071133] text-white font-inter">
-      <header className="border-b border-white/20 p-3 flex justify-center bg-black/20">
+        
+      <header className="border-b border-white/20 p-3 flex justify-center gap-4 bg-black/20">
+          <button
+                  onClick={() => router.push('events')}
+          className="w-5 h-5 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 cursor-pointer text-base sm:text-3xl"
+        >
+          ‹
+        </button>
         <div className="text-center">
+           
           <h1 className="text-xs sm:text-base md:text-lg font-semibold">Kevin Hart: Acting My Age</h1>
           <p className="text-[10px] sm:text-xs md:text-xs text-gray-300">Sun, 21 Sep | 7PM | Mumbai</p>
         </div>
@@ -117,7 +125,7 @@ export default function EventBooking() {
         </div>
       </main>
 
-      <footer className="sticky bottom-0 bg-white/10 border-t border-white/20 px-2 py-3">
+      <footer className="sticky bottom-0 bg-white/10 border-t border-white/20 px-8 py-3">
         <div className="flex justify-between items-center">
           
           <div className="flex space-x-2 overflow-x-auto no-scrollbar">
@@ -148,6 +156,7 @@ export default function EventBooking() {
           </button>
         </div>
       </footer>
+        
     </div>
   );
 }
